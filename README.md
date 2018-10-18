@@ -175,5 +175,7 @@ On error, `loadOpenGL` will return one of the following:
 * `GLSupport.badLibrary` - one of the context-independent symbols (OpenGL 1.0 & 1.1) in the OpenGL shared library failed to load.
 * `GLSupport.noContext` - an OpenGL context was not created before calling the function.
 
+See [the README for `bindbc.loader`](https://github.com/BindBC/bindbc-loader/blob/master/README.md) for the error handling API.
+
 
 
