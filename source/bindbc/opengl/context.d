@@ -42,7 +42,7 @@ private {
     }
     else version(Posix) {
         enum getCurrentContextName = "glXGetCurrentContext";
-        enum getProcAddressName = "glxGetProcAddress";
+        enum getProcAddressName = "glXGetProcAddress";
     }
     else static assert(0, "Platform Problem!!!");
 }
