@@ -25,7 +25,7 @@ static if(useARBBaseInstance) {
     private bool _hasARBBaseInstance;
     bool hasARBBaseInstance() { return _hasARBBaseInstance; }
 
-    extern(System)  {
+    extern(System) @nogc nothrow  {
         alias pglDrawArraysInstancedBaseInstance = void function(GLenum, GLint, GLsizei, GLsizei, GLuint);
         alias pglDrawElementsInstancedBaseInstance = void function(GLenum, GLsizei, GLenum, const(void)*, GLsizei, GLuint);
         alias pglDrawElementsInstancedBaseVertexBaseInstance = void function(GLenum, GLsizei, GLenum, const(void)*, GLsizei, GLint, GLuint);
@@ -234,7 +234,7 @@ static if(useARBShaderImageLoadStore) {
         GL_MAX_COMBINED_IMAGE_UNIFORMS    = 0x90CF,
     }
 
-    extern(System)  {
+    extern(System) @nogc nothrow  {
         alias pglBindImageTexture = void function(GLuint, GLuint, GLint, GLboolean, GLint, GLenum, GLenum);
         alias pglMemoryBarrier = void function(GLbitfield);
     }
@@ -265,7 +265,7 @@ static if(useARBTextureStorage) {
 
     enum uint GL_TEXTURE_IMMUTABLE_FORMAT = 0x912F;
 
-    extern(System)  {
+    extern(System) @nogc nothrow  {
         alias pglTexStorage1D = void function(GLenum, GLsizei, GLenum, GLsizei);
         alias pglTexStorage2D = void function(GLenum, GLsizei, GLenum, GLsizei, GLsizei);
         alias pglTexStorage3D = void function(GLenum, GLsizei, GLenum, GLsizei, GLsizei, GLsizei);
@@ -316,7 +316,7 @@ static if(useARBTransformFeedbackInstanced) {
     private bool _hasARBTransformFeedbackInstanced;
     bool hasARBTransformFeedbackInstanced() { return _hasARBTransformFeedbackInstanced; }
 
-    extern(System)  {
+    extern(System) @nogc nothrow  {
         alias pglDrawTransformFeedbackInstanced = void function(GLenum, GLuint, GLsizei);
         alias pglDrawTransformFeedbackStreamInstanced = void function(GLenum, GLuint, GLuint, GLsizei);
     }

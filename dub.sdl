@@ -1,5 +1,5 @@
 name "bindbc-opengl"
-description "Dynamic bindings to OpenGL."
+description "Dynamic bindings to OpenGL, compatible with -betterC, @nogc, and nothrow."
 homepage ""
 authors "Mike Parker"
 license "Boost"

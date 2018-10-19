@@ -18,3 +18,13 @@ import bindbc.opengl.bind.arb.core_30,
        bindbc.opengl.bind.arb.core_44,
        bindbc.opengl.bind.arb.core_45,
        bindbc.opengl.bind.arb.core_46;
+
+public
+import bindbc.opengl.bind.arb.arb_b;
+
+import bindbc.loader.sharedlib;
+import bindbc.opengl.config;
+package(bindbc.opengl) @nogc nothrow
+void loadARB(SharedLib lib, GLSupport contextVersion) {
+    loadARB_b(lib, contextVersion);
+}

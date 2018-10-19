@@ -106,5 +106,8 @@ GLSupport loadOpenGL(const(char)* libName)
     if(loadedVersion < GLSupport.gl45) lib.loadARB45(loadedVersion);
     if(loadedVersion < GLSupport.gl46) lib.loadARB46(loadedVersion);
 
+    // Load all other supported extensions
+    loadARB(lib, contextVersion);
+
     return loadedVersion;
 }
