@@ -222,6 +222,6 @@ void loadARB_01(SharedLib lib, GLSupport contextVersion)
             lib.loadARBComputeVariableGroupSize(contextVersion);
 
     static if(useARBDebugOutput) _hasARBDebugOutput =
-            hasExtension(contextVersion, "GL_ARB_compute_variable_group_size") &&
+            hasExtension(contextVersion, "GL_ARB_debug_output") &&
             lib.loadARBDebugOutput(contextVersion);
 }
