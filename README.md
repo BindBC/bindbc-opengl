@@ -84,7 +84,7 @@ versions "GL_41"
 With this configuration, client code can make use of all core OpenGL types and functions up to OpenGL 4.1. At runtime, if the context supports OpenGL 4.1 or higher, the loader will attempt to load up to OpenGL 4.1. If the highest OpenGL version the context supports is lower than 4.1, the loader will attempt to load up to that version.
 
 ## Enable support for extensions
-Extension support is added primarily on an as needed basis. Currently, only ARB/KHR extensions are supported. All supported ARB/KHR extensions can be enabled by adding the `GL_ARB` version identifier to your `dub.json` or `dub.sdl`.
+Extension support is added primarily on an as needed basis. All supported ARB/KHR extensions can be enabled by adding the `GL_ARB` version identifier to your `dub.json` or `dub.sdl`.
 
 For example, the following enables support for OpenGL functions up to and including GL 4.1, as well as all ARB extensions.
 
@@ -109,7 +109,7 @@ Extensions which were promoted to the core OpenGL API are loaded automatically a
 
 Specific extensions can be enabled using the name of the extension as a version identifier. The syntax matches that of the extension name as listed in [the OpenGL Registry](https://www.khronos.org/registry/OpenGL/index_gl.php).
 
-For example, the following configurations enable support for OpenGL 4.1 and the extensions "GL_ARB_base_instance" and "GL_ARB_compressed_texture_pixel_storage" (both of which were promoted to core in OpenGL 4.2).
+For example, the following configurations enable support for OpenGL 4.1 and the extensions `GL_ARB_base_instance` and `GL_ARB_compressed_texture_pixel_storage` (both of which were promoted to core in OpenGL 4.2).
 
 __dub.json__
 ```
@@ -128,7 +128,7 @@ dependency "bindbc-opengl" version="~>0.1.0"
 versions "GL_41" "GL_ARB_base_instance" "GL_ARB_compressed_texture_pixel_storage"
 ```
 
-The `loadOpenGL` function (described in the next section) will attempt to load all extensions configured in this manner. No errors will be reported on failure. To determine if an extension was loaded, use the `hasARBFoo` properties, like so:
+The `loadOpenGL` function (described in the next section) will attempt to load all extensions configured in this manner. No errors will be reported on failure. To determine if an extension was loaded, use the `hasARBFoo` property for each extension, like so:
 
 ```d
 import bindbc.opengl;
@@ -148,7 +148,7 @@ if(hasARBCompressedTexturePixelStorage) {
 Currently, `bindbc-opengl` supports most extensions that have been promoted to the core API. Support for more extensions and a list of all supported extensions are forthcoming.
 
 ## Loading OpenGL
-The `loadOpenGL` function is used to load all supported OpenGL functions and extensions. In order for this function to succeed, an OpenGL must context be created before it is called. The return value of `loadOpenGL` can be used to determine which version of OpenGL actually loaded.
+The `loadOpenGL` function is used to load all supported OpenGL functions and extensions. In order for this function to succeed, an OpenGL context must be created before it is called. The return value of `loadOpenGL` can be used to determine which version of OpenGL actually loaded.
 
 For example, assume you've configured `bindbc-opengl` to support up to OpenGL 4.1, but you've designed your renderer to work with both 4.1 and 3.3. You can create a 4.1 or 3.3 context in one part of your code, then load OpenGL in another part, and configure your renderer based upon the return value.
 
