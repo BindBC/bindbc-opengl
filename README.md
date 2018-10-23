@@ -86,7 +86,7 @@ With this configuration, client code can make use of all core OpenGL types and f
 ## Enable support for extensions
 Extension support is added primarily on an as needed basis. All supported ARB/KHR extensions can be enabled by adding the `GL_ARB` version identifier to your `dub.json` or `dub.sdl`.
 
-For example, the following enables support for OpenGL functions up to and including GL 4.1, as well as all ARB extensions.
+For example, the following enables support for all core OpenGL functions up to and including GL 4.1, as well as all ARB/KHR extensions.
 
 __dub.json__
 ```
@@ -107,9 +107,9 @@ versions "GL_41" "GL_ARB"
 
 Extensions which were promoted to the core OpenGL API are loaded automatically as part of the OpenGL versions to which they belong.
 
-Specific extensions can be enabled using the name of the extension as a version identifier. The syntax matches that of the extension name as listed in [the OpenGL Registry](https://www.khronos.org/registry/OpenGL/index_gl.php).
+Specific extensions can be enabled using the extension's OpenGL name string as a version identifier. The name string for each extension [is listed in the `bindbc-opengl` wiki](https://github.com/BindBC/bindbc-opengl/wiki/Supported-Extensions). It takes the form of `GL_` prefixed to the extension name.
 
-For example, the following configurations enable support for OpenGL 4.1 and the extensions `GL_ARB_base_instance` and `GL_ARB_compressed_texture_pixel_storage` (both of which were promoted to core in OpenGL 4.2).
+For example, the following configurations enable support for OpenGL 4.1 and the extensions `ARB_base_instance` and `ARB_compressed_texture_pixel_storage` (both of which were promoted to core in OpenGL 4.2).
 
 __dub.json__
 ```
@@ -118,7 +118,8 @@ __dub.json__
 }
 "versions": [
     "GL_41",
-    "GL_ARB"
+    "GL_ARB_base_instance",
+    "GL_ARB_compressed_texture_pixel_storage"
 ],
 ```
 
@@ -145,7 +146,7 @@ if(hasARBCompressedTexturePixelStorage) {
 }
 ```
 
-Currently, `bindbc-opengl` supports most extensions that have been promoted to the core API. Support for more extensions and a list of all supported extensions are forthcoming.
+All supported extensions [are listed at the `bindbc-opengl` wiki](https://github.com/BindBC/bindbc-opengl/wiki/Supported-Extensions). Support for more extensions is added on an ongoing, as-needed basis. If you have a need for an extension that is not currently supported, [please file and issue](https://github.com/BindBC/bindbc-opengl/issues).
 
 ## Loading OpenGL
 The `loadOpenGL` function is used to load all supported OpenGL functions and extensions. In order for this function to succeed, an OpenGL context must be created before it is called. The return value of `loadOpenGL` can be used to determine which version of OpenGL actually loaded.
