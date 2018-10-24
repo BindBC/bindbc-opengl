@@ -206,6 +206,207 @@ static if(useARBDebugOutput) {
 }
 else enum hasARBDebugOutput = false;
 
+// ARB_framebuffer_sRGB
+version(GL_ARB) enum useFramebufferSRGB = true;
+else version(GL_ARB_framebuffer_sRGB) enum useFramebufferSRGB = true;
+else enum useFramebufferSRGB = false;
+
+static if(useARBFramebufferSRGB) {
+    private bool _hasARBFramebufferSRGB;
+    bool hasARBFramebufferSRGB() { return _hasARBFramebufferSRGB; }
+
+    enum uint GL_FRAMEBUFFER_SRGB = 0x8DB9;
+}
+else enum hasARBFramebufferSRGB = false;
+
+// ARB_geometry_shader4
+version(GL_ARB) enum useARBGeometryShader4 = true;
+else version(GL_ARB_geometry_shader4) enum useARBGeometryShader4 = true;
+else enum useARBGeometryShader4 = false;
+
+static if(useARBGeometryShader4) {
+    private bool _hasARBGeometryShader4;
+    bool hasARBGeometryShader4() { return _hasARBGeometryShader4; }
+
+    enum : uint {
+        GL_LINES_ADJACENCY_ARB            = 0x000A,
+        GL_LINE_STRIP_ADJACENCY_ARB       = 0x000B,
+        GL_TRIANGLES_ADJACENCY_ARB        = 0x000C,
+        GL_TRIANGLE_STRIP_ADJACENCY_ARB   = 0x000D,
+        GL_PROGRAM_POINT_SIZE_ARB         = 0x8642,
+        GL_MAX_GEOMETRY_TEXTURE_IMAGE_UNITS_ARB = 0x8C29,
+        GL_FRAMEBUFFER_ATTACHMENT_LAYERED_ARB = 0x8DA7,
+        GL_FRAMEBUFFER_INCOMPLETE_LAYER_TARGETS_ARB = 0x8DA8,
+        GL_FRAMEBUFFER_INCOMPLETE_LAYER_COUNT_ARB = 0x8DA9,
+        GL_GEOMETRY_SHADER_ARB            = 0x8DD9,
+        GL_GEOMETRY_VERTICES_OUT_ARB      = 0x8DDA,
+        GL_GEOMETRY_INPUT_TYPE_ARB        = 0x8DDB,
+        GL_GEOMETRY_OUTPUT_TYPE_ARB       = 0x8DDC,
+        GL_MAX_GEOMETRY_VARYING_COMPONENTS_ARB = 0x8DDD,
+        GL_MAX_VERTEX_VARYING_COMPONENTS_ARB = 0x8DDE,
+        GL_MAX_GEOMETRY_UNIFORM_COMPONENTS_ARB = 0x8DDF,
+        GL_MAX_GEOMETRY_OUTPUT_VERTICES_ARB = 0x8DE0,
+        GL_MAX_GEOMETRY_TOTAL_OUTPUT_COMPONENTS_ARB = 0x8DE1,
+    }
+
+    extern(System) @nogc nothrow  {
+        alias pglProgramParameteriARB = void function(GLuint,GLenum,GLint);
+        alias pglFramebufferTextureARB = void function(GLuint,GLenum,GLuint,GLint);
+        alias pglFramebufferTextureLayerARB = void function(GLuint,GLenum,GLuint,GLint,GLint);
+        alias pglFramebufferTextureFaceARB = void function(GLuint,GLenum,GLuint,GLint,GLenum);
+    }
+
+    __gshared {
+        pglProgramParameteriARB glProgramParameteriARB;
+        pglFramebufferTextureARB glFramebufferTextureARB;
+        pglFramebufferTextureLayerARB glFramebufferTextureLayerARB;
+        pglFramebufferTextureFaceARB glFramebufferTextureFaceARB;
+    }
+
+    private @nogc nothrow
+    bool loadARBGeometryShader4(SharedLib lib, GLSupport contextVersion)
+    {
+        lib.bindGLSymbol(cast(void**)&glProgramParameteriARB,"glProgramParameteriARB");
+        lib.bindGLSymbol(cast(void**)&glFramebufferTextureARB,"glFramebufferTextureARB");
+        lib.bindGLSymbol(cast(void**)&glFramebufferTextureLayerARB,"glFramebufferTextureLayerARB");
+        lib.bindGLSymbol(cast(void**)&glFramebufferTextureFaceARB,"glFramebufferTextureFaceARB");
+        return resetErrorCountGL();
+    }
+}
+else enum hasARBGeometryShader4 = false;
+
+// ARB_pipeline_statistics_query
+version(GL_ARB) enum usePipelineStatisticsQuery = true;
+else version(GL_ARB_pipeline_statistics_query) enum usePipelineStatisticsQuery = true;
+else enum usePipelineStatisticsQuery = false;
+
+static if(useARBPipelineStatisticsQuery) {
+    private bool _hasARBPipelineStatisticsQuery;
+    bool hasARBPipelineStatisticsQuery() { return _hasARBPipelineStatisticsQuery; }
+
+    enum : uint {
+        GL_VERTICES_SUBMITTED_ARB         = 0x82EE,
+        GL_PRIMITIVES_SUBMITTED_ARB       = 0x82EF,
+        GL_VERTEX_SHADER_INVOCATIONS_ARB  = 0x82F0,
+        GL_TESS_CONTROL_SHADER_PATCHES_ARB = 0x82F1,
+        GL_TESS_EVALUATION_SHADER_INVOCATIONS_ARB = 0x82F2,
+        GL_GEOMETRY_SHADER_PRIMITIVES_EMITTED_ARB = 0x82F3,
+        GL_FRAGMENT_SHADER_INVOCATIONS_ARB = 0x82F4,
+        GL_COMPUTE_SHADER_INVOCATIONS_ARB = 0x82F5,
+        GL_CLIPPING_INPUT_PRIMITIVES_ARB  = 0x82F6,
+        GL_CLIPPING_OUTPUT_PRIMITIVES_ARB = 0x82F7,
+    }
+}
+else enum hasARBPipelineStatisticsQuery = false;
+
+// ARB_robustness_isolation
+version(GL_ARB) enum useRobustnessIsolation = true;
+else version(GL_ARB_robustness_isolation) enum useRobustnessIsolation = true;
+else enum useRobustnessIsolation = false;
+
+static if(useARBRobustnessIsolation) {
+    private bool _hasARBRobustnessIsolation;
+    bool hasARBRobustnessIsolation() { return _hasARBRobustnessIsolation; }
+}
+else enum hasARBRobustnessIsolation = false;
+
+// ARB_sample_shading
+version(GL_ARB) enum useSampleShading = true;
+else version(GL_ARB_sample_shading) enum useSampleShading = true;
+else enum useSampleShading = false;
+
+static if(useARBSampleShading) {
+    private bool _hasARBSampleShading;
+    bool hasARBSampleShading() { return _hasARBSampleShading; }
+
+    enum : uint {
+        GL_SAMPLE_SHADING_ARB             = 0x8C36,
+        GL_MIN_SAMPLE_SHADING_VALUE_ARB   = 0x8C37,
+    }
+
+    extern(System) @nogc nothrow alias pglMinSampleShadingARB = void function(GLclampf);
+    __gshared pglMinSampleShadingARB glMinSampleShadingARB;
+
+    private @nogc nothrow
+    bool loadARBSampleShading(SharedLib lib, GLSupport contextVersion)
+    {
+        lib.bindGLSymbol(cast(void**)&glMinSampleShadingARB,"glMinSampleShadingARB");
+        return resetErrorCountGL();
+    }
+}
+else enum hasARBSampleShading = false;
+
+// ARB_texture_compression_bptc
+version(GL_ARB) enum useTextureCompressionBPTC = true;
+else version(GL_ARB_texture_compression_bptc) enum useTextureCompressionBPTC = true;
+else enum useTextureCompressionBPTC = false;
+
+static if(useARBTextureCompressionBPTC) {
+    private bool _hasARBTextureCompressionBPTC;
+    bool hasARBTextureCompressionBPTC() { return _hasARBTextureCompressionBPTC; }
+
+    enum : uint {
+        GL_COMPRESSED_RGBA_BPTC_UNORM_ARB = 0x8E8C,
+        GL_COMPRESSED_SRGB_ALPHA_BPTC_UNORM_ARB = 0x8E8D,
+        GL_COMPRESSED_RGB_BPTC_SIGNED_FLOAT_ARB = 0x8E8E,
+        GL_COMPRESSED_RGB_BPTC_UNSIGNED_FLOAT_ARB = 0x8E8F,
+    }
+}
+else enum hasARBTextureCompressionBPTC = false;
+
+// ARB_texture_cube_map_array
+version(GL_ARB) enum useTextureCubeMapArray = true;
+else version(GL_ARB_texture_cube_map_array) enum useTextureCubeMapArray = true;
+else enum useTextureCubeMapArray = false;
+
+static if(useARBTextureCubeMapArray) {
+    private bool _hasARBTextureCubeMapArray;
+    bool hasARBTextureCubeMapArray() { return _hasARBTextureCubeMapArray; }
+
+    enum : uint {
+        GL_TEXTURE_CUBE_MAP_ARRAY_ARB     = 0x9009,
+        GL_TEXTURE_BINDING_CUBE_MAP_ARRAY_ARB = 0x900A,
+        GL_PROXY_TEXTURE_CUBE_MAP_ARRAY_ARB = 0x900B,
+        GL_SAMPLER_CUBE_MAP_ARRAY_ARB     = 0x900C,
+        GL_SAMPLER_CUBE_MAP_ARRAY_SHADOW_ARB = 0x900D,
+        GL_INT_SAMPLER_CUBE_MAP_ARRAY_ARB = 0x900E,
+        GL_UNSIGNED_INT_SAMPLER_CUBE_MAP_ARRAY_ARB = 0x900F,
+    }
+}
+else enum hasARBTextureCubeMapArray = false;
+
+// ARB_texture_gather
+version(GL_ARB) enum useTextureGather = true;
+else version(GL_ARB_texture_gather) enum useTextureGather = true;
+else enum useTextureGather = false;
+
+static if(useARBTextureGather) {
+    private bool _hasARBTextureGather;
+    bool hasARBTextureGather() { return _hasARBTextureGather; }
+
+    enum : uint {
+        GL_MIN_PROGRAM_TEXTURE_GATHER_OFFSET_ARB = 0x8E5E,
+        GL_MAX_PROGRAM_TEXTURE_GATHER_OFFSET_ARB = 0x8E5F,
+    }
+}
+else enum hasARBTextureGather = false;
+
+// ARB_transform_feedback_overflow_query
+version(GL_ARB) enum useTransformFeedbackOverflowQuery = true;
+else version(GL_ARB_transform_feedback_overflow_query) enum useTransformFeedbackOverflowQuery = true;
+else enum useTransformFeedbackOverflowQuery = false;
+
+static if(useARBTransformFeedbackOverflowQuery) {
+    private bool _hasARBTransformFeedbackOverflowQuery;
+    bool hasARBTransformFeedbackOverflowQuery() { return _hasARBTransformFeedbackOverflowQuery; }
+
+    enum : uint {
+        GL_TRANSFORM_FEEDBACK_OVERFLOW_ARB          = 0x82EC,
+        GL_TRANSFORM_FEEDBACK_STREAM_OVERFLOW_ARB   = 0x82ED,
+    }
+}
+else enum hasARBTransformFeedbackOverflowQuery = false;
+
 package @nogc nothrow
 void loadARB_01(SharedLib lib, GLSupport contextVersion)
 {
@@ -224,4 +425,33 @@ void loadARB_01(SharedLib lib, GLSupport contextVersion)
     static if(useARBDebugOutput) _hasARBDebugOutput =
             hasExtension(contextVersion, "GL_ARB_debug_output") &&
             lib.loadARBDebugOutput(contextVersion);
+
+    static if(useARBFramebufferSRGB) _hasARBFramebufferSRGB =
+            hasExtension(contextVersion, "GL_ARB_framebuffer_sRGB");
+
+    static if(useARBGeometryShader4) _hasARBGeometryShader4 =
+            hasExtension(contextVersion, "GL_ARB_geometry_shader4") &&
+            lib.loadARBGeometryShader4(contextVersion);
+
+    static if(useARBPipelineStatisticsQuery) _hasARBPipelineStatisticsQuery =
+            hasExtension(contextVersion, "GL_ARB_pipeline_statistics_query");
+
+    static if(useARBRobustnessIsolation) _hasARBRobustnessIsolation =
+            hasExtension(contextVersion, "GL_ARB_robustness_isolation");
+
+    static if(useARBSampleShading ) _hasARBSampleShading  =
+            hasExtension(contextVersion, "GL_ARB_sample_shading") &&
+            lib.loadARBSampleShading (contextVersion);
+
+    static if(useARBTextureCompressionBPTC) _hasARBTextureCompressionBPTC =
+            hasExtension(contextVersion, "GL_ARB_texture_compression_bptc");
+
+    static if(useARBTextureCubeMapArray) _hasARBTextureCubeMapArray =
+            hasExtension(contextVersion, "GL_ARB_texture_cube_map_array");
+
+    static if(useARBTextureGather) _hasARBTextureGather =
+            hasExtension(contextVersion, "GL_ARB_texture_gather");
+
+    static if(useARBTransformFeedbackOverflowQuery) _hasARBTransformFeedbackOverflowQuery =
+            hasExtension(contextVersion, "GL_ARB_transform_feedback_overflow_query");
 }
