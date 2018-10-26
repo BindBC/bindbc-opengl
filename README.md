@@ -176,6 +176,13 @@ On error, `loadOpenGL` will return one of the following:
 * `GLSupport.badLibrary` - one of the context-independent symbols (OpenGL 1.0 & 1.1) in the OpenGL shared library failed to load.
 * `GLSupport.noContext` - an OpenGL context was not created before calling the function.
 
+The following functions are provided for convenience:
+* `isOpenGLLoaded` - returns `true` if any version of OpenGL has been successfully loaded and `false` otherwise.
+* `openGLContextVersion` - returns a `GLSupport` member corresponding to the version supported by the OpenGL context against which the library was loaded.
+* `loadedOpenGLVersion` - returns a `GLSupport` member corresponding to the version of OpenGL currently loaded (identical to the return value of `loadOpenGL`).
+
+Note that when working with multiple contexts, it may be necessary to call `loadOpenGL` on every context switch. On Windows in particular, a context switch may cause context-dependent functions (i.e, core functions above 1.1 and all extensions) to become invalid in some circumstances.
+
 See [the README for `bindbc.loader`](https://github.com/BindBC/bindbc-loader/blob/master/README.md) for the error handling API.
 
 

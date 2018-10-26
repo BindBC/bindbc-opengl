@@ -13,11 +13,15 @@ import bindbc.opengl.config,
 private {
     SharedLib lib;
     GLSupport contextVersion;
+    GLSupport loadedVersion;
 }
 
 @nogc nothrow:
 
-GLSupport currentContextVersion() { return contextVersion; }
+GLSupport openGLContextVersion() { return contextVersion; }
+GLSupport loadedOpenGLVersion() { return loadedVersion; }
+bool isOpenGLLoaded() { return lib != invalidHandle; }
+
 
 void unloadOpenGL()
 {
