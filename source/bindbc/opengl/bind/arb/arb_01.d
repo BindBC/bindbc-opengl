@@ -207,9 +207,9 @@ static if(useARBDebugOutput) {
 else enum hasARBDebugOutput = false;
 
 // ARB_framebuffer_sRGB
-version(GL_ARB) enum useFramebufferSRGB = true;
-else version(GL_ARB_framebuffer_sRGB) enum useFramebufferSRGB = true;
-else enum useFramebufferSRGB = false;
+version(GL_ARB) enum useARBFramebufferSRGB = true;
+else version(GL_ARB_framebuffer_sRGB) enum useARBFramebufferSRGB = true;
+else enum useARBFramebufferSRGB = false;
 
 static if(useARBFramebufferSRGB) {
     private bool _hasARBFramebufferSRGB;
@@ -276,9 +276,9 @@ static if(useARBGeometryShader4) {
 else enum hasARBGeometryShader4 = false;
 
 // ARB_pipeline_statistics_query
-version(GL_ARB) enum usePipelineStatisticsQuery = true;
-else version(GL_ARB_pipeline_statistics_query) enum usePipelineStatisticsQuery = true;
-else enum usePipelineStatisticsQuery = false;
+version(GL_ARB) enum useARBPipelineStatisticsQuery = true;
+else version(GL_ARB_pipeline_statistics_query) enum useARBPipelineStatisticsQuery = true;
+else enum useARBPipelineStatisticsQuery = false;
 
 static if(useARBPipelineStatisticsQuery) {
     private bool _hasARBPipelineStatisticsQuery;
@@ -300,9 +300,9 @@ static if(useARBPipelineStatisticsQuery) {
 else enum hasARBPipelineStatisticsQuery = false;
 
 // ARB_robustness_isolation
-version(GL_ARB) enum useRobustnessIsolation = true;
-else version(GL_ARB_robustness_isolation) enum useRobustnessIsolation = true;
-else enum useRobustnessIsolation = false;
+version(GL_ARB) enum useARBRobustnessIsolation = true;
+else version(GL_ARB_robustness_isolation) enum useARBRobustnessIsolation = true;
+else enum useARBRobustnessIsolation = false;
 
 static if(useARBRobustnessIsolation) {
     private bool _hasARBRobustnessIsolation;
@@ -311,9 +311,9 @@ static if(useARBRobustnessIsolation) {
 else enum hasARBRobustnessIsolation = false;
 
 // ARB_sample_shading
-version(GL_ARB) enum useSampleShading = true;
-else version(GL_ARB_sample_shading) enum useSampleShading = true;
-else enum useSampleShading = false;
+version(GL_ARB) enum useARBSampleShading = true;
+else version(GL_ARB_sample_shading) enum useARBSampleShading = true;
+else enum useARBSampleShading = false;
 
 static if(useARBSampleShading) {
     private bool _hasARBSampleShading;
@@ -337,9 +337,9 @@ static if(useARBSampleShading) {
 else enum hasARBSampleShading = false;
 
 // ARB_texture_compression_bptc
-version(GL_ARB) enum useTextureCompressionBPTC = true;
-else version(GL_ARB_texture_compression_bptc) enum useTextureCompressionBPTC = true;
-else enum useTextureCompressionBPTC = false;
+version(GL_ARB) enum useARBTextureCompressionBPTC = true;
+else version(GL_ARB_texture_compression_bptc) enum useARBTextureCompressionBPTC = true;
+else enum useARBTextureCompressionBPTC = false;
 
 static if(useARBTextureCompressionBPTC) {
     private bool _hasARBTextureCompressionBPTC;
@@ -355,9 +355,9 @@ static if(useARBTextureCompressionBPTC) {
 else enum hasARBTextureCompressionBPTC = false;
 
 // ARB_texture_cube_map_array
-version(GL_ARB) enum useTextureCubeMapArray = true;
-else version(GL_ARB_texture_cube_map_array) enum useTextureCubeMapArray = true;
-else enum useTextureCubeMapArray = false;
+version(GL_ARB) enum useARBTextureCubeMapArray = true;
+else version(GL_ARB_texture_cube_map_array) enum useARBTextureCubeMapArray = true;
+else enum useARBTextureCubeMapArray = false;
 
 static if(useARBTextureCubeMapArray) {
     private bool _hasARBTextureCubeMapArray;
@@ -376,9 +376,9 @@ static if(useARBTextureCubeMapArray) {
 else enum hasARBTextureCubeMapArray = false;
 
 // ARB_texture_gather
-version(GL_ARB) enum useTextureGather = true;
-else version(GL_ARB_texture_gather) enum useTextureGather = true;
-else enum useTextureGather = false;
+version(GL_ARB) enum useARBTextureGather = true;
+else version(GL_ARB_texture_gather) enum useARBTextureGather = true;
+else enum useARBTextureGather = false;
 
 static if(useARBTextureGather) {
     private bool _hasARBTextureGather;
@@ -392,9 +392,9 @@ static if(useARBTextureGather) {
 else enum hasARBTextureGather = false;
 
 // ARB_transform_feedback_overflow_query
-version(GL_ARB) enum useTransformFeedbackOverflowQuery = true;
-else version(GL_ARB_transform_feedback_overflow_query) enum useTransformFeedbackOverflowQuery = true;
-else enum useTransformFeedbackOverflowQuery = false;
+version(GL_ARB) enum useARBTransformFeedbackOverflowQuery = true;
+else version(GL_ARB_transform_feedback_overflow_query) enum useARBTransformFeedbackOverflowQuery = true;
+else enum useARBTransformFeedbackOverflowQuery = false;
 
 static if(useARBTransformFeedbackOverflowQuery) {
     private bool _hasARBTransformFeedbackOverflowQuery;
