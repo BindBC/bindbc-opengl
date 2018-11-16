@@ -95,62 +95,6 @@ static if(useARBDrawElementsBaseVertex) {
 }
 else enum hasARBDrawElementsBaseVertex = false;
 
-// ARB_geometry_shader4
-version(GL_ARB) enum useARBGeometryShader4 = true;
-else version(GL_ARB_geometry_shader4) enum useARBGeometryShader4 = true;
-else enum useARBGeometryShader4 = has32;
-
-static if(useARBGeometryShader4) {
-    private bool _hasARBGeometryShader4;
-    bool hasARBGeometryShader4() { return _hasARBGeometryShader4; }
-
-    enum : uint {
-        GL_LINES_ADJACENCY_ARB            = 0x000A,
-        GL_LINE_STRIP_ADJACENCY_ARB       = 0x000B,
-        GL_TRIANGLES_ADJACENCY_ARB        = 0x000C,
-        GL_TRIANGLE_STRIP_ADJACENCY_ARB   = 0x000D,
-        GL_PROGRAM_POINT_SIZE_ARB         = 0x8642,
-        GL_MAX_GEOMETRY_TEXTURE_IMAGE_UNITS_ARB = 0x8C29,
-        GL_FRAMEBUFFER_ATTACHMENT_LAYERED_ARB = 0x8DA7,
-        GL_FRAMEBUFFER_INCOMPLETE_LAYER_TARGETS_ARB = 0x8DA8,
-        GL_FRAMEBUFFER_INCOMPLETE_LAYER_COUNT_ARB = 0x8DA9,
-        GL_GEOMETRY_SHADER_ARB            = 0x8DD9,
-        GL_GEOMETRY_VERTICES_OUT_ARB      = 0x8DDA,
-        GL_GEOMETRY_INPUT_TYPE_ARB        = 0x8DDB,
-        GL_GEOMETRY_OUTPUT_TYPE_ARB       = 0x8DDC,
-        GL_MAX_GEOMETRY_VARYING_COMPONENTS_ARB = 0x8DDD,
-        GL_MAX_VERTEX_VARYING_COMPONENTS_ARB = 0x8DDE,
-        GL_MAX_GEOMETRY_UNIFORM_COMPONENTS_ARB = 0x8DDF,
-        GL_MAX_GEOMETRY_OUTPUT_VERTICES_ARB = 0x8DE0,
-        GL_MAX_GEOMETRY_TOTAL_OUTPUT_COMPONENTS_ARB = 0x8DE1,
-    }
-
-    extern(System) @nogc nothrow {
-        alias pglProgramParameteriARB = void function(GLuint,GLenum,GLint);
-        alias pglFramebufferTextureARB = void function(GLuint,GLenum,GLuint,GLint);
-        alias pglFramebufferTextureLayerARB = void function(GLuint,GLenum,GLuint,GLint,GLint);
-        alias pglFramebufferTextureFaceARB = void function(GLuint,GLenum,GLuint,GLint,GLenum);
-    }
-
-    __gshared {
-        pglProgramParameteriARB glProgramParameteriARB;
-        pglFramebufferTextureARB glFramebufferTextureARB;
-        pglFramebufferTextureLayerARB glFramebufferTextureLayerARB;
-        pglFramebufferTextureFaceARB glFramebufferTextureFaceARB;
-    }
-
-    private @nogc nothrow
-    bool loadARBGeometryShader4(SharedLib lib, GLSupport contextVersion)
-    {
-        lib.bindGLSymbol(cast(void**)&glProgramParameteriARB,"glProgramParameteriARB");
-        lib.bindGLSymbol(cast(void**)&glFramebufferTextureARB,"glFramebufferTextureARB");
-        lib.bindGLSymbol(cast(void**)&glFramebufferTextureLayerARB,"glFramebufferTextureLayerARB");
-        lib.bindGLSymbol(cast(void**)&glFramebufferTextureFaceARB,"glFramebufferTextureFaceARB");
-        return resetErrorCountGL();
-    }
-}
-else enum hasARBGeometryShader4 = false;
-
 // ARB_sync
 version(GL_ARB) enum useARBSync = true;
 else version(GL_ARB_sync) enum useARBSync = true;
@@ -287,7 +231,6 @@ bool loadARB32(SharedLib lib, GLSupport contextVersion)
 
             bool ret = true;
             ret = _hasARBDrawElementsBaseVertex = lib.loadARBDrawElementsBaseVertex(contextVersion);
-            ret = _hasARBGeometryShader4 = lib.loadARBGeometryShader4(contextVersion);
             ret = _hasARBSync = lib.loadARBSync(contextVersion);
             ret = _hasARBTextureMultiSample = lib.loadTextureMultiSample(contextVersion);
             return ret;
@@ -306,10 +249,6 @@ bool loadARB32(SharedLib lib, GLSupport contextVersion)
     static if(useARBDrawElementsBaseVertex) _hasARBDrawElementsBaseVertex =
             hasExtension(contextVersion, "GL_ARB_draw_elements_base_vertex") &&
             lib.loadARBDrawElementsBaseVertex(contextVersion);
-
-    static if(useARBGeometryShader4) _hasARBGeometryShader4 =
-            hasExtension(contextVersion, "GL_ARB_geometry_shader4") &&
-            lib.loadARBGeometryShader4(contextVersion);
 
     static if(useARBSync) _hasARBSync =
             hasExtension(contextVersion, "GL_ARB_sync") &&
