@@ -12,6 +12,8 @@ import bindbc.opengl.config,
 import bindbc.opengl.bind.types;
 
 public import bindbc.opengl.bind.gl11;
+version(GL_AllowDeprecated)
+    public import bindbc.opengl.bind.dep.dep12;
 
 enum : uint {
     GL_UNSIGNED_BYTE_3_3_2            = 0x8032,
@@ -69,12 +71,19 @@ __gshared {
 package(bindbc.opengl) @nogc nothrow
 GLSupport loadGL12(SharedLib lib, GLSupport contextVersion)
 {
+    auto loadedVersion = GLSupport.gl11;
+
     if(contextVersion > GLSupport.gl11) {
         lib.bindGLSymbol(cast(void**)&glDrawRangeElements, "glDrawRangeElements");
         lib.bindGLSymbol(cast(void**)&glTexImage3D, "glTexImage3D");
         lib.bindGLSymbol(cast(void**)&glTexSubImage3D, "glTexSubImage3D");
         lib.bindGLSymbol(cast(void**)&glCopyTexSubImage3D, "glCopyTexSubImage3D");
-        if(errorCountGL() == 0) return GLSupport.gl12;
+
+        immutable res = errorCountGL() == 0;
+        version(GL_AllowDeprecated) {
+            if(res && loadDeprecatedGL12(lib)) loadedVersion = GLSupport.gl12;
+        }
+        else if(res) loadedVersion = GLSupport.gl12;
     }
-    return GLSupport.gl11;
+    return loadedVersion;
 }

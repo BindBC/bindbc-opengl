@@ -62,7 +62,10 @@ Adding one of these version identifiers to your package description will do two 
 * symbols for the core OpenGL types and functions for the supported OpenGL versions will be declared and available in user code
 * the `loadOpenGL` function will attempt to load all OpenGL versions for which support is enabled and which is supported by the OpenGL context at runtime.
 
-The following examples are configured to load all OpenGL support all OpenGL versions up to OpenGL 4.1:
+To load all functions and enable all constants from "classic" OpenGL versions, i.e. those that have been deprecated, set the version identifier `GL_AllowDeprecated`
+in your build system.
+
+The following examples are configured to load core functions from all OpenGL versions up to OpenGL 4.1:
 
 
 __dub.json__
@@ -82,6 +85,28 @@ versions "GL_41"
 ```
 
 With this configuration, client code can make use of all core OpenGL types and functions up to OpenGL 4.1. At runtime, if the context supports OpenGL 4.1 or higher, the loader will attempt to load up to OpenGL 4.1. If the highest OpenGL version the context supports is lower than 4.1, the loader will attempt to load up to that version.
+
+To enable the loading of deprecated functions in the same configuration:
+
+__dub.json__
+```
+"dependencies": {
+    "bindbc-opengl": "~>0.1.0"
+}
+"versions": [
+    "GL_41", "GL_AllowDeprecated
+],
+```
+
+__dub.sdl__
+```
+dependency "bindbc-opengl" version="~>0.1.0"
+versions "GL_41" "GL_AllowDeprecated"
+```
+
+With this, all OpenGL functions, both core and deprecated, will be loaded. `GL_AllowDeprecated` by itself enables support for  functions and constants that were deprecated in OpenGL
+versions 1.0 - 1.4, and constants which were deprecated in versions 2.0 and 2.1. When `GL_AllowDeprecated` is specified in conjunction with `GL_30` or higher, support for deprecated
+constants from OpenGL version 3.0 will be enabled.
 
 ## Enable support for extensions
 Extension support is added primarily on an as needed basis. All supported ARB/KHR extensions can be enabled by adding the `GL_ARB` version identifier to your `dub.json` or `dub.sdl`.

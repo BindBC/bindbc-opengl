@@ -12,6 +12,9 @@ static if(glSupport >= GLSupport.gl30) {
     import bindbc.opengl.context;
     import bindbc.opengl.bind.types;
 
+    version(GL_AllowDeprecated)
+        public import bindbc.opengl.bind.dep.dep30;
+
     enum : uint {
         GL_COMPARE_REF_TO_TEXTURE         = 0x884E,
         GL_CLIP_DISTANCE0                 = 0x3000,

@@ -12,6 +12,9 @@ import bindbc.opengl.config,
 import bindbc.opengl.bind.types;
 
 public import bindbc.opengl.bind.gl12;
+version(GL_AllowDeprecated)
+    public import bindbc.opengl.bind.dep.dep13;
+
 
 enum : uint {
     GL_TEXTURE0                       = 0x84C0,
@@ -113,7 +116,12 @@ GLSupport loadGL13(SharedLib lib, GLSupport contextVersion)
         lib.bindGLSymbol(cast(void**)&glCompressedTexSubImage2D, "glCompressedTexSubImage2D");
         lib.bindGLSymbol(cast(void**)&glCompressedTexSubImage1D, "glCompressedTexSubImage1D");
         lib.bindGLSymbol(cast(void**)&glGetCompressedTexImage, "glGetCompressedTexImage");
-        if(errorCountGL() == 0) loadedVersion = GLSupport.gl13;
+
+        immutable res = errorCountGL() == 0;
+        version(GL_AllowDeprecated) {
+            if(res && lib.loadDeprecatedGL13()) loadedVersion = GLSupport.gl13;
+        }
+        else if(res) loadedVersion = GLSupport.gl13;
     }
     return loadedVersion;
 }

@@ -12,6 +12,8 @@ import bindbc.opengl.config,
 import bindbc.opengl.bind.types;
 
 public import bindbc.opengl.bind.gl13;
+version(GL_AllowDeprecated)
+    public import bindbc.opengl.bind.dep.dep14;
 
 enum : uint {
     GL_BLEND_DST_RGB                  = 0x80C8,
@@ -79,7 +81,12 @@ GLSupport loadGL14(SharedLib lib, GLSupport contextVersion)
         lib.bindGLSymbol(cast(void**)&glPointParameteriv, "glPointParameteriv");
         lib.bindGLSymbol(cast(void**)&glBlendColor, "glBlendColor");
         lib.bindGLSymbol(cast(void**)&glBlendEquation, "glBlendEquation");
-        if(errorCountGL() == 0) loadedVersion = GLSupport.gl14;
+
+        immutable res = errorCountGL() == 0;
+        version(GL_AllowDeprecated) {
+            if(res && lib.loadDeprecatedGL14()) loadedVersion = GLSupport.gl14;
+        }
+        else if(res) loadedVersion = GLSupport.gl14;
     }
     return loadedVersion;
 }

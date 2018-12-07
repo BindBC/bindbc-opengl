@@ -12,6 +12,8 @@ import bindbc.opengl.config,
 import bindbc.opengl.bind.types;
 
 public import bindbc.opengl.bind.gl20;
+version(GL_AllowDeprecated)
+    public import bindbc.opengl.bind.dep.dep21;
 
 enum : uint {
     GL_PIXEL_PACK_BUFFER              = 0x88EB,

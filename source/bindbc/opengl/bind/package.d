@@ -7,50 +7,43 @@
 module bindbc.opengl.bind;
 
 public
-import bindbc.opengl.bind.gl21,
+import bindbc.opengl.config,
+       bindbc.opengl.bind.gl21,
        bindbc.opengl.bind.types;
 
-version(GL_46) {
+static if(glSupport >= GLSupport.gl46) {
     public import bindbc.opengl.bind.gl46;
-    version = GL_45;
 }
-version(GL_45) {
+static if(glSupport >= GLSupport.gl45) {
     public import bindbc.opengl.bind.gl45;
-    version = GL_44;
 }
-version(GL_44) {
+static if(glSupport >= GLSupport.gl44) {
     public import bindbc.opengl.bind.gl44;
-    version = GL_43;
 }
-version(GL_43) {
+static if(glSupport >= GLSupport.gl43) {
     public import bindbc.opengl.bind.gl43;
-    version = GL_42;
 }
-version(GL_42) {
+static if(glSupport >= GLSupport.gl42) {
     public import bindbc.opengl.bind.gl42;
-    version = GL_41;
 }
-version(GL_41) {
+static if(glSupport >= GLSupport.gl41) {
     public import bindbc.opengl.bind.gl41;
-    version = GL_40;
 }
-version(GL_40) {
+static if(glSupport >= GLSupport.gl40) {
     public import bindbc.opengl.bind.gl40;
-    version = GL_33;
 }
-version(GL_33) {
+static if(glSupport >= GLSupport.gl33) {
     public import bindbc.opengl.bind.gl33;
-    version = GL_32;
 }
-version(GL_32) {
+static if(glSupport >= GLSupport.gl32) {
     public import bindbc.opengl.bind.gl32;
-    version = GL_31;
 }
-version(GL_31) {
+static if(glSupport >= GLSupport.gl31) {
     public import bindbc.opengl.bind.gl31;
-    version = GL_30;
 }
-version(GL_30) public import bindbc.opengl.bind.gl30;
+static if(glSupport >= GLSupport.gl30) {
+    public import bindbc.opengl.bind.gl30;
+}
 
 public
 import bindbc.opengl.bind.arb;

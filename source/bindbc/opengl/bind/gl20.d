@@ -12,6 +12,8 @@ import bindbc.opengl.config,
 import bindbc.opengl.bind.types;
 
 public import bindbc.opengl.bind.gl15;
+version(GL_AllowDeprecated)
+    public import bindbc.opengl.bind.dep.dep20;
 
 enum : uint {
     GL_BLEND_EQUATION_RGB             = 0x8009,

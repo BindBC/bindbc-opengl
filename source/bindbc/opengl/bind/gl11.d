@@ -9,6 +9,9 @@ module bindbc.opengl.bind.gl11;
 import bindbc.loader;
 import bindbc.opengl.bind.types;
 
+version(GL_AllowDeprecated)
+    public import bindbc.opengl.bind.dep.dep11;
+
 enum : ubyte {
     GL_FALSE                          = 0,
     GL_TRUE                           = 1,
@@ -418,5 +421,7 @@ bool loadGL11(SharedLib lib)
     lib.bindSymbol(cast(void**)&glGenTextures, "glGenTextures");
     lib.bindSymbol(cast(void**)&glIsTexture, "glIsTexture");
 
-    return errorCount() == startErrorCount;
-};
+    immutable ret = errorCount() == startErrorCount;
+    version(GL_Allow_Deprecated) return ret && loadDeprecatedGL11(lib);
+    else return ret;
+}

@@ -32,6 +32,9 @@ enum GLSupport {
     gl46 = 46,
 }
 
+version(GL_AllowDeprecated) enum glAllowDeprecated = true;
+else enum glAllowDeprecated = false;
+
 version(GL_46)             enum glSupport = GLSupport.gl46;
 else version(GL_45)        enum glSupport = GLSupport.gl45;
 else version(GL_44)        enum glSupport = GLSupport.gl44;
