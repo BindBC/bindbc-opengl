@@ -44,8 +44,8 @@ GLSupport loadOpenGL()
     }
     else version(Posix) {
         const(char)[][2] libNames = [
-            "libGL.so",
-            "libGL.so.1"
+            "libGL.so.1",
+            "libGL.so"
         ];
     }
     else static assert(0, "bindbc-opengl is not yet supported on this platform");

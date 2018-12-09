@@ -422,6 +422,6 @@ bool loadGL11(SharedLib lib)
     lib.bindSymbol(cast(void**)&glIsTexture, "glIsTexture");
 
     immutable ret = errorCount() == startErrorCount;
-    version(GL_Allow_Deprecated) return ret && loadDeprecatedGL11(lib);
+    version(GL_AllowDeprecated) return ret && loadDeprecatedGL11(lib);
     else return ret;
 }
