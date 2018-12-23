@@ -291,10 +291,9 @@ __gshared {
 }
 
 package(bindbc.opengl) @nogc nothrow
-GLSupport loadGL20(SharedLib lib, GLSupport contextVersion)
+bool loadGL20(SharedLib lib, GLSupport contextVersion)
 {
-    auto loadedVersion = loadGL15(lib, contextVersion);
-    if(loadedVersion == GLSupport.gl15 && contextVersion > GLSupport.gl15) {
+    if(contextVersion > GLSupport.gl15) {
         lib.bindGLSymbol(cast(void**)&glBlendEquationSeparate, "glBlendEquationSeparate");
         lib.bindGLSymbol(cast(void**)&glDrawBuffers, "glDrawBuffers");
         lib.bindGLSymbol(cast(void**)&glStencilOpSeparate, "glStencilOpSeparate");
@@ -388,7 +387,7 @@ GLSupport loadGL20(SharedLib lib, GLSupport contextVersion)
         lib.bindGLSymbol(cast(void**)&glVertexAttrib4uiv, "glVertexAttrib4uiv");
         lib.bindGLSymbol(cast(void**)&glVertexAttrib4usv, "glVertexAttrib4usv");
         lib.bindGLSymbol(cast(void**)&glVertexAttribPointer, "glVertexAttribPointer");
-        if(errorCountGL() == 0) loadedVersion = GLSupport.gl20;
+        if(errorCountGL() == 0) return true;
     }
-    return loadedVersion;
+    return false;
 }

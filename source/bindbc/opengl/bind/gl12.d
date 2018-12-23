@@ -69,21 +69,18 @@ __gshared {
 }
 
 package(bindbc.opengl) @nogc nothrow
-GLSupport loadGL12(SharedLib lib, GLSupport contextVersion)
+bool loadGL12(SharedLib lib, GLSupport contextVersion)
 {
-    auto loadedVersion = GLSupport.gl11;
-
     if(contextVersion > GLSupport.gl11) {
         lib.bindGLSymbol(cast(void**)&glDrawRangeElements, "glDrawRangeElements");
         lib.bindGLSymbol(cast(void**)&glTexImage3D, "glTexImage3D");
         lib.bindGLSymbol(cast(void**)&glTexSubImage3D, "glTexSubImage3D");
         lib.bindGLSymbol(cast(void**)&glCopyTexSubImage3D, "glCopyTexSubImage3D");
 
-        immutable res = errorCountGL() == 0;
-        version(GL_AllowDeprecated) {
-            if(res && loadDeprecatedGL12(lib)) loadedVersion = GLSupport.gl12;
+        if(errorCountGL() == 0) {
+            version(GL_AllowDeprecated) return loadDeprecatedGL12(lib);
+            else return true;
         }
-        else if(res) loadedVersion = GLSupport.gl12;
     }
-    return loadedVersion;
+    return false;
 }

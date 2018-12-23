@@ -17,14 +17,14 @@ static if(glSupport >= GLSupport.gl33) {
     __gshared da_glVertexAttribDivisor glVertexAttribDivisor;
 
     package(bindbc.opengl) @nogc nothrow
-    GLSupport loadGL33(SharedLib lib, GLSupport contextVersion)
+    bool loadGL33(SharedLib lib, GLSupport contextVersion)
     {
         import bindbc.opengl.bind.arb : loadARB33;
 
         if(contextVersion >= GLSupport.gl33) {
             lib.bindGLSymbol(cast(void**)&glVertexAttribDivisor, "glVertexAttribDivisor");
-            if(errorCountGL() == 0 && loadARB33(lib, contextVersion)) return GLSupport.gl33;
+            if(errorCountGL() == 0 && loadARB33(lib, contextVersion)) return true;
         }
-        return GLSupport.gl32;
+        return false;
     }
 }

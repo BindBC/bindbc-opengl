@@ -53,17 +53,16 @@ __gshared {
 }
 
 package(bindbc.opengl) @nogc nothrow
-GLSupport loadGL21(SharedLib lib, GLSupport contextVersion)
+bool loadGL21(SharedLib lib, GLSupport contextVersion)
 {
-    auto loadedVersion = loadGL20(lib, contextVersion);
-    if(loadedVersion == GLSupport.gl20 && contextVersion > GLSupport.gl20) {
+    if(contextVersion > GLSupport.gl20) {
         lib.bindGLSymbol(cast(void**)&glUniformMatrix2x3fv, "glUniformMatrix2x3fv");
         lib.bindGLSymbol(cast(void**)&glUniformMatrix3x2fv, "glUniformMatrix3x2fv");
         lib.bindGLSymbol(cast(void**)&glUniformMatrix2x4fv, "glUniformMatrix2x4fv");
         lib.bindGLSymbol(cast(void**)&glUniformMatrix4x2fv, "glUniformMatrix4x2fv");
         lib.bindGLSymbol(cast(void**)&glUniformMatrix3x4fv, "glUniformMatrix3x4fv");
         lib.bindGLSymbol(cast(void**)&glUniformMatrix4x3fv, "glUniformMatrix4x3fv");
-        if(errorCountGL() == 0) loadedVersion = GLSupport.gl21;
+        if(errorCountGL() == 0) return true;
     }
-    return loadedVersion;
+    return false;
 }

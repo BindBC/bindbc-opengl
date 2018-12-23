@@ -88,10 +88,9 @@ __gshared {
 }
 
 package(bindbc.opengl) @nogc nothrow
-GLSupport loadGL15(SharedLib lib, GLSupport contextVersion)
+bool loadGL15(SharedLib lib, GLSupport contextVersion)
 {
-    auto loadedVersion = loadGL14(lib, contextVersion);
-    if(loadedVersion == GLSupport.gl14 && contextVersion > GLSupport.gl14) {
+    if(contextVersion > GLSupport.gl14) {
         lib.bindGLSymbol(cast(void**)&glGenQueries, "glGenQueries");
         lib.bindGLSymbol(cast(void**)&glDeleteQueries, "glDeleteQueries");
         lib.bindGLSymbol(cast(void**)&glIsQuery, "glIsQuery");
@@ -111,7 +110,7 @@ GLSupport loadGL15(SharedLib lib, GLSupport contextVersion)
         lib.bindGLSymbol(cast(void**)&glUnmapBuffer, "glUnmapBuffer");
         lib.bindGLSymbol(cast(void**)&glGetBufferParameteriv, "glGetBufferParameteriv");
         lib.bindGLSymbol(cast(void**)&glGetBufferPointerv, "glGetBufferPointerv");
-        if(errorCountGL() == 0) loadedVersion = GLSupport.gl15;
+        if(errorCountGL() == 0) return true;
     }
-    return loadedVersion;
+    return false;
 }

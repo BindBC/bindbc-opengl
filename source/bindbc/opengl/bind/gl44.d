@@ -18,13 +18,13 @@ static if(glSupport >= GLSupport.gl44) {
     }
 
     package(bindbc.opengl) @nogc nothrow
-    GLSupport loadGL44(SharedLib lib, GLSupport contextVersion)
+    bool loadGL44(SharedLib lib, GLSupport contextVersion)
     {
         import bindbc.opengl.bind.arb : loadARB44;
 
         if(contextVersion >= GLSupport.gl44) {
-            if(errorCountGL() == 0 && loadARB44(lib, contextVersion)) return GLSupport.gl43;
+            if(errorCountGL() == 0 && loadARB44(lib, contextVersion)) return true;
         }
-        return GLSupport.gl43;
+        return false;
     }
 }
