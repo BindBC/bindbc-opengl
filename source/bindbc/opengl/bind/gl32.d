@@ -50,7 +50,7 @@ static if(glSupport >= GLSupport.gl32) {
     }
 
     package(bindbc.opengl) @nogc nothrow
-    GLSupport loadGL32(SharedLib lib, GLSupport contextVersion)
+    bool loadGL32(SharedLib lib, GLSupport contextVersion)
     {
         import bindbc.opengl.bind.arb : loadARB32;
 
@@ -59,8 +59,8 @@ static if(glSupport >= GLSupport.gl32) {
             lib.bindGLSymbol(cast(void**)&glGetBufferParameteri64v, "glGetBufferParameteri64v");
             lib.bindGLSymbol(cast(void**)&glFramebufferTexture, "glFramebufferTexture");
 
-            if(errorCountGL() == 0 && loadARB32(lib, contextVersion)) return GLSupport.gl32;
+            if(errorCountGL() == 0 && loadARB32(lib, contextVersion)) return true;
         }
-        return GLSupport.gl31;
+        return false;
     }
 }

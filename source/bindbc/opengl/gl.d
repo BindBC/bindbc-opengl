@@ -80,35 +80,36 @@ GLSupport loadOpenGL(const(char)* libName)
 
     // Load the base library
     if(!lib.loadGL11()) return GLSupport.badLibrary;
+    else loadedVersion = GLSupport.gl11;
 
-    // Now load the context-dependent stuff. Always try to load up to
-    // OpenGL 2.1 by default. Load higher only if configured to do so.
-    auto loadedVersion = lib.loadGL21(contextVersion);
-    static if(glSupport >= GLSupport.gl30) loadedVersion = lib.loadGL30(contextVersion);
-    static if(glSupport >= GLSupport.gl31) loadedVersion = lib.loadGL31(contextVersion);
-    static if(glSupport >= GLSupport.gl32) loadedVersion = lib.loadGL32(contextVersion);
-    static if(glSupport >= GLSupport.gl33) loadedVersion = lib.loadGL33(contextVersion);
-    static if(glSupport >= GLSupport.gl40) loadedVersion = lib.loadGL40(contextVersion);
-    static if(glSupport >= GLSupport.gl41) loadedVersion = lib.loadGL41(contextVersion);
-    static if(glSupport >= GLSupport.gl42) loadedVersion = lib.loadGL42(contextVersion);
-    static if(glSupport >= GLSupport.gl43) loadedVersion = lib.loadGL43(contextVersion);
-    static if(glSupport >= GLSupport.gl44) loadedVersion = lib.loadGL44(contextVersion);
-    static if(glSupport >= GLSupport.gl45) loadedVersion = lib.loadGL45(contextVersion);
-    static if(glSupport >= GLSupport.gl46) loadedVersion = lib.loadGL46(contextVersion);
+    // Now load the context-dependent stuff. `glSupport` is set to OpenGL 2.1
+    // by default and can't be lower. Load higher only if configured to do so.
+    with (GLSupport)
+    static foreach(ver; [ gl12, gl13, gl14, gl15, gl20, gl21, gl30, gl31,
+        gl32, gl33, gl40, gl41, gl42, gl43, gl44, gl45, gl46 ])
+    {
+        static if(ver <= glSupport)
+        {
+            // lib.loadGL30(contextVersion)
+            if(mixin("lib.loadGL" ~ (cast(int)ver).stringof ~ "(contextVersion)"))
+                loadedVersion = ver;
+            else
+                goto LoadARB;
+        }
+    }
+
+    LoadARB:
 
     // From any GL versions higher than the one loaded, load the core ARB
     // extensions.
-    if(loadedVersion < GLSupport.gl30) lib.loadARB30(loadedVersion);
-    if(loadedVersion < GLSupport.gl31) lib.loadARB31(loadedVersion);
-    if(loadedVersion < GLSupport.gl32) lib.loadARB32(loadedVersion);
-    if(loadedVersion < GLSupport.gl33) lib.loadARB33(loadedVersion);
-    if(loadedVersion < GLSupport.gl40) lib.loadARB40(loadedVersion);
-    if(loadedVersion < GLSupport.gl41) lib.loadARB41(loadedVersion);
-    if(loadedVersion < GLSupport.gl42) lib.loadARB42(loadedVersion);
-    if(loadedVersion < GLSupport.gl43) lib.loadARB43(loadedVersion);
-    if(loadedVersion < GLSupport.gl44) lib.loadARB44(loadedVersion);
-    if(loadedVersion < GLSupport.gl45) lib.loadARB45(loadedVersion);
-    if(loadedVersion < GLSupport.gl46) lib.loadARB46(loadedVersion);
+    with (GLSupport)
+    static foreach(ver; [ gl30, gl31, gl32, gl33, gl40, gl41, gl42, gl43,
+        gl44, gl45, gl46 ])
+    {
+        if(ver > loadedVersion)
+            // lib.loadARB30(contextVersion)
+            mixin("lib.loadARB" ~ (cast(int)ver).stringof ~ "(loadedVersion);");
+    }
 
     // Load all other supported extensions
     loadARB(lib, contextVersion);

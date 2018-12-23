@@ -241,7 +241,7 @@ static if(glSupport >= GLSupport.gl30) {
     }
 
     package(bindbc.opengl) @nogc nothrow
-    GLSupport loadGL30(SharedLib lib, GLSupport contextVersion)
+    bool loadGL30(SharedLib lib, GLSupport contextVersion)
     {
         import bindbc.opengl.bind.arb : loadARB30;
 
@@ -305,8 +305,8 @@ static if(glSupport >= GLSupport.gl30) {
             lib.bindGLSymbol(cast(void**)&glClearBufferfi, "glClearBufferfi");
             lib.bindGLSymbol(cast(void**)&glGetStringi, "glGetStringi");
 
-            if(errorCountGL() == 0 && loadARB30(lib, contextVersion)) return GLSupport.gl30;
+            if(errorCountGL() == 0 && loadARB30(lib, contextVersion)) return true;
         }
-        return GLSupport.gl21;
+        return false;
     }
 }

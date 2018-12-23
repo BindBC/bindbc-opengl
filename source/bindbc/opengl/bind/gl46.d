@@ -47,7 +47,7 @@ static if(glSupport >= GLSupport.gl46) {
     }
 
     package(bindbc.opengl) @nogc nothrow
-    GLSupport loadGL46(SharedLib lib, GLSupport contextVersion)
+    bool loadGL46(SharedLib lib, GLSupport contextVersion)
     {
         import bindbc.opengl.bind.arb : loadARB46;
 
@@ -56,8 +56,8 @@ static if(glSupport >= GLSupport.gl46) {
             lib.bindGLSymbol(cast(void**)&glMultiDrawArraysIndirectCount, "glMultiDrawArraysIndirectCount");
             lib.bindGLSymbol(cast(void**)&glMultiDrawElementsIndirectCount, "glMultiDrawElementsIndirectCount");
 
-            if(errorCountGL() == 0 && loadARB46(lib, contextVersion)) return GLSupport.gl46;
+            if(errorCountGL() == 0 && loadARB46(lib, contextVersion)) return true;
         }
-        return GLSupport.gl45;
+        return false;
     }
 }

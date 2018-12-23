@@ -27,7 +27,7 @@ static if(glSupport >= GLSupport.gl45) {
     }
 
     package(bindbc.opengl) @nogc nothrow
-    GLSupport loadGL45(SharedLib lib, GLSupport contextVersion)
+    bool loadGL45(SharedLib lib, GLSupport contextVersion)
     {
         import bindbc.opengl.bind.arb : loadARB45;
 
@@ -36,8 +36,8 @@ static if(glSupport >= GLSupport.gl45) {
             lib.bindGLSymbol(cast(void**)&glGetnCompressedTexImage, "glGetnCompressedTexImage");
             lib.bindGLSymbol(cast(void**)&glGetnUniformdv, "glGetnUniformdv");
 
-            if(errorCountGL() == 0 && loadARB45(lib, contextVersion)) return GLSupport.gl45;
+            if(errorCountGL() == 0 && loadARB45(lib, contextVersion)) return true;
         }
-        return GLSupport.gl44;
+        return false;
     }
 }

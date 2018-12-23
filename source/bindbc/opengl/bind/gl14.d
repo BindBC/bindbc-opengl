@@ -68,10 +68,9 @@ __gshared {
 }
 
 package(bindbc.opengl) @nogc nothrow
-GLSupport loadGL14(SharedLib lib, GLSupport contextVersion)
+bool loadGL14(SharedLib lib, GLSupport contextVersion)
 {
-    auto loadedVersion = loadGL13(lib, contextVersion);
-    if(loadedVersion == GLSupport.gl13 && contextVersion > GLSupport.gl13) {
+    if(contextVersion > GLSupport.gl13) {
         lib.bindGLSymbol(cast(void**)&glBlendFuncSeparate, "glBlendFuncSeparate");
         lib.bindGLSymbol(cast(void**)&glMultiDrawArrays, "glMultiDrawArrays");
         lib.bindGLSymbol(cast(void**)&glMultiDrawElements, "glMultiDrawElements");
@@ -82,11 +81,10 @@ GLSupport loadGL14(SharedLib lib, GLSupport contextVersion)
         lib.bindGLSymbol(cast(void**)&glBlendColor, "glBlendColor");
         lib.bindGLSymbol(cast(void**)&glBlendEquation, "glBlendEquation");
 
-        immutable res = errorCountGL() == 0;
-        version(GL_AllowDeprecated) {
-            if(res && lib.loadDeprecatedGL14()) loadedVersion = GLSupport.gl14;
+        if(errorCountGL() == 0) {
+            version(GL_AllowDeprecated) return loadDeprecatedGL14(lib);
+            else return true;
         }
-        else if(res) loadedVersion = GLSupport.gl14;
     }
-    return loadedVersion;
+    return false;
 }

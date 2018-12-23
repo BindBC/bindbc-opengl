@@ -43,7 +43,7 @@ static if(glSupport >= GLSupport.gl40) {
     }
 
     package(bindbc.opengl) @nogc nothrow
-    GLSupport loadGL40(SharedLib lib, GLSupport contextVersion)
+    bool loadGL40(SharedLib lib, GLSupport contextVersion)
     {
         import bindbc.opengl.bind.arb : loadARB40;
 
@@ -54,8 +54,8 @@ static if(glSupport >= GLSupport.gl40) {
             lib.bindGLSymbol(cast(void**)&glBlendFunci, "glBlendFunci");
             lib.bindGLSymbol(cast(void**)&glBlendFuncSeparatei, "glBlendFuncSeparatei");
 
-            if(errorCountGL() == 0 && loadARB40(lib, contextVersion)) return GLSupport.gl40;
+            if(errorCountGL() == 0 && loadARB40(lib, contextVersion)) return true;
         }
-        return GLSupport.gl33;
+        return false;
     }
 }

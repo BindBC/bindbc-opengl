@@ -103,10 +103,9 @@ __gshared {
 }
 
 package(bindbc.opengl) @nogc nothrow
-GLSupport loadGL13(SharedLib lib, GLSupport contextVersion)
+bool loadGL13(SharedLib lib, GLSupport contextVersion)
 {
-    auto loadedVersion = loadGL12(lib, contextVersion);
-    if(loadedVersion == GLSupport.gl12 && contextVersion > GLSupport.gl12) {
+    if(contextVersion > GLSupport.gl12) {
         lib.bindGLSymbol(cast(void**)&glActiveTexture, "glActiveTexture");
         lib.bindGLSymbol(cast(void**)&glSampleCoverage, "glSampleCoverage");
         lib.bindGLSymbol(cast(void**)&glCompressedTexImage3D, "glCompressedTexImage3D");
@@ -117,11 +116,10 @@ GLSupport loadGL13(SharedLib lib, GLSupport contextVersion)
         lib.bindGLSymbol(cast(void**)&glCompressedTexSubImage1D, "glCompressedTexSubImage1D");
         lib.bindGLSymbol(cast(void**)&glGetCompressedTexImage, "glGetCompressedTexImage");
 
-        immutable res = errorCountGL() == 0;
-        version(GL_AllowDeprecated) {
-            if(res && lib.loadDeprecatedGL13()) loadedVersion = GLSupport.gl13;
+        if(errorCountGL() == 0) {
+            version(GL_AllowDeprecated) return loadDeprecatedGL13(lib);
+            else return true;
         }
-        else if(res) loadedVersion = GLSupport.gl13;
     }
-    return loadedVersion;
+    return false;
 }

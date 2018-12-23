@@ -59,7 +59,7 @@ static if(glSupport >= GLSupport.gl43) {
     }
 
     package(bindbc.opengl) @nogc nothrow
-    GLSupport loadGL43(SharedLib lib, GLSupport contextVersion)
+    bool loadGL43(SharedLib lib, GLSupport contextVersion)
     {
         import bindbc.opengl.bind.arb : loadARB43;
 
@@ -69,8 +69,8 @@ static if(glSupport >= GLSupport.gl43) {
             lib.bindGLSymbol(cast(void**)&glDebugMessageCallback, "glDebugMessageCallback");
             lib.bindGLSymbol(cast(void**)&glGetDebugMessageLog, "glGetDebugMessageLog");
 
-            if(errorCountGL() == 0 && loadARB43(lib, contextVersion)) return GLSupport.gl43;
+            if(errorCountGL() == 0 && loadARB43(lib, contextVersion)) return true;
         }
-        return GLSupport.gl42;
+        return false;
     }
 }
