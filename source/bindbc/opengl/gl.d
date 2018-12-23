@@ -80,10 +80,11 @@ GLSupport loadOpenGL(const(char)* libName)
 
     // Load the base library
     if(!lib.loadGL11()) return GLSupport.badLibrary;
+    else loadedVersion = GLSupport.gl11;
 
     // Now load the context-dependent stuff. Always try to load up to
     // OpenGL 2.1 by default. Load higher only if configured to do so.
-    auto loadedVersion = lib.loadGL21(contextVersion);
+    loadedVersion = lib.loadGL21(contextVersion);
     static if(glSupport >= GLSupport.gl30) loadedVersion = lib.loadGL30(contextVersion);
     static if(glSupport >= GLSupport.gl31) loadedVersion = lib.loadGL31(contextVersion);
     static if(glSupport >= GLSupport.gl32) loadedVersion = lib.loadGL32(contextVersion);
