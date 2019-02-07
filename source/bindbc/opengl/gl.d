@@ -122,7 +122,7 @@ bool loadOpenGLSymbol(void** ptr, const(char)* symbolName)
 {
     assert(ptr);
 
-    if(contextVersion > GLSupport.noContext) {
+    if(loadedVersion > GLSupport.noLibrary) {
         auto numErrs = errorCountGL();
         lib.bindGLSymbol(ptr, symbolName);
         return errorCountGL() == numErrs;

@@ -171,6 +171,7 @@ void bindGLSymbol(SharedLib lib, void** ptr, const(char)* symName)
     }
     else {
         *ptr = getProcAddress(symName);
+        if(*ptr == null) lib.bindSymbol(ptr, symName);
         if(*ptr == null) ++numErrors;
     }
 }
