@@ -119,10 +119,12 @@ GLSupport loadOpenGL(const(char)* libName)
 
 void* loadOpenGLSymbol(const(char)* symbolName)
 {
-    void* returnValue;
+    if(contextVersion > GLSupport.noContext) {
+        void* returnValue;
 
-    if (!isOpenGLLoaded())
-        lib.bindGLSymbol(&returnValue, symbolName);
+        if (!isOpenGLLoaded())
+            lib.bindGLSymbol(&returnValue, symbolName);
 
-    return returnValue;
+        return returnValue;
+    }
 }
