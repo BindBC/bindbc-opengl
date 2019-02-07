@@ -11,7 +11,7 @@ static if(glSupport >= GLSupport.gl43) {
     import bindbc.loader : SharedLib;
     import bindbc.opengl.context;
     import bindbc.opengl.bind.types;
-
+/*
     enum : uint {
         GL_NUM_SHADING_LANGUAGE_VERSIONS = 0x82E9,
         GL_VERTEX_ATTRIB_ARRAY_LONG = 0x874E,
@@ -57,17 +57,19 @@ static if(glSupport >= GLSupport.gl43) {
         pglDebugMessageCallback glDebugMessageCallback;
         pglGetDebugMessageLog glGetDebugMessageLog;
     }
-
+*/
     package(bindbc.opengl) @nogc nothrow
     bool loadGL43(SharedLib lib, GLSupport contextVersion)
     {
         import bindbc.opengl.bind.arb : loadARB43;
 
         if(contextVersion >= GLSupport.gl43) {
+        /*
             lib.bindGLSymbol(cast(void**)&glDebugMessageControl, "glDebugMessageControl");
             lib.bindGLSymbol(cast(void**)&glDebugMessageInsert, "glDebugMessageInsert");
             lib.bindGLSymbol(cast(void**)&glDebugMessageCallback, "glDebugMessageCallback");
             lib.bindGLSymbol(cast(void**)&glGetDebugMessageLog, "glGetDebugMessageLog");
+        */
 
             if(errorCountGL() == 0 && loadARB43(lib, contextVersion)) return true;
         }
