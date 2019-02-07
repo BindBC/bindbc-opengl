@@ -12,8 +12,8 @@ import bindbc.opengl.config,
 
 private {
     SharedLib lib;
-    GLSupport contextVersion;
-    GLSupport loadedVersion;
+    GLSupport contextVersion = GLSupport.noContext;
+    GLSupport loadedVersion = GLSupport.noContext;
 }
 
 @nogc nothrow:
@@ -27,6 +27,7 @@ void unloadOpenGL()
 {
     if(lib != invalidHandle) {
         lib.unload();
+        contextVersion = loadedVersion = GLSupport.noContext;
     }
 }
 
