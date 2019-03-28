@@ -18,7 +18,7 @@ else enum has46 = false;
 
 // ARB_polygon_offset_clamp
 version(GL_ARB) enum useARBPolygonOffsetClamp = true;
-else version(ARB_polygon_offset_clamp) enum useARBPolygonOffsetClamp = true;
+else version(GL_ARB_polygon_offset_clamp) enum useARBPolygonOffsetClamp = true;
 else enum useARBPolygonOffsetClamp = has46;
 
 static if(useARBPolygonOffsetClamp) {
@@ -41,7 +41,7 @@ else enum hasARBPolygonOffsetClamp = false;
 
 // ARB_texture_filter_anisotropic
 version(GL_ARB) enum useARBTextureFilterAnisotropic = true;
-else version(ARB_texture_filter_anisotropic) enum useARBTextureFilterAnisotropic = true;
+else version(GL_ARB_texture_filter_anisotropic) enum useARBTextureFilterAnisotropic = true;
 else enum useARBTextureFilterAnisotropic = has46;
 
 static if(useARBTextureFilterAnisotropic) {
