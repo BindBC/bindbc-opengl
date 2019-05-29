@@ -15,4 +15,5 @@ configuration "dynamic" {
 
 configuration "dynamicBC" {
     subConfiguration "bindbc-loader" "yesBC"
+    dflags "-betterC"
 }
