@@ -6,12 +6,15 @@
 
 module bindbc.opengl.bind.nv;
 
-public
-import bindbc.opengl.bind.nv.nv_44;
+public import bindbc.opengl.bind.nv.nv_30;
+public import bindbc.opengl.bind.nv.nv_32;
+public import bindbc.opengl.bind.nv.nv_44;
 
 import bindbc.loader.sharedlib;
 import bindbc.opengl.config;
 package(bindbc.opengl) @nogc nothrow
 void loadNV(SharedLib lib, GLSupport contextVersion) {
+  loadNV_30(lib, contextVersion);
+  loadNV_32(lib, contextVersion);
   loadNV_44(lib, contextVersion);
 }
