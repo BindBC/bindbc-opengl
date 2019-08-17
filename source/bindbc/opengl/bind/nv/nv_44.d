@@ -40,6 +40,10 @@ static if (useNVCommandList) {
     enum uint GL_FRONT_FACE_COMMAND_NV = 0x0012;
 
     extern (System) @nogc nothrow {
+        alias pglCreateStatesNV = void function(GLsizei,GLuint*);
+        alias pglDeleteStatesNV = void function(GLsizei,const uint*);
+        alias pglIsStateNV = GLboolean function(GLuint);
+        alias pglStateCaptureNV = void function(GLuint,GLenum mode);
         alias pglGetCommandHeaderNV = GLuint function(GLenum,GLuint);
         alias pglGetStageIndexNV = GLushort function(GLenum);
         alias pglDrawCommandsNV = void function(GLenum,GLuint,const GLintptr*,const GLsizei*,GLuint);
@@ -56,6 +60,10 @@ static if (useNVCommandList) {
     }
 
     __gshared {
+        pglCreateStatesNV glCreateStatesNV;
+        pglDeleteStatesNV glDeleteStatesNV;
+        pglIsStateNV glIsStateNV;
+        pglStateCaptureNV glStateCaptureNV;
         pglGetCommandHeaderNV glGetCommandHeaderNV;
         pglGetStageIndexNV glGetStageIndexNV;
         pglDrawCommandsNV glDrawCommandsNV;
@@ -74,6 +82,10 @@ static if (useNVCommandList) {
     private @nogc nothrow
     bool loadNVCommandList(SharedLib lib, GLSupport contextVersion)
     {
+        lib.bindGLSymbol(cast(void**)&glCreateStatesNV, "glCreateStatesNV");
+        lib.bindGLSymbol(cast(void**)&glDeleteStatesNV, "glDeleteStatesNV");
+        lib.bindGLSymbol(cast(void**)&glIsStateNV, "glIsStateNV");
+        lib.bindGLSymbol(cast(void**)&glStateCaptureNV, "glStateCaptureNV");
         lib.bindGLSymbol(cast(void**)&glGetCommandHeaderNV, "glGetCommandHeaderNV");
         lib.bindGLSymbol(cast(void**)&glGetStageIndexNV, "glGetStageIndexNV");
         lib.bindGLSymbol(cast(void**)&glDrawCommandsNV, "glDrawCommandsNV");
