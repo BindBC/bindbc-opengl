@@ -127,7 +127,7 @@ static if(useARBDirectStateAccess) {
         alias pglClearNamedFramebufferiv = void function(GLuint,GLenum,GLint,const(GLint)*);
         alias pglClearNamedFramebufferuiv = void function(GLuint,GLenum,GLint,const(GLuint)*);
         alias pglClearNamedFramebufferfv = void function(GLuint,GLenum,GLint,const(GLfloat)*);
-        alias pglClearNamedFramebufferfi = void function(GLuint,GLenum,GLfloat,GLint);
+        alias pglClearNamedFramebufferfi = void function(GLuint,GLenum,GLint,GLfloat,GLint);
         alias pglBlitNamedFramebuffer = void function(GLuint,GLuint,GLint,GLint,GLint,GLint,GLint,GLint,GLint,GLint,GLbitfield,GLenum);
         alias pglCheckNamedFramebufferStatus = GLenum function(GLuint,GLenum);
         alias pglGetNamedFramebufferParameteriv = void function(GLuint,GLenum,GLint*);
