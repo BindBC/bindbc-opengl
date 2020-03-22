@@ -35,6 +35,7 @@ else version(GL_ARB_timer_query) enum useARBTextureRGB10A2UI = true;
 else enum useARBTextureRGB10A2UI = has33;
 
 static if(useARBTextureRGB10A2UI) {
+    enum uint GL_RGB10_A2UI = 0x906F;
     private bool _hasARBTextureRGB10A2UI;
     bool hasARBTextureRGB10A2UI() { return _hasARBTextureRGB10A2UI; }
 }
