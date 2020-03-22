@@ -29,6 +29,16 @@ static if(useARBOcclusionQuery2) {
 }
 else enum hasARBOcclusionQuery2 = false;
 
+// ARB_texture_rgb10_a2ui
+version(GL_ARB) enum useARBTextureRGB10A2UI = true;
+else version(GL_ARB_timer_query) enum useARBTextureRGB10A2UI = true;
+else enum useARBTextureRGB10A2UI = has33;
+
+static if(useARBTextureRGB10A2UI) {
+    private bool _hasARBTextureRGB10A2UI;
+    bool hasARBTextureRGB10A2UI() { return _hasARBTextureRGB10A2UI; }
+}
+
 // ARB_texture_swizzle
 version(GL_ARB) enum useARBTextureSwizzle = true;
 else version(GL_ARB_texture_swizzle) enum useARBTextureSwizzle = true;
@@ -309,6 +319,7 @@ bool loadARB33(SharedLib lib, GLSupport contextVersion)
     static if(has33) {
         if(contextVersion >= GLSupport.gl33) {
             _hasARBOcclusionQuery2 = true;
+            _hasARBTextureRGB10A2UI = true;
             _hasARBTextureSwizzle = true;
 
             bool ret = true;
@@ -322,6 +333,9 @@ bool loadARB33(SharedLib lib, GLSupport contextVersion)
 
     static if(useARBOcclusionQuery2) _hasARBOcclusionQuery2 =
             hasExtension(contextVersion, "GL_ARB_occlusion_query2");
+
+    static if(useARBTextureRGB10A2UI) _hasARBTextureRGB10A2UI =
+            hasExtension(contextVersion, "GL_ARB_texture_rgb10_a2ui");
 
     static if(useARBTextureSwizzle) _hasARBTextureSwizzle =
             hasExtension(contextVersion, "GL_ARB_texture_swizzle");

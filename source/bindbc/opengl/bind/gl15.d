@@ -41,6 +41,7 @@ enum : uint {
     GL_DYNAMIC_READ                   = 0x88E9,
     GL_DYNAMIC_COPY                   = 0x88EA,
     GL_SAMPLES_PASSED                 = 0x8914,
+    GL_SRC1_ALPHA                     = 0x8589,
 }
 
 extern(System) @nogc nothrow {

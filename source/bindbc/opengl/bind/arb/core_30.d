@@ -309,6 +309,8 @@ static if(useARBVertexArrayObject) {
     private bool _hasARBVertexArrayObject;
     bool hasARBVertexArrayObject() { return _hasARBVertexArrayObject; }
 
+    enum uint GL_VERTEX_ARRAY_BINDING = 0x85B5;
+
     extern(System) @nogc nothrow {
         alias pglBindVertexArray = void function(GLuint);
         alias pglDeleteVertexArrays = void function(GLsizei, const(GLuint)*);

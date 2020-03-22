@@ -36,10 +36,12 @@ static if(useARBES2Compatibility) {
         GL_MEDIUM_INT                     = 0x8DF4,
         GL_HIGH_INT                       = 0x8DF5,
         GL_SHADER_COMPILER                = 0x8DFA,
+        GL_SHADER_BINARY_FORMATS          = 0x8DF8,
         GL_NUM_SHADER_BINARY_FORMATS      = 0x8DF9,
         GL_MAX_VERTEX_UNIFORM_VECTORS     = 0x8DFB,
         GL_MAX_VARYING_VECTORS            = 0x8DFC,
         GL_MAX_FRAGMENT_UNIFORM_VECTORS   = 0x8DFD,
+        GL_RGB565                         = 0x8D62,
     }
 
     extern(System) @nogc nothrow {
