@@ -80,7 +80,7 @@ static if(useARBInternalFormatQuery) {
     bool hasARBInternalFormatQuery() { return _hasARBInternalFormatQuery; }
 
     enum uint GL_NUM_SAMPLE_COUNTS = 0x9380;
-    extern(System)  alias pglGetInternalformativ = void function(GLenum, GLenum, GLenum, GLsizei, GLint*);
+    extern(System) @nogc nothrow alias pglGetInternalformativ = void function(GLenum, GLenum, GLenum, GLsizei, GLint*);
     __gshared pglGetInternalformativ glGetInternalformativ;
 
     private @nogc nothrow
@@ -146,7 +146,7 @@ static if(useARBShaderAtomicCounters) {
         GL_UNSIGNED_INT_ATOMIC_COUNTER    = 0x92DB,
     }
 
-    extern(System)  alias pglGetActiveAtomicCounterBufferiv = void function(GLuint, GLuint, GLenum, GLint*);
+    extern(System) @nogc nothrow alias pglGetActiveAtomicCounterBufferiv = void function(GLuint, GLuint, GLenum, GLint*);
     __gshared pglGetActiveAtomicCounterBufferiv glGetActiveAtomicCounterBufferiv;
 
     private @nogc nothrow
