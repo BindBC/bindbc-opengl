@@ -275,6 +275,209 @@ static if(useARBGeometryShader4) {
 }
 else enum hasARBGeometryShader4 = false;
 
+// ARB_gl_spirv
+version(GL_ARB) enum useARBGLSPIRV = true;
+else version(GL_ARB_gl_spirv) enum useARBGLSPIRV = true;
+else enum useARBGLSPIRV = false;
+
+static if(useARBGLSPIRV) {
+    private bool _hasARBGLSPIRV;
+    bool hasARBGLSPIRV() { return _hasARBGLSPIRV; }
+
+    enum : uint {
+        GL_SHADER_BINARY_FORMAT_SPIR_V_ARB = 0x9551,
+        GL_SPIR_V_BINARY_ARB               = 0x9552,
+    }
+
+    extern(System) @nogc nothrow
+    alias pglSpecializeShaderARB = void function(GLuint,const(char)*,GLuint,const(GLuint)*,const(GLuint)*);
+
+    __gshared pglSpecializeShaderARB glSpecializeShaderARB;
+
+    private @nogc nothrow
+    bool loadARBGLSPIRV(SharedLib lib, GLSupport contextVersion)
+    {
+        lib.bindGLSymbol(cast(void**)&glSpecializeShaderARB,"glSpecializeShaderARB");
+        return resetErrorCountGL();
+    }
+}
+else enum hasARBGLSPIRV = false;
+
+// ARB_gpu_shader_int64
+version(GL_ARB) enum useARBGPUShaderInt64 = true;
+else version(GL_ARB_gpu_shader_int64) enum useARBGPUShaderInt64 = true;
+else enum useARBGPUShaderInt64 = false;
+
+static if(useARBGPUShaderInt64) {
+    private bool _hasARBGPUShaderInt64;
+    bool hasARBGPUShaderInt64() { return _hasARBGPUShaderInt64; }
+
+    enum : uint {
+        GL_INT64_ARB                      = 0x140E,
+        GL_INT64_VEC2_ARB                 = 0x8FE9,
+        GL_INT64_VEC3_ARB                 = 0x8FEA,
+        GL_INT64_VEC4_ARB                 = 0x8FEB,
+        GL_UNSIGNED_INT64_VEC2_ARB        = 0x8FF5,
+        GL_UNSIGNED_INT64_VEC3_ARB        = 0x8FF6,
+        GL_UNSIGNED_INT64_VEC4_ARB        = 0x8FF7,
+    }
+
+    extern(System) @nogc nothrow  {
+        alias pglUniform1i64ARB = void function(GLint,GLint64);
+        alias pglUniform2i64ARB = void function(GLint,GLint64,GLint64);
+        alias pglUniform3i64ARB = void function(GLint,GLint64,GLint64,GLint64);
+        alias pglUniform4i64ARB = void function(GLint,GLint64,GLint64,GLint64,GLint64);
+        alias pglUniform1i64vARB = void function(GLint,GLsizei,const(GLint64)*);
+        alias pglUniform2i64vARB = void function(GLint,GLsizei,const(GLint64)*);
+        alias pglUniform3i64vARB = void function(GLint,GLsizei,const(GLint64)*);
+        alias pglUniform4i64vARB = void function(GLint,GLsizei,const(GLint64)*);
+        alias pglUniform1ui64ARB = void function(GLint,GLuint64);
+        alias pglUniform2ui64ARB = void function(GLint,GLuint64,GLuint64);
+        alias pglUniform3ui64ARB = void function(GLint,GLuint64,GLuint64,GLuint64);
+        alias pglUniform4ui64ARB = void function(GLint,GLuint64,GLuint64,GLuint64,GLuint64);
+        alias pglUniform1ui64vARB = void function(GLint,GLsizei,const(GLuint64)*);
+        alias pglUniform2ui64vARB = void function(GLint,GLsizei,const(GLuint64)*);
+        alias pglUniform3ui64vARB = void function(GLint,GLsizei,const(GLuint64)*);
+        alias pglUniform4ui64vARB = void function(GLint,GLsizei,const(GLuint64)*);
+        alias pglGetUniformi64vARB = void function(GLuint,GLint,GLint64*);
+        alias pglGetUniformui64vARB = void function(GLuint,GLint,GLuint64*);
+        alias pglGetnUniformi64vARB = void function(GLuint,GLint,GLsizei,GLint64*);
+        alias pglGetnUniformui64vARB = void function(GLuint,GLint,GLsizei,GLuint64*);
+        alias pglProgramUniform1i64ARB = void function(GLuint,GLint,GLint64);
+        alias pglProgramUniform2i64ARB = void function(GLuint,GLint,GLint64,GLint64);
+        alias pglProgramUniform3i64ARB = void function(GLuint,GLint,GLint64,GLint64,GLint64);
+        alias pglProgramUniform4i64ARB = void function(GLuint,GLint,GLint64,GLint64,GLint64,GLint64);
+        alias pglProgramUniform1i64vARB = void function(GLuint,GLint,GLsizei,const(GLint64)*);
+        alias pglProgramUniform2i64vARB = void function(GLuint,GLint,GLsizei,const(GLint64)*);
+        alias pglProgramUniform3i64vARB = void function(GLuint,GLint,GLsizei,const(GLint64)*);
+        alias pglProgramUniform4i64vARB = void function(GLuint,GLint,GLsizei,const(GLint64)*);
+        alias pglProgramUniform1ui64ARB = void function(GLuint,GLint,GLsizei,GLuint64);
+        alias pglProgramUniform2ui64ARB = void function(GLuint,GLint,GLsizei,GLuint64,GLuint64);
+        alias pglProgramUniform3ui64ARB = void function(GLuint,GLint,GLsizei,GLuint64,GLuint64,GLuint64);
+        alias pglProgramUniform4ui64ARB = void function(GLuint,GLint,GLsizei,GLuint64,GLuint64,GLuint64,GLuint64);
+        alias pglProgramUniform1ui64vARB = void function(GLuint,GLint,GLsizei,const(GLuint)*);
+        alias pglProgramUniform2ui64vARB = void function(GLuint,GLint,GLsizei,const(GLuint)*);
+        alias pglProgramUniform3ui64vARB = void function(GLuint,GLint,GLsizei,const(GLuint)*);
+        alias pglProgramUniform4ui64vARB = void function(GLuint,GLint,GLsizei,const(GLuint)*);
+    }
+
+    __gshared {
+        pglUniform1i64ARB glUniform1i64ARB;
+        pglUniform2i64ARB glUniform2i64ARB;
+        pglUniform3i64ARB glUniform3i64ARB;
+        pglUniform4i64ARB glUniform4i64ARB;
+        pglUniform1i64vARB glUniform1i64vARB;
+        pglUniform2i64vARB glUniform2i64vARB;
+        pglUniform3i64vARB glUniform3i64vARB;
+        pglUniform4i64vARB glUniform4i64vARB;
+        pglUniform1ui64ARB glUniform1ui64ARB;
+        pglUniform2ui64ARB glUniform2ui64ARB;
+        pglUniform3ui64ARB glUniform3ui64ARB;
+        pglUniform4ui64ARB glUniform4ui64ARB;
+        pglUniform1ui64vARB glUniform1ui64vARB;
+        pglUniform2ui64vARB glUniform2ui64vARB;
+        pglUniform3ui64vARB glUniform3ui64vARB;
+        pglUniform4ui64vARB glUniform4ui64vARB;
+        pglGetUniformi64vARB glGetUniformi64vARB;
+        pglGetUniformui64vARB glGetUniformui64vARB;
+        pglGetnUniformi64vARB glGetnUniformi64vARB;
+        pglGetnUniformui64vARB glGetnUniformui64vARB;
+        pglProgramUniform1i64ARB glProgramUniform1i64ARB;
+        pglProgramUniform2i64ARB glProgramUniform2i64ARB;
+        pglProgramUniform3i64ARB glProgramUniform3i64ARB;
+        pglProgramUniform4i64ARB glProgramUniform4i64ARB;
+        pglProgramUniform1i64vARB glProgramUniform1i64vARB;
+        pglProgramUniform2i64vARB glProgramUniform2i64vARB;
+        pglProgramUniform3i64vARB glProgramUniform3i64vARB;
+        pglProgramUniform4i64vARB glProgramUniform4i64vARB;
+        pglProgramUniform1ui64ARB glProgramUniform1ui64ARB;
+        pglProgramUniform2ui64ARB glProgramUniform2ui64ARB;
+        pglProgramUniform3ui64ARB glProgramUniform3ui64ARB;
+        pglProgramUniform4ui64ARB glProgramUniform4ui64ARB;
+        pglProgramUniform1ui64vARB glProgramUniform1ui64vARB;
+        pglProgramUniform2ui64vARB glProgramUniform2ui64vARB;
+        pglProgramUniform3ui64vARB glProgramUniform3ui64vARB;
+        pglProgramUniform4ui64vARB glProgramUniform4ui64vARB;
+    }
+
+    private @nogc nothrow
+    bool loadARBGPUShaderInt64(SharedLib lib, GLSupport contextVersion)
+    {
+        lib.bindGLSymbol(cast(void**)&glUniform1i64ARB,"glUniform1i64ARB");
+        lib.bindGLSymbol(cast(void**)&glUniform2i64ARB,"glUniform2i64ARB");
+        lib.bindGLSymbol(cast(void**)&glUniform3i64ARB,"glUniform3i64ARB");
+        lib.bindGLSymbol(cast(void**)&glUniform4i64ARB,"glUniform4i64ARB");
+        lib.bindGLSymbol(cast(void**)&glUniform1i64vARB,"glUniform1i64vARB");
+        lib.bindGLSymbol(cast(void**)&glUniform2i64vARB,"glUniform2i64vARB");
+        lib.bindGLSymbol(cast(void**)&glUniform3i64vARB,"glUniform3i64vARB");
+        lib.bindGLSymbol(cast(void**)&glUniform4i64vARB,"glUniform4i64vARB");
+        lib.bindGLSymbol(cast(void**)&glUniform1ui64ARB,"glUniform1ui64ARB");
+        lib.bindGLSymbol(cast(void**)&glUniform2ui64ARB,"glUniform2ui64ARB");
+        lib.bindGLSymbol(cast(void**)&glUniform3ui64ARB,"glUniform3ui64ARB");
+        lib.bindGLSymbol(cast(void**)&glUniform4ui64ARB,"glUniform4ui64ARB");
+        lib.bindGLSymbol(cast(void**)&glUniform1ui64vARB,"glUniform1ui64vARB");
+        lib.bindGLSymbol(cast(void**)&glUniform2ui64vARB,"glUniform2ui64vARB");
+        lib.bindGLSymbol(cast(void**)&glUniform3ui64vARB,"glUniform3ui64vARB");
+        lib.bindGLSymbol(cast(void**)&glUniform4ui64vARB,"glUniform4ui64vARB");
+        lib.bindGLSymbol(cast(void**)&glGetUniformi64vARB,"glGetUniformi64vARB");
+        lib.bindGLSymbol(cast(void**)&glGetUniformui64vARB,"glGetUniformui64vARB");
+        lib.bindGLSymbol(cast(void**)&glGetnUniformi64vARB,"glGetnUniformi64vARB");
+        lib.bindGLSymbol(cast(void**)&glGetnUniformui64vARB,"glGetnUniformui64vARB");
+        lib.bindGLSymbol(cast(void**)&glProgramUniform1i64ARB,"glProgramUniform1i64ARB");
+        lib.bindGLSymbol(cast(void**)&glProgramUniform2i64ARB,"glProgramUniform2i64ARB");
+        lib.bindGLSymbol(cast(void**)&glProgramUniform3i64ARB,"glProgramUniform3i64ARB");
+        lib.bindGLSymbol(cast(void**)&glProgramUniform4i64ARB,"glProgramUniform4i64ARB");
+        lib.bindGLSymbol(cast(void**)&glProgramUniform1i64vARB,"glProgramUniform1i64vARB");
+        lib.bindGLSymbol(cast(void**)&glProgramUniform2i64vARB,"glProgramUniform2i64vARB");
+        lib.bindGLSymbol(cast(void**)&glProgramUniform3i64vARB,"glProgramUniform3i64vARB");
+        lib.bindGLSymbol(cast(void**)&glProgramUniform4i64vARB,"glProgramUniform4i64vARB");
+        lib.bindGLSymbol(cast(void**)&glProgramUniform1ui64ARB,"glProgramUniform1ui64ARB");
+        lib.bindGLSymbol(cast(void**)&glProgramUniform2ui64ARB,"glProgramUniform2ui64ARB");
+        lib.bindGLSymbol(cast(void**)&glProgramUniform3ui64ARB,"glProgramUniform3ui64ARB");
+        lib.bindGLSymbol(cast(void**)&glProgramUniform4ui64ARB,"glProgramUniform4ui64ARB");
+        lib.bindGLSymbol(cast(void**)&glProgramUniform1ui64vARB,"glProgramUniform1ui64vARB");
+        lib.bindGLSymbol(cast(void**)&glProgramUniform2ui64vARB,"glProgramUniform2ui64vARB");
+        lib.bindGLSymbol(cast(void**)&glProgramUniform3ui64vARB,"glProgramUniform3ui64vARB");
+        lib.bindGLSymbol(cast(void**)&glProgramUniform4ui64vARB,"glProgramUniform4ui64vARB");
+        return resetErrorCountGL();
+    }
+}
+else enum hasARBGPUShaderInt64 = false;
+
+// ARB_indirect_parameters
+version(GL_ARB) enum useARBIndirectParameters = true;
+else version(GL_ARB_indirect_parameters) enum useARBIndirectParameters = true;
+else enum useARBIndirectParameters = false;
+
+static if(useARBIndirectParameters) {
+    private bool _hasARBIndirectParameters;
+    bool hasARBIndirectParameters() { return _hasARBIndirectParameters; }
+
+    enum : uint {
+        GL_PARAMETER_BUFFER_ARB           = 0x80EE,
+        GL_PARAMETER_BUFFER_BINDING_ARB   = 0x80EF,
+    }
+
+    extern(System) @nogc nothrow  {
+        alias pglMultiDrawArraysIndirectCountARB = void function(GLenum,const(void)*,GLintptr,GLsizei,GLsizei);
+        alias pglMultiDrawElementsIndirectCountARB = void function(GLenum,GLenum,const(void)*,GLintptr,GLsizei,GLsizei);
+    }
+
+    __gshared {
+        pglMultiDrawArraysIndirectCountARB glMultiDrawArraysIndirectCountARB;
+        pglMultiDrawElementsIndirectCountARB glMultiDrawElementsIndirectCountARB;
+    }
+
+    private @nogc nothrow
+    bool loadARBIndirectParameters(SharedLib lib, GLSupport contextVersion)
+    {
+        lib.bindGLSymbol(cast(void**)&glMultiDrawArraysIndirectCountARB,"glMultiDrawArraysIndirectCountARB");
+        lib.bindGLSymbol(cast(void**)&glMultiDrawElementsIndirectCountARB,"glMultiDrawElementsIndirectCountARB");
+        return resetErrorCountGL();
+    }
+}
+else enum hasARBIndirectParameters = false;
+
 // ARB_pipeline_statistics_query
 version(GL_ARB) enum useARBPipelineStatisticsQuery = true;
 else version(GL_ARB_pipeline_statistics_query) enum useARBPipelineStatisticsQuery = true;
@@ -432,6 +635,18 @@ void loadARB_01(SharedLib lib, GLSupport contextVersion)
     static if(useARBGeometryShader4) _hasARBGeometryShader4 =
             hasExtension(contextVersion, "GL_ARB_geometry_shader4") &&
             lib.loadARBGeometryShader4(contextVersion);
+
+    static if(useARBGLSPIRV) _hasARBGLSPIRV =
+            hasExtension(contextVersion, "GL_ARB_gl_spirv") &&
+            lib.loadARBGLSPIRV(contextVersion);
+
+    static if(useARBGPUShaderInt64) _hasARBGPUShaderInt64 =
+            hasExtension(contextVersion, "GL_ARB_gpu_shader_int64") &&
+            lib.loadARBGPUShaderInt64(contextVersion);
+
+    static if(useARBIndirectParameters) _hasARBIndirectParameters =
+            hasExtension(contextVersion, "GL_ARB_indirect_parameters") &&
+            lib.loadARBIndirectParameters(contextVersion);
 
     static if(useARBPipelineStatisticsQuery) _hasARBPipelineStatisticsQuery =
             hasExtension(contextVersion, "GL_ARB_pipeline_statistics_query");
