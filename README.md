@@ -9,13 +9,13 @@ By default, `bindbc-opengl` is configured to compile with `-betterC` compatibili
 __dub.json__
 ```
 "dependencies": {
-    "bindbc-opengl": "~>0.1.0"
+    "bindbc-opengl": "~>0.13.0"
 }
 ```
 
 __dub.sdl__
 ```
-dependency "bindbc-opengl" version="~>0.1.0"
+dependency "bindbc-opengl" version="~>0.13.0"
 ```
 
 ## Enable `-betterC` support
@@ -24,7 +24,7 @@ To enable support for `-betterC` mode, add the `dynamicBC` subconfiguration to y
 __dub.json__
 ```
 "dependencies": {
-    "bindbc-opengl": "~>0.1.0"
+    "bindbc-opengl": "~>0.13.0"
 }
 "subConfigurations": {
     "bindbc-opengl": "dynamicBC"
@@ -33,7 +33,7 @@ __dub.json__
 
 __dub.sdl__
 ```
-dependency "bindbc-opengl" version="~>0.1.0"
+dependency "bindbc-opengl" version="~>0.13.0"
 subConfiguration "bindbc-opengl" "dynamicBC"
 ```
 
@@ -71,7 +71,7 @@ The following examples are configured to load core functions from all OpenGL ver
 __dub.json__
 ```
 "dependencies": {
-    "bindbc-opengl": "~>0.1.0"
+    "bindbc-opengl": "~>0.13.0"
 }
 "versions": [
     "GL_41"
@@ -80,7 +80,7 @@ __dub.json__
 
 __dub.sdl__
 ```
-dependency "bindbc-opengl" version="~>0.1.0"
+dependency "bindbc-opengl" version="~>0.13.0"
 versions "GL_41"
 ```
 
@@ -91,7 +91,7 @@ To enable the loading of deprecated functions in the same configuration:
 __dub.json__
 ```
 "dependencies": {
-    "bindbc-opengl": "~>0.1.0"
+    "bindbc-opengl": "~>0.13.0"
 }
 "versions": [
     "GL_41", "GL_AllowDeprecated
@@ -100,7 +100,7 @@ __dub.json__
 
 __dub.sdl__
 ```
-dependency "bindbc-opengl" version="~>0.1.0"
+dependency "bindbc-opengl" version="~>0.13.0"
 versions "GL_41" "GL_AllowDeprecated"
 ```
 
@@ -116,7 +116,7 @@ For example, the following enables support for all core OpenGL functions up to a
 __dub.json__
 ```
 "dependencies": {
-    "bindbc-opengl": "~>0.1.0"
+    "bindbc-opengl": "~>0.13.0"
 }
 "versions": [
     "GL_41",
@@ -126,7 +126,7 @@ __dub.json__
 
 __dub.sdl__
 ```
-dependency "bindbc-opengl" version="~>0.1.0"
+dependency "bindbc-opengl" version="~>0.13.0"
 versions "GL_41" "GL_ARB"
 ```
 
@@ -139,7 +139,7 @@ For example, the following configurations enable support for OpenGL 4.1 and the 
 __dub.json__
 ```
 "dependencies": {
-    "bindbc-opengl": "~>0.1.0"
+    "bindbc-opengl": "~>0.13.0"
 }
 "versions": [
     "GL_41",
@@ -150,7 +150,7 @@ __dub.json__
 
 __dub.sdl__
 ```
-dependency "bindbc-opengl" version="~>0.1.0"
+dependency "bindbc-opengl" version="~>0.13.0"
 versions "GL_41" "GL_ARB_base_instance" "GL_ARB_compressed_texture_pixel_storage"
 ```
 
