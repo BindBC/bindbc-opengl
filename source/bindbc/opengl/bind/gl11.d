@@ -61,6 +61,8 @@ enum : uint {
     GL_INVALID_ENUM                   = 0x0500,
     GL_INVALID_VALUE                  = 0x0501,
     GL_INVALID_OPERATION              = 0x0502,
+    GL_STACK_OVERFLOW                 = 0x0503,
+    GL_STACK_UNDERFLOW                = 0x0504,
     GL_OUT_OF_MEMORY                  = 0x0505,
     GL_CW                             = 0x0900,
     GL_CCW                            = 0x0901,
