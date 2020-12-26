@@ -4,7 +4,7 @@ This project provides dynamic bindings to [the OpenGL library](https://www.openg
 __Note that `bindbc-gl` currently does not support deprecated OpenGL features.__
 
 ## Add `bindbc-opengl` to your project
-By default, `bindbc-opengl` is configured to compile with `-betterC` compatibility disabled, and with support only for up to OpenGL 2.1 core. To use `-bindbc-opengl` in this default mode, simply add the package as a dependency in your `dub.json` or `dub.sdl` package description:
+By default, `bindbc-opengl` is configured to compile with `-betterC` compatibility disabled, and with support only for up to OpenGL 2.1 core. To use `-bindbc-opengl` in this default mode, simply add the package as a dependency in your `dub.json` or `dub.sdl` package description (replace the `0.1.0` `bindbc-opengl` version with the actual version you require):
 
 __dub.json__
 ```
@@ -19,7 +19,7 @@ dependency "bindbc-opengl" version="~>0.1.0"
 ```
 
 ## Enable `-betterC` support
-To enable support for `-betterC` mode, add the `dynamicBC` subconfiguration to your package description file:
+To enable support for `-betterC` mode, add the `dynamicBC` subconfiguration to your package description file (replace the `0.1.0` `bindbc-opengl` version with the actual version you require):
 
 __dub.json__
 ```
@@ -65,7 +65,7 @@ Adding one of these version identifiers to your package description will do two 
 To load all functions and enable all constants from "classic" OpenGL versions, i.e. those that have been deprecated, set the version identifier `GL_AllowDeprecated`
 in your build system.
 
-The following examples are configured to load core functions from all OpenGL versions up to OpenGL 4.1:
+The following examples are configured to load core functions from all OpenGL versions up to OpenGL 4.1 (replace the `0.1.0` `bindbc-opengl` version with the actual version you require):
 
 
 __dub.json__
@@ -86,7 +86,7 @@ versions "GL_41"
 
 With this configuration, client code can make use of all core OpenGL types and functions up to OpenGL 4.1. At runtime, if the context supports OpenGL 4.1 or higher, the loader will attempt to load up to OpenGL 4.1. If the highest OpenGL version the context supports is lower than 4.1, the loader will attempt to load up to that version.
 
-To enable the loading of deprecated functions in the same configuration:
+To enable the loading of deprecated functions in the same configuration (replace the `0.1.0` `bindbc-opengl` version with the actual version you require):
 
 __dub.json__
 ```
@@ -111,7 +111,7 @@ constants from OpenGL version 3.0 will be enabled.
 ## Enable support for extensions
 Extension support is added primarily on an as needed basis. All supported ARB/KHR extensions can be enabled by adding the `GL_ARB` version identifier to your `dub.json` or `dub.sdl`.
 
-For example, the following enables support for all core OpenGL functions up to and including GL 4.1, as well as all ARB/KHR extensions.
+For example, the following enables support for all core OpenGL functions up to and including GL 4.1, as well as all ARB/KHR extensions (replace the `0.1.0` `bindbc-opengl` version with the actual version you require):
 
 __dub.json__
 ```
@@ -134,7 +134,7 @@ Extensions which were promoted to the core OpenGL API are loaded automatically a
 
 Specific extensions can be enabled using the extension's OpenGL name string as a version identifier. The name string for each extension [is listed in the `bindbc-opengl` wiki](https://github.com/BindBC/bindbc-opengl/wiki/Supported-Extensions). It takes the form of `GL_` prefixed to the extension name.
 
-For example, the following configurations enable support for OpenGL 4.1 and the extensions `ARB_base_instance` and `ARB_compressed_texture_pixel_storage` (both of which were promoted to core in OpenGL 4.2).
+For example, the following configurations enable support for OpenGL 4.1 and the extensions `ARB_base_instance` and `ARB_compressed_texture_pixel_storage`, both of which were promoted to core in OpenGL 4.2 (replace the `0.1.0` `bindbc-opengl` version with the actual version you require):
 
 __dub.json__
 ```
