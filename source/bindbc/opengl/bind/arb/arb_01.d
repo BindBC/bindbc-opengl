@@ -610,6 +610,63 @@ static if(useARBTransformFeedbackOverflowQuery) {
 }
 else enum hasARBTransformFeedbackOverflowQuery = false;
 
+// ARB_sparse_texture
+version(GL_ARB) enum useARBSparseTexture = true;
+else version(GL_ARB_sparse_texture) enum useARBSparseTexture = true;
+else enum useARBSparseTexture = false;
+
+static if(useARBSparseTexture) {
+    import bindbc.opengl.bind.arb.core_45 : useARBDirectStateAccess, hasARBDirectStateAccess;
+
+    private bool _hasARBSparseTexture;
+    bool hasARBSparseTexture() { return _hasARBSparseTexture; }
+
+    enum : uint {
+        GL_TEXTURE_SPARSE_ARB          = 0x91A6,
+        GL_VIRTUAL_PAGE_SIZE_INDEX_ARB = 0x91A7,
+
+        GL_NUM_SPARSE_LEVELS_ARB = 0x91AA,
+
+        GL_NUM_VIRTUAL_PAGE_SIZES_ARB = 0x91A8,
+        GL_VIRTUAL_PAGE_SIZE_X_ARB    = 0x9195,
+        GL_VIRTUAL_PAGE_SIZE_Y_ARB    = 0x9196,
+        GL_VIRTUAL_PAGE_SIZE_Z_ARB    = 0x9197,
+
+        GL_MAX_SPARSE_TEXTURE_SIZE_ARB                = 0x9198,
+        GL_MAX_SPARSE_3D_TEXTURE_SIZE_ARB             = 0x9199,
+        GL_MAX_SPARSE_ARRAY_TEXTURE_LAYERS_ARB        = 0x919A,
+        GL_SPARSE_TEXTURE_FULL_ARRAY_CUBE_MIPMAPS_ARB = 0x91A9
+    }
+
+    extern(System) @nogc nothrow {
+        alias pglTexPageCommitmentARB =
+            void function(GLenum,GLint,GLint,GLint,GLint,GLsizei,GLsizei,GLsizei,GLboolean);
+        static if(useARBDirectStateAccess) {
+            alias pglTexturePageCommitmentEXT =
+                void function(GLuint,GLint,GLint,GLint,GLint,GLsizei,GLsizei,GLsizei,GLboolean);
+        }
+    }
+
+    __gshared {
+        pglTexPageCommitmentARB glTexPageCommitmentARB;
+        static if(useARBDirectStateAccess)
+            pglTexturePageCommitmentEXT glTexturePageCommitmentEXT;
+    }
+
+    private @nogc nothrow
+    bool loadARBSparseTexture(SharedLib lib, GLSupport contextVersion)
+    {
+        lib.bindGLSymbol(cast(void**)&glTexPageCommitmentARB, "glTexPageCommitmentARB");
+
+        static if(useARBDirectStateAccess) {
+            if(hasARBDirectStateAccess)
+                lib.bindGLSymbol(cast(void**)&glTexturePageCommitmentEXT, "glTexturePageCommitmentEXT");
+        }
+
+        return resetErrorCountGL();
+    }
+}
+
 package @nogc nothrow
 void loadARB_01(SharedLib lib, GLSupport contextVersion)
 {
@@ -669,4 +726,8 @@ void loadARB_01(SharedLib lib, GLSupport contextVersion)
 
     static if(useARBTransformFeedbackOverflowQuery) _hasARBTransformFeedbackOverflowQuery =
             hasExtension(contextVersion, "GL_ARB_transform_feedback_overflow_query");
+
+    static if(useARBSparseTexture) _hasARBSparseTexture =
+            hasExtension(contextVersion, "GL_ARB_sparse_texture") &&
+            lib.loadARBSparseTexture(contextVersion);
 }
