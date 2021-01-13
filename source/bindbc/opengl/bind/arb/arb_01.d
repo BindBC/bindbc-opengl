@@ -677,6 +677,16 @@ static if(useARBSparseTexture2) {
     bool hasARBSparseTexture2() { return _hasARBSparseTexture2; }
 }
 
+// ARB_sparse_texture_clamp
+version(GL_ARB) enum useARBSparseTextureClamp = true;
+else version(GL_ARB_sparse_texture_clamp) enum useARBSparseTextureClamp = true;
+else enum useARBSparseTextureClamp = false;
+
+static if(useARBSparseTextureClamp) {
+    private bool _hasARBSparseTextureClamp;
+    bool hasARBSparseTextureClamp() { return _hasARBSparseTextureClamp; }
+}
+
 package @nogc nothrow
 void loadARB_01(SharedLib lib, GLSupport contextVersion)
 {
@@ -742,5 +752,8 @@ void loadARB_01(SharedLib lib, GLSupport contextVersion)
             lib.loadARBSparseTexture(contextVersion);
 
     static if(useARBSparseTexture2) _hasARBSparseTexture2 =
-        hasExtension(contextVersion, "GL_ARB_sparse_texture2");
+            hasExtension(contextVersion, "GL_ARB_sparse_texture2");
+
+    static if(useARBSparseTextureClamp) _hasARBSparseTextureClamp =
+            hasExtension(contextVersion, "GL_ARB_sparse_texture_clamp");
 }
