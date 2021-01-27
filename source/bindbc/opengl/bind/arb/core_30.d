@@ -23,7 +23,7 @@ else enum useARBDepthBufferFloat = has30;
 
 static if(useARBDepthBufferFloat) {
     private bool _hasARBDepthBufferFloat;
-    bool hasARBDepthBufferFloat() { return _hasARBDepthBufferFloat; }
+    @nogc nothrow bool hasARBDepthBufferFloat() { return _hasARBDepthBufferFloat; }
 
     enum : uint {
         GL_DEPTH_COMPONENT32F             = 0x8CAC,
@@ -39,7 +39,7 @@ else version(GL_ARB_half_float_vertex) enum useARBHalfFloatVertex = true;
 else enum useARBHalfFloatVertex = has30;
 static if(useARBHalfFloatVertex) {
     private bool _hasARBHalfFloatVertex;
-    bool hasARBHalfFloatVertex() { return _hasARBHalfFloatVertex; }
+    @nogc nothrow bool hasARBHalfFloatVertex() { return _hasARBHalfFloatVertex; }
 
     enum uint GL_HALF_FLOAT = 0x140B;
 }
@@ -52,7 +52,7 @@ else enum useARBTextureCompressionRGTC = has30;
 
 static if(useARBTextureCompressionRGTC) {
     private bool _hasARBTextureCompressionRGTC;
-    bool hasARBTextureCompressionRGTC() { return _hasARBTextureCompressionRGTC; }
+    @nogc nothrow bool hasARBTextureCompressionRGTC() { return _hasARBTextureCompressionRGTC; }
 
     enum : uint {
         GL_COMPRESSED_RED_RGTC1           = 0x8DBB,
@@ -70,7 +70,7 @@ else enum useARBTextureRG = has30;
 
 static if(useARBTextureRG) {
     private bool _hasARBTextureRG;
-    bool hasARBTextureRG() { return _hasARBTextureRG; }
+    @nogc nothrow bool hasARBTextureRG() { return _hasARBTextureRG; }
 
     enum : uint {
         GL_RG                             = 0x8227,
@@ -106,7 +106,7 @@ else enum useARBFramebufferObject = has30;
 
 static if(useARBFramebufferObject) {
     private bool _hasARBFramebufferObject;
-    bool hasARBFramebufferObject() { return _hasARBFramebufferObject; }
+    @nogc nothrow bool hasARBFramebufferObject() { return _hasARBFramebufferObject; }
 
     enum : uint {
         GL_INVALID_FRAMEBUFFER_OPERATION  = 0x0506,
@@ -269,7 +269,7 @@ else enum useARBMapBufferRange = has30;
 
 static if(useARBMapBufferRange) {
     private bool _hasARBMapBufferRange;
-    bool hasARBMapBufferRange() { return _hasARBMapBufferRange; }
+    @nogc nothrow bool hasARBMapBufferRange() { return _hasARBMapBufferRange; }
 
     enum : uint {
         GL_MAP_READ_BIT                   = 0x0001,
@@ -307,7 +307,7 @@ else enum useARBVertexArrayObject = has30;
 
 static if(useARBVertexArrayObject) {
     private bool _hasARBVertexArrayObject;
-    bool hasARBVertexArrayObject() { return _hasARBVertexArrayObject; }
+    @nogc nothrow bool hasARBVertexArrayObject() { return _hasARBVertexArrayObject; }
 
     enum uint GL_VERTEX_ARRAY_BINDING = 0x85B5;
 

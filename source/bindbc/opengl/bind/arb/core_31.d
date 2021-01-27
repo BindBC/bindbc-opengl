@@ -23,7 +23,7 @@ else enum useARBCopyBuffer = has31;
 
 static if(useARBCopyBuffer) {
     private bool _hasARBCopyBuffer;
-    bool hasARBCopyBuffer() { return _hasARBCopyBuffer; }
+    @nogc nothrow bool hasARBCopyBuffer() { return _hasARBCopyBuffer; }
 
     enum : uint {
         GL_COPY_READ_BUFFER               = 0x8F36,
@@ -54,7 +54,7 @@ else enum useARBUniformBufferObject = has31;
 
 static if(useARBUniformBufferObject) {
     private bool _hasARBUniformBufferObject;
-    bool hasARBUniformBufferObject() { return _hasARBUniformBufferObject; }
+    @nogc nothrow bool hasARBUniformBufferObject() { return _hasARBUniformBufferObject; }
 
     enum : uint {
         GL_UNIFORM_BUFFER                 = 0x8A11,

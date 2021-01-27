@@ -23,7 +23,7 @@ else enum useARBBaseInstance = has42;
 
 static if(useARBBaseInstance) {
     private bool _hasARBBaseInstance;
-    bool hasARBBaseInstance() { return _hasARBBaseInstance; }
+    @nogc nothrow bool hasARBBaseInstance() { return _hasARBBaseInstance; }
 
     extern(System) @nogc nothrow  {
         alias pglDrawArraysInstancedBaseInstance = void function(GLenum, GLint, GLsizei, GLsizei, GLuint);
@@ -55,7 +55,7 @@ else enum useARBCompressedTexturePixelStorage = has42;
 
 static if(useARBCompressedTexturePixelStorage) {
     private bool _hasARBCompressedTexturePixelStorage;
-    bool hasARBCompressedTexturePixelStorage() { return _hasARBCompressedTexturePixelStorage; }
+    @nogc nothrow bool hasARBCompressedTexturePixelStorage() { return _hasARBCompressedTexturePixelStorage; }
 
     enum : uint {
         GL_UNPACK_COMPRESSED_BLOCK_WIDTH  = 0x9127,
@@ -77,7 +77,7 @@ else enum useARBInternalFormatQuery = has42;
 
 static if(useARBInternalFormatQuery) {
     private bool _hasARBInternalFormatQuery;
-    bool hasARBInternalFormatQuery() { return _hasARBInternalFormatQuery; }
+    @nogc nothrow bool hasARBInternalFormatQuery() { return _hasARBInternalFormatQuery; }
 
     enum uint GL_NUM_SAMPLE_COUNTS = 0x9380;
     extern(System) @nogc nothrow alias pglGetInternalformativ = void function(GLenum, GLenum, GLenum, GLsizei, GLint*);
@@ -99,7 +99,7 @@ else enum useARBMapBufferAlignment = has42;
 
 static if(useARBMapBufferAlignment) {
     private bool _hasARBMapBufferAlignment;
-    bool hasARBMapBufferAlignment() { return _hasARBMapBufferAlignment; }
+    @nogc nothrow bool hasARBMapBufferAlignment() { return _hasARBMapBufferAlignment; }
 
     enum uint GL_MIN_MAP_BUFFER_ALIGNMENT = 0x90BC;
 }
@@ -112,7 +112,7 @@ else enum useARBShaderAtomicCounters = has42;
 
 static if(useARBShaderAtomicCounters) {
     private bool _hasARBShaderAtomicCounters;
-    bool hasARBShaderAtomicCounters() { return _hasARBShaderAtomicCounters; }
+    @nogc nothrow bool hasARBShaderAtomicCounters() { return _hasARBShaderAtomicCounters; }
 
     enum : uint {
         GL_ATOMIC_COUNTER_BUFFER          = 0x92C0,
@@ -165,7 +165,7 @@ else enum useARBShaderImageLoadStore = has42;
 
 static if(useARBShaderImageLoadStore) {
     private bool _hasARBShaderImageLoadStore;
-    bool hasARBShaderImageLoadStore() { return _hasARBShaderImageLoadStore; }
+    @nogc nothrow bool hasARBShaderImageLoadStore() { return _hasARBShaderImageLoadStore; }
 
     enum : uint {
         GL_VERTEX_ATTRIB_ARRAY_BARRIER_BIT = 0x00000001,
@@ -261,7 +261,7 @@ else enum useARBTextureStorage = has42;
 
 static if(useARBTextureStorage) {
     private bool _hasARBTextureStorage;
-    bool hasARBTextureStorage() { return _hasARBTextureStorage; }
+    @nogc nothrow bool hasARBTextureStorage() { return _hasARBTextureStorage; }
 
     enum uint GL_TEXTURE_IMMUTABLE_FORMAT = 0x912F;
 
@@ -314,7 +314,7 @@ else enum useARBTransformFeedbackInstanced = has42;
 
 static if(useARBTransformFeedbackInstanced) {
     private bool _hasARBTransformFeedbackInstanced;
-    bool hasARBTransformFeedbackInstanced() { return _hasARBTransformFeedbackInstanced; }
+    @nogc nothrow bool hasARBTransformFeedbackInstanced() { return _hasARBTransformFeedbackInstanced; }
 
     extern(System) @nogc nothrow  {
         alias pglDrawTransformFeedbackInstanced = void function(GLenum, GLuint, GLsizei);

@@ -23,7 +23,7 @@ else enum useARBClipControl = has45;
 
 static if(useARBClipControl) {
     private bool _hasARBClipControl;
-    bool hasARBClipControl() { return _hasARBClipControl; }
+    @nogc nothrow bool hasARBClipControl() { return _hasARBClipControl; }
 
     enum : uint {
         GL_NEGATIVE_ONE_TO_ONE            = 0x935E,
@@ -51,7 +51,7 @@ else enum useARBConditionalRenderInverted = has45;
 
 static if(useARBConditionalRenderInverted) {
     private bool _hasARBConditionalRenderInverted;
-    bool hasARBConditionalRenderInverted() { return _hasARBConditionalRenderInverted; }
+    @nogc nothrow bool hasARBConditionalRenderInverted() { return _hasARBConditionalRenderInverted; }
 
     enum : uint {
         GL_QUERY_WAIT_INVERTED            = 0x8E17,
@@ -69,7 +69,7 @@ else enum useARBCullDistance = has45;
 
 static if(useARBCullDistance) {
     private bool _hasARBCullDistance;
-    bool hasARBCullDistance() { return _hasARBCullDistance; }
+    @nogc nothrow bool hasARBCullDistance() { return _hasARBCullDistance; }
 
     enum : uint {
         GL_MAX_CULL_DISTANCES = 0x82F9,
@@ -85,7 +85,7 @@ else enum useARBDirectStateAccess = has45;
 
 static if(useARBDirectStateAccess) {
     private bool _hasARBDirectStateAccess;
-    bool hasARBDirectStateAccess() { return _hasARBDirectStateAccess; }
+    @nogc nothrow bool hasARBDirectStateAccess() { return _hasARBDirectStateAccess; }
 
     enum : uint {
         GL_TEXTURE_TARGET = 0x1006,
@@ -405,7 +405,7 @@ else enum useARBES31Compatibility = has45;
 
 static if(useARBES31Compatibility) {
     private bool _hasARBES31Compatibility;
-    bool hasARBES31Compatibility() { return _hasARBES31Compatibility; }
+    @nogc nothrow bool hasARBES31Compatibility() { return _hasARBES31Compatibility; }
 
     extern(System) @nogc nothrow alias pglMemoryBarrierByRegion = void function(GLbitfield);
     __gshared pglMemoryBarrierByRegion glMemoryBarrierByRegion;
@@ -426,7 +426,7 @@ else enum useARBGetTextureSubImage = has45;
 
 static if(useARBGetTextureSubImage) {
     private bool _hasARBGetTextureSubImage;
-    bool hasARBGetTextureSubImage() { return _hasARBGetTextureSubImage; }
+    @nogc nothrow bool hasARBGetTextureSubImage() { return _hasARBGetTextureSubImage; }
 
     extern(System) @nogc nothrow {
         alias pglGetTextureSubImage = void function(GLuint,GLint,GLint,GLint,GLint,GLsizei,GLsizei,GLsizei,GLenum,GLenum,GLsizei,void*);
@@ -454,7 +454,7 @@ else enum useARBTextureBarrier = has45;
 
 static if(useARBTextureBarrier) {
     private bool _hasARBTextureBarrier;
-    bool hasARBTextureBarrier() { return _hasARBTextureBarrier; }
+    @nogc nothrow bool hasARBTextureBarrier() { return _hasARBTextureBarrier; }
 
     extern(System) @nogc nothrow alias pglTextureBarrier = void function();
     __gshared pglTextureBarrier glTextureBarrier;
@@ -475,7 +475,7 @@ else enum useKHRContextFlushControl = has45;
 
 static if(useKHRContextFlushControl) {
     private bool _hasKHRContextFlushControl;
-    bool hasKHRContextFlushControl() { return _hasKHRContextFlushControl; }
+    @nogc nothrow bool hasKHRContextFlushControl() { return _hasKHRContextFlushControl; }
 
     enum : uint {
         GL_CONTEXT_RELEASE_BEHAVIOR       = 0x82FB,
@@ -491,7 +491,7 @@ else enum useKHRRobustness = has45;
 
 static if(useKHRRobustness) {
     private bool _hasKHRRobustness;
-    bool hasKHRRobustness() { return _hasKHRRobustness; }
+    @nogc nothrow bool hasKHRRobustness() { return _hasKHRRobustness; }
 
     enum : uint {
         GL_GUILTY_CONTEXT_RESET           = 0x8253,

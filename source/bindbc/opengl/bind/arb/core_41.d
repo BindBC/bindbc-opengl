@@ -23,7 +23,7 @@ else enum useARBES2Compatibility = has41;
 
 static if(useARBES2Compatibility) {
     private bool _hasARBES2Compatibility;
-    bool hasARBES2Compatibility() { return _hasARBES2Compatibility; }
+    @nogc nothrow bool hasARBES2Compatibility() { return _hasARBES2Compatibility; }
 
     enum : uint {
         GL_FIXED                          = 0x140C,
@@ -80,7 +80,7 @@ else enum useARBGetProgramBinary = has41;
 
 static if(useARBGetProgramBinary) {
     private bool _hasARBGetProgramBinary;
-    bool hasARBGetProgramBinary() { return _hasARBGetProgramBinary; }
+    @nogc nothrow bool hasARBGetProgramBinary() { return _hasARBGetProgramBinary; }
 
     enum : uint {
         GL_PROGRAM_BINARY_RETRIEVABLE_HINT = 0x8257,
@@ -119,7 +119,7 @@ else enum useARBSeparateShaderObjects = has41;
 
 static if(useARBSeparateShaderObjects) {
     private bool _hasARBSeparateShaderObjects;
-    bool hasARBSeparateShaderObjects() { return _hasARBSeparateShaderObjects; }
+    @nogc nothrow bool hasARBSeparateShaderObjects() { return _hasARBSeparateShaderObjects; }
 
     enum : uint {
         GL_VERTEX_SHADER_BIT              = 0x00000001,
@@ -334,7 +334,7 @@ else enum useARBVertexAttrib64Bit = has41;
 
 static if(useARBVertexAttrib64Bit) {
     private bool _hasARBVertexAttrib64Bit;
-    bool hasARBVertexAttrib64Bit() { return _hasARBVertexAttrib64Bit; }
+    @nogc nothrow bool hasARBVertexAttrib64Bit() { return _hasARBVertexAttrib64Bit; }
 
     extern(System) @nogc nothrow {
         alias pglVertexAttribL1d = void function(GLuint, GLdouble);
@@ -387,7 +387,7 @@ else enum useARBViewportArray = has41;
 
 static if(useARBViewportArray) {
     private bool _hasARBViewportArray;
-    bool hasARBViewportArray() { return _hasARBViewportArray; }
+    @nogc nothrow bool hasARBViewportArray() { return _hasARBViewportArray; }
 
     enum : uint {
         GL_MAX_VIEWPORTS                  = 0x825B,

@@ -23,7 +23,7 @@ else enum useARBPolygonOffsetClamp = has46;
 
 static if(useARBPolygonOffsetClamp) {
     private bool _hasARBPolygonOffsetClamp;
-    bool hasARBPolygonOffsetClamp() { return _hasARBPolygonOffsetClamp; }
+    @nogc nothrow bool hasARBPolygonOffsetClamp() { return _hasARBPolygonOffsetClamp; }
 
     enum uint GL_POLYGON_OFFSET_CLAMP = 0x8E1B;
 
@@ -46,7 +46,7 @@ else enum useARBTextureFilterAnisotropic = has46;
 
 static if(useARBTextureFilterAnisotropic) {
     private bool _hasARBTextureFilterAnisotropic;
-    bool hasARBTextureFilterAnisotropic() { return _hasARBTextureFilterAnisotropic; }
+    @nogc nothrow bool hasARBTextureFilterAnisotropic() { return _hasARBTextureFilterAnisotropic; }
 
     enum : uint {
         GL_TEXTURE_MAX_ANISOTROPY           = 0x84FE,

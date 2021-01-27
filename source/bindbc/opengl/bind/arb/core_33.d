@@ -23,7 +23,7 @@ else enum useARBOcclusionQuery2 = has33;
 
 static if(useARBOcclusionQuery2) {
     private bool _hasARBOcclusionQuery2;
-    bool hasARBOcclusionQuery2() { return _hasARBOcclusionQuery2; }
+    @nogc nothrow bool hasARBOcclusionQuery2() { return _hasARBOcclusionQuery2; }
 
     enum uint GL_ANY_SAMPLES_PASSED = 0x8C2F;
 }
@@ -37,7 +37,7 @@ else enum useARBTextureRGB10A2UI = has33;
 static if(useARBTextureRGB10A2UI) {
     enum uint GL_RGB10_A2UI = 0x906F;
     private bool _hasARBTextureRGB10A2UI;
-    bool hasARBTextureRGB10A2UI() { return _hasARBTextureRGB10A2UI; }
+    @nogc nothrow bool hasARBTextureRGB10A2UI() { return _hasARBTextureRGB10A2UI; }
 }
 
 // ARB_texture_swizzle
@@ -47,7 +47,7 @@ else enum useARBTextureSwizzle = has33;
 
 static if(useARBTextureSwizzle) {
     private bool _hasARBTextureSwizzle;
-    bool hasARBTextureSwizzle() { return _hasARBTextureSwizzle; }
+    @nogc nothrow bool hasARBTextureSwizzle() { return _hasARBTextureSwizzle; }
 
     enum : uint {
         GL_TEXTURE_SWIZZLE_R              = 0x8E42,
@@ -66,7 +66,7 @@ else enum useARBBlendFuncExtended = has33;
 
 static if(useARBBlendFuncExtended) {
     private bool _hasARBBlendFuncExtended;
-    bool hasARBBlendFuncExtended() { return _hasARBBlendFuncExtended; }
+    @nogc nothrow bool hasARBBlendFuncExtended() { return _hasARBBlendFuncExtended; }
 
     enum : uint {
         GL_SRC1_COLOR                     = 0x88F9,
@@ -102,7 +102,7 @@ else enum useARBSamplerObjects = has33;
 
 static if(useARBSamplerObjects) {
     private bool _hasARBSamplerObjects;
-    bool hasARBSamplerObjects() { return _hasARBSamplerObjects; }
+    @nogc nothrow bool hasARBSamplerObjects() { return _hasARBSamplerObjects; }
 
     enum uint GL_SAMPLER_BINDING = 0x8919;
 
@@ -169,7 +169,7 @@ else enum useARBTimerQuery = has33;
 
 static if(useARBTimerQuery) {
     private bool _hasARBTimerQuery;
-    bool hasARBTimerQuery() { return _hasARBTimerQuery; }
+    @nogc nothrow bool hasARBTimerQuery() { return _hasARBTimerQuery; }
 
     enum : uint {
         GL_TIME_ELAPSED                   = 0x88BF,
@@ -206,7 +206,7 @@ else enum useARBVertexType2101010Rev = has33;
 
 static if(useARBVertexType2101010Rev) {
     private bool _hasARBVertexType2101010Rev;
-    bool hasARBVertexType2101010Rev() { return _hasARBVertexType2101010Rev; }
+    @nogc nothrow bool hasARBVertexType2101010Rev() { return _hasARBVertexType2101010Rev; }
 
     enum uint GL_INT_2_10_10_10_REV = 0x8D9F;
 

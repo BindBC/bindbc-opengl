@@ -23,7 +23,7 @@ else enum useARBClearBufferObject = has43;
 
 static if(useARBClearBufferObject) {
     private bool _hasARBClearBufferObject;
-    bool hasARBClearBufferObject() { return _hasARBClearBufferObject; }
+    @nogc nothrow bool hasARBClearBufferObject() { return _hasARBClearBufferObject; }
 
     extern(System) @nogc nothrow {
         alias pglClearBufferData = void function(GLenum,GLenum,GLenum,GLenum,const(void)*);
@@ -68,7 +68,7 @@ else enum useARBComputeShader = has43;
 
 static if(useARBComputeShader) {
     private bool _hasARBComputeShader;
-    bool hasARBComputeShader() { return _hasARBComputeShader; }
+    @nogc nothrow bool hasARBComputeShader() { return _hasARBComputeShader; }
 
     enum : uint {
         GL_COMPUTE_SHADER                 = 0x91B9,
@@ -118,7 +118,7 @@ else enum useARBCopyImage = 4;
 
 static if(useARBCopyImage) {
     private bool _hasARBCopyImage;
-    bool hasARBCopyImage() { return _hasARBCopyImage; }
+    @nogc nothrow bool hasARBCopyImage() { return _hasARBCopyImage; }
 
     extern(System) @nogc nothrow alias pglCopyImageSubData = void function(GLuint,GLenum,GLint,GLint,GLint,GLint,GLuint,GLenum,GLint,GLint,GLint,GLint,GLsizei,GLsizei,GLsizei);
     __gshared pglCopyImageSubData glCopyImageSubData;
@@ -139,7 +139,7 @@ else enum useARBES3Compatibility = 4;
 
 static if(useARBES3Compatibility) {
     private bool _hasARBES3Compatibility;
-    bool hasARBES3Compatibility() { return _hasARBES3Compatibility; }
+    @nogc nothrow bool hasARBES3Compatibility() { return _hasARBES3Compatibility; }
 
     enum : uint {
         GL_COMPRESSED_RGB8_ETC2           = 0x9274,
@@ -166,7 +166,7 @@ else enum useARBExplicitUniformLocation = 4;
 
 static if(useARBExplicitUniformLocation) {
     private bool _hasARBExplicitUniformLocation;
-    bool hasARBExplicitUniformLocation() { return _hasARBExplicitUniformLocation; }
+    @nogc nothrow bool hasARBExplicitUniformLocation() { return _hasARBExplicitUniformLocation; }
 
     enum uint GL_MAX_UNIFORM_LOCATIONS = 0x826E;
 }
@@ -179,7 +179,7 @@ else enum useARBFramebufferNoAttachments = 4;
 
 static if(useARBFramebufferNoAttachments) {
     private bool _hasARBFramebufferNoAttachments;
-    bool hasARBFramebufferNoAttachments() { return _hasARBFramebufferNoAttachments; }
+    @nogc nothrow bool hasARBFramebufferNoAttachments() { return _hasARBFramebufferNoAttachments; }
 
     enum : uint {
         GL_FRAMEBUFFER_DEFAULT_WIDTH      = 0x9310,
@@ -236,7 +236,7 @@ else enum useARBInternalFormatQuery2 = has43;
 
 static if(useARBInternalFormatQuery2) {
     private bool _hasARBInternalFormatQuery2;
-    bool hasARBInternalFormatQuery2() { return _hasARBInternalFormatQuery2; }
+    @nogc nothrow bool hasARBInternalFormatQuery2() { return _hasARBInternalFormatQuery2; }
 
     enum : uint {
         GL_INTERNALFORMAT_SUPPORTED       = 0x826F,
@@ -359,7 +359,7 @@ else enum useARBInvalidateSubdata = has43;
 
 static if(useARBInvalidateSubdata) {
     private bool _hasARBInvalidateSubdata;
-    bool hasARBInvalidateSubdata() { return _hasARBInvalidateSubdata; }
+    @nogc nothrow bool hasARBInvalidateSubdata() { return _hasARBInvalidateSubdata; }
 
     extern(System) @nogc nothrow {
         alias pglInvalidateTexSubImage = void function(GLuint,GLint,GLint,GLint,GLint,GLsizei,GLsizei,GLsizei);
@@ -400,7 +400,7 @@ else enum useARBMultiDrawIndirect = has43;
 
 static if(useARBMultiDrawIndirect) {
     private bool _hasARBMultiDrawIndirect;
-    bool hasARBMultiDrawIndirect() { return _hasARBMultiDrawIndirect; }
+    @nogc nothrow bool hasARBMultiDrawIndirect() { return _hasARBMultiDrawIndirect; }
 
     extern(System) @nogc nothrow {
         alias pglMultiDrawArraysIndirect = void function(GLenum,const(void)*,GLsizei,GLsizei);
@@ -429,7 +429,7 @@ else enum useARBProgramInterfaceQuery = has43;
 
 static if(useARBProgramInterfaceQuery) {
     private bool _hasARBProgramInterfaceQuery;
-    bool hasARBProgramInterfaceQuery() { return _hasARBProgramInterfaceQuery; }
+    @nogc nothrow bool hasARBProgramInterfaceQuery() { return _hasARBProgramInterfaceQuery; }
 
     enum : uint {
         GL_UNIFORM                        = 0x92E1,
@@ -520,7 +520,7 @@ else enum useARBShaderStorageBufferObject = has43;
 
 static if(useARBShaderStorageBufferObject) {
     private bool _hasARBShaderStorageBufferObject;
-    bool hasARBShaderStorageBufferObject() { return _hasARBShaderStorageBufferObject; }
+    @nogc nothrow bool hasARBShaderStorageBufferObject() { return _hasARBShaderStorageBufferObject; }
 
     enum : uint {
         GL_SHADER_STORAGE_BUFFER          = 0x90D2,
@@ -560,7 +560,7 @@ else enum useARBStencilTexturing = has43;
 
 static if(useARBStencilTexturing) {
     private bool _hasARBStencilTexturing;
-    bool hasARBStencilTexturing() { return _hasARBStencilTexturing; }
+    @nogc nothrow bool hasARBStencilTexturing() { return _hasARBStencilTexturing; }
 
     enum uint GL_DEPTH_STENCIL_TEXTURE_MODE = 0x90EA;
 }
@@ -573,7 +573,7 @@ else enum useARBTextureBufferRange = has43;
 
 static if(useARBTextureBufferRange) {
     private bool _hasARBTextureBufferRange;
-    bool hasARBTextureBufferRange() { return _hasARBTextureBufferRange; }
+    @nogc nothrow bool hasARBTextureBufferRange() { return _hasARBTextureBufferRange; }
 
     enum : uint {
         GL_TEXTURE_BUFFER_OFFSET = 0x919D,
@@ -618,7 +618,7 @@ else enum useARBTextureStorageMultisample = has43;
 
 static if(useARBTextureStorageMultisample) {
     private bool _hasARBTextureStorageMultisample;
-    bool hasARBTextureStorageMultisample() { return _hasARBTextureStorageMultisample; }
+    @nogc nothrow bool hasARBTextureStorageMultisample() { return _hasARBTextureStorageMultisample; }
 
     extern(System) @nogc nothrow {
         alias pglTexStorage2DMultisample = void function(GLenum,GLsizei,GLenum,GLsizei,GLsizei,GLboolean);
@@ -663,7 +663,7 @@ else enum useARBTextureView = has43;
 
 static if(useARBTextureView) {
     private bool _hasARBTextureView;
-    bool hasARBTextureView() { return _hasARBTextureView; }
+    @nogc nothrow bool hasARBTextureView() { return _hasARBTextureView; }
 
     enum : uint {
         GL_TEXTURE_VIEW_MIN_LEVEL         = 0x82DB,
@@ -692,7 +692,7 @@ else enum useARBVertexAttribBinding = has43;
 
 static if(useARBVertexAttribBinding) {
     private bool _hasARBVertexAttribBinding;
-    bool hasARBVertexAttribBinding() { return _hasARBVertexAttribBinding; }
+    @nogc nothrow bool hasARBVertexAttribBinding() { return _hasARBVertexAttribBinding; }
 
     enum : uint {
         GL_VERTEX_ATTRIB_BINDING          = 0x82D4,
@@ -770,7 +770,7 @@ else enum useKHRDebug = has43;
 
 static if(useKHRDebug) {
     private bool _hasKHRDebug;
-    bool hasKHRDebug() { return _hasKHRDebug; }
+    @nogc nothrow bool hasKHRDebug() { return _hasKHRDebug; }
 
     enum : uint {
         GL_DEBUG_OUTPUT_SYNCHRONOUS       = 0x8242,

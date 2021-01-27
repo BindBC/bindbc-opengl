@@ -23,7 +23,7 @@ else enum useARBOcclusionQuery2 = has33;
 
 static if(useARBOcclusionQuery2) {
     private bool _hasARBOcclusionQuery2;
-    bool hasARBOcclusionQuery2() { return _hasARBOcclusionQuery2; }
+    @nogc nothrow bool hasARBOcclusionQuery2() { return _hasARBOcclusionQuery2; }
 }
 else enum hasARBOcclusionQuery2 = false;
 
@@ -35,7 +35,7 @@ else enum useARBGPUShader5 = has40;
 
 static if(useARBGPUShader5) {
     private bool _hasARBGPUShader5;
-    bool hasARBGPUShader5() { return _hasARBGPUShader5; }
+    @nogc nothrow bool hasARBGPUShader5() { return _hasARBGPUShader5; }
 
     enum : uint {
         GL_GEOMETRY_SHADER_INVOCATIONS    = 0x887F,
@@ -54,7 +54,7 @@ else enum useARBDrawIndirect = has40;
 
 static if(useARBDrawIndirect) {
     private bool _hasARBDrawIndirect;
-    bool hasARBDrawIndirect() { return _hasARBDrawIndirect; }
+    @nogc nothrow bool hasARBDrawIndirect() { return _hasARBDrawIndirect; }
 
     enum : uint {
         GL_DRAW_INDIRECT_BUFFER           = 0x8F3F,
@@ -88,7 +88,7 @@ else enum useARBGPUShaderFP64 = has40;
 
 static if(useARBGPUShaderFP64) {
     private bool _hasARBGPUShaderFP64;
-    bool hasARBGPUShaderFP64() { return _hasARBGPUShaderFP64; }
+    @nogc nothrow bool hasARBGPUShaderFP64() { return _hasARBGPUShaderFP64; }
 
     enum : uint {
         GL_DOUBLE_VEC2                    = 0x8FFC,
@@ -180,7 +180,7 @@ else enum useARBShaderSubroutine = has40;
 
 static if(useARBShaderSubroutine) {
     private bool _hasARBShaderSubroutine;
-    bool hasARBShaderSubroutine() { return _hasARBShaderSubroutine; }
+    @nogc nothrow bool hasARBShaderSubroutine() { return _hasARBShaderSubroutine; }
 
     enum : uint {
         GL_ACTIVE_SUBROUTINES             = 0x8DE5,
@@ -239,7 +239,7 @@ else enum useARBTesselationShader = has40;
 
 static if(useARBTesselationShader) {
     private bool _hasARBTesselationShader;
-    bool hasARBTesselationShader() { return _hasARBTesselationShader; }
+    @nogc nothrow bool hasARBTesselationShader() { return _hasARBTesselationShader; }
 
     enum : uint {
         GL_PATCHES                        = 0x000E,
@@ -303,7 +303,7 @@ else enum useARBTransformFeedback2 = has40;
 
 static if(useARBTransformFeedback2) {
     private bool _hasARBTransformFeedback2;
-    bool hasARBTransformFeedback2() { return _hasARBTransformFeedback2; }
+    @nogc nothrow bool hasARBTransformFeedback2() { return _hasARBTransformFeedback2; }
 
     enum : uint {
         GL_TRANSFORM_FEEDBACK             = 0x8E22,
@@ -354,7 +354,7 @@ else enum useARBTransformFeedback3 = has40;
 
 static if(useARBTransformFeedback3) {
     private bool _hasARBTransformFeedback3;
-    bool hasARBTransformFeedback3() { return _hasARBTransformFeedback3; }
+    @nogc nothrow bool hasARBTransformFeedback3() { return _hasARBTransformFeedback3; }
 
     enum : uint {
         GL_MAX_TRANSFORM_FEEDBACK_BUFFERS = 0x8E70,

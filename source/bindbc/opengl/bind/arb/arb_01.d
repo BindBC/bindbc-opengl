@@ -17,7 +17,7 @@ else enum useARBBindlessTexture = false;
 
 static if(useARBBindlessTexture) {
     private bool _hasARBBindlessTexture;
-    bool hasARBBindlessTexture() { return _hasARBBindlessTexture; }
+    @nogc nothrow bool hasARBBindlessTexture() { return _hasARBBindlessTexture; }
 
     enum uint GL_UNSIGNED_INT64_ARB = 0x140F;
 
@@ -91,7 +91,7 @@ else enum useARBCLEvent = false;
 static if(useARBCLEvent) {
     import bindbc.opengl.bind.arb.core_32 : GLsync;
     private bool _hasARBCLEvent;
-    bool hasARBCLEvent() { return _hasARBCLEvent; }
+    @nogc nothrow bool hasARBCLEvent() { return _hasARBCLEvent; }
 
     struct _cl_context;
     struct _cl_event;
@@ -120,7 +120,7 @@ else enum useARBComputeVariableGroupSize = false;
 
 static if(useARBComputeVariableGroupSize) {
     private bool _hasARBComputeVariableGroupSize;
-    bool hasARBComputeVariableGroupSize() { return _hasARBComputeVariableGroupSize; }
+    @nogc nothrow bool hasARBComputeVariableGroupSize() { return _hasARBComputeVariableGroupSize; }
 
     enum : uint {
         GL_MAX_COMPUTE_VARIABLE_GROUP_INVOCATIONS_ARB   = 0x9344,
@@ -148,7 +148,7 @@ else enum useARBDebugOutput = false;
 
 static if(useARBDebugOutput) {
     private bool _hasARBDebugOutput;
-    bool hasARBDebugOutput() { return _hasARBDebugOutput; }
+    @nogc nothrow bool hasARBDebugOutput() { return _hasARBDebugOutput; }
 
     enum : uint {
         GL_DEBUG_OUTPUT_SYNCHRONOUS_ARB   = 0x8242,
@@ -213,7 +213,7 @@ else enum useARBFramebufferSRGB = false;
 
 static if(useARBFramebufferSRGB) {
     private bool _hasARBFramebufferSRGB;
-    bool hasARBFramebufferSRGB() { return _hasARBFramebufferSRGB; }
+    @nogc nothrow bool hasARBFramebufferSRGB() { return _hasARBFramebufferSRGB; }
 
     enum uint GL_FRAMEBUFFER_SRGB = 0x8DB9;
 }
@@ -226,7 +226,7 @@ else enum useARBGeometryShader4 = false;
 
 static if(useARBGeometryShader4) {
     private bool _hasARBGeometryShader4;
-    bool hasARBGeometryShader4() { return _hasARBGeometryShader4; }
+    @nogc nothrow bool hasARBGeometryShader4() { return _hasARBGeometryShader4; }
 
     enum : uint {
         GL_LINES_ADJACENCY_ARB            = 0x000A,
@@ -282,7 +282,7 @@ else enum useARBGLSPIRV = false;
 
 static if(useARBGLSPIRV) {
     private bool _hasARBGLSPIRV;
-    bool hasARBGLSPIRV() { return _hasARBGLSPIRV; }
+    @nogc nothrow bool hasARBGLSPIRV() { return _hasARBGLSPIRV; }
 
     enum : uint {
         GL_SHADER_BINARY_FORMAT_SPIR_V_ARB = 0x9551,
@@ -310,7 +310,7 @@ else enum useARBGPUShaderInt64 = false;
 
 static if(useARBGPUShaderInt64) {
     private bool _hasARBGPUShaderInt64;
-    bool hasARBGPUShaderInt64() { return _hasARBGPUShaderInt64; }
+    @nogc nothrow bool hasARBGPUShaderInt64() { return _hasARBGPUShaderInt64; }
 
     enum : uint {
         GL_INT64_ARB                      = 0x140E,
@@ -451,7 +451,7 @@ else enum useARBIndirectParameters = false;
 
 static if(useARBIndirectParameters) {
     private bool _hasARBIndirectParameters;
-    bool hasARBIndirectParameters() { return _hasARBIndirectParameters; }
+    @nogc nothrow bool hasARBIndirectParameters() { return _hasARBIndirectParameters; }
 
     enum : uint {
         GL_PARAMETER_BUFFER_ARB           = 0x80EE,
@@ -485,7 +485,7 @@ else enum useARBPipelineStatisticsQuery = false;
 
 static if(useARBPipelineStatisticsQuery) {
     private bool _hasARBPipelineStatisticsQuery;
-    bool hasARBPipelineStatisticsQuery() { return _hasARBPipelineStatisticsQuery; }
+    @nogc nothrow bool hasARBPipelineStatisticsQuery() { return _hasARBPipelineStatisticsQuery; }
 
     enum : uint {
         GL_VERTICES_SUBMITTED_ARB         = 0x82EE,
@@ -509,7 +509,7 @@ else enum useARBRobustnessIsolation = false;
 
 static if(useARBRobustnessIsolation) {
     private bool _hasARBRobustnessIsolation;
-    bool hasARBRobustnessIsolation() { return _hasARBRobustnessIsolation; }
+    @nogc nothrow bool hasARBRobustnessIsolation() { return _hasARBRobustnessIsolation; }
 }
 else enum hasARBRobustnessIsolation = false;
 
@@ -520,7 +520,7 @@ else enum useARBSampleShading = false;
 
 static if(useARBSampleShading) {
     private bool _hasARBSampleShading;
-    bool hasARBSampleShading() { return _hasARBSampleShading; }
+    @nogc nothrow bool hasARBSampleShading() { return _hasARBSampleShading; }
 
     enum : uint {
         GL_SAMPLE_SHADING_ARB             = 0x8C36,
@@ -546,7 +546,7 @@ else enum useARBTextureCompressionBPTC = false;
 
 static if(useARBTextureCompressionBPTC) {
     private bool _hasARBTextureCompressionBPTC;
-    bool hasARBTextureCompressionBPTC() { return _hasARBTextureCompressionBPTC; }
+    @nogc nothrow bool hasARBTextureCompressionBPTC() { return _hasARBTextureCompressionBPTC; }
 
     enum : uint {
         GL_COMPRESSED_RGBA_BPTC_UNORM_ARB = 0x8E8C,
@@ -564,7 +564,7 @@ else enum useARBTextureCubeMapArray = false;
 
 static if(useARBTextureCubeMapArray) {
     private bool _hasARBTextureCubeMapArray;
-    bool hasARBTextureCubeMapArray() { return _hasARBTextureCubeMapArray; }
+    @nogc nothrow bool hasARBTextureCubeMapArray() { return _hasARBTextureCubeMapArray; }
 
     enum : uint {
         GL_TEXTURE_CUBE_MAP_ARRAY_ARB     = 0x9009,
@@ -585,7 +585,7 @@ else enum useARBTextureGather = false;
 
 static if(useARBTextureGather) {
     private bool _hasARBTextureGather;
-    bool hasARBTextureGather() { return _hasARBTextureGather; }
+    @nogc nothrow bool hasARBTextureGather() { return _hasARBTextureGather; }
 
     enum : uint {
         GL_MIN_PROGRAM_TEXTURE_GATHER_OFFSET_ARB = 0x8E5E,
@@ -601,7 +601,7 @@ else enum useARBTransformFeedbackOverflowQuery = false;
 
 static if(useARBTransformFeedbackOverflowQuery) {
     private bool _hasARBTransformFeedbackOverflowQuery;
-    bool hasARBTransformFeedbackOverflowQuery() { return _hasARBTransformFeedbackOverflowQuery; }
+    @nogc nothrow bool hasARBTransformFeedbackOverflowQuery() { return _hasARBTransformFeedbackOverflowQuery; }
 
     enum : uint {
         GL_TRANSFORM_FEEDBACK_OVERFLOW_ARB          = 0x82EC,
@@ -619,7 +619,7 @@ static if(useARBSparseTexture) {
     import bindbc.opengl.bind.arb.core_45 : useARBDirectStateAccess, hasARBDirectStateAccess;
 
     private bool _hasARBSparseTexture;
-    bool hasARBSparseTexture() { return _hasARBSparseTexture; }
+    @nogc nothrow bool hasARBSparseTexture() { return _hasARBSparseTexture; }
 
     enum : uint {
         GL_TEXTURE_SPARSE_ARB          = 0x91A6,
@@ -674,7 +674,7 @@ else enum useARBSparseTexture2 = false;
 
 static if(useARBSparseTexture2) {
     private bool _hasARBSparseTexture2;
-    bool hasARBSparseTexture2() { return _hasARBSparseTexture2; }
+    @nogc nothrow bool hasARBSparseTexture2() { return _hasARBSparseTexture2; }
 }
 
 // ARB_sparse_texture_clamp
@@ -684,7 +684,7 @@ else enum useARBSparseTextureClamp = false;
 
 static if(useARBSparseTextureClamp) {
     private bool _hasARBSparseTextureClamp;
-    bool hasARBSparseTextureClamp() { return _hasARBSparseTextureClamp; }
+    @nogc nothrow bool hasARBSparseTextureClamp() { return _hasARBSparseTextureClamp; }
 }
 
 package @nogc nothrow

@@ -23,7 +23,7 @@ else enum useARBDepthClamp = has32;
 
 static if(useARBDepthClamp) {
     private bool _hasARBDepthClamp;
-    bool hasARBDepthClamp() { return _hasARBDepthClamp; }
+    @nogc nothrow bool hasARBDepthClamp() { return _hasARBDepthClamp; }
 
     enum uint GL_DEPTH_CLAMP = 0x864F;
 }
@@ -36,7 +36,7 @@ else enum useARBProvokingVertex = has32;
 
 static if(useARBProvokingVertex) {
     private bool _hasARBProvokingVertex;
-    bool hasARBProvokingVertex() { return _hasARBProvokingVertex; }
+    @nogc nothrow bool hasARBProvokingVertex() { return _hasARBProvokingVertex; }
 
     enum : uint {
         GL_QUADS_FOLLOW_PROVOKING_VERTEX_CONVENTION = 0x8E4C,
@@ -54,7 +54,7 @@ else enum useARBSeamlessCubeMap = has32;
 
 static if(useARBSeamlessCubeMap) {
     private bool _hasARBSeamlessCubeMap;
-    bool hasARBSeamlessCubeMap() { return _hasARBSeamlessCubeMap; }
+    @nogc nothrow bool hasARBSeamlessCubeMap() { return _hasARBSeamlessCubeMap; }
 
     enum uint GL_TEXTURE_CUBE_MAP_SEAMLESS = 0x884F;
 }
@@ -67,7 +67,7 @@ else enum useARBDrawElementsBaseVertex = has32;
 
 static if(useARBDrawElementsBaseVertex) {
     private bool _hasARBDrawElementsBaseVertex;
-    bool hasARBDrawElementsBaseVertex() { return _hasARBDrawElementsBaseVertex; }
+    @nogc nothrow bool hasARBDrawElementsBaseVertex() { return _hasARBDrawElementsBaseVertex; }
 
     extern(System) @nogc nothrow {
         alias pglDrawElementsBaseVertex = void function(GLenum, GLsizei, GLenum, const(GLvoid)*, GLint);
@@ -107,7 +107,7 @@ alias __GLsync* GLsync;
 
 static if(useARBSync) {
     private bool _hasARBSync;
-    bool hasARBSync() { return _hasARBSync; }
+    @nogc nothrow bool hasARBSync() { return _hasARBSync; }
 
     enum : uint {
         GL_MAX_SERVER_WAIT_TIMEOUT        = 0x9111,
@@ -168,7 +168,7 @@ else enum useARBTextureMultiSample = has32;
 
 static if(useARBTextureMultiSample) {
     private bool _hasARBTextureMultiSample;
-    bool hasARBTextureMultiSample() { return _hasARBTextureMultiSample; }
+    @nogc nothrow bool hasARBTextureMultiSample() { return _hasARBTextureMultiSample; }
 
     enum : uint {
         GL_SAMPLE_POSITION                = 0x8E50,

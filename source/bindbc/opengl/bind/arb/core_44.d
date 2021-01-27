@@ -23,7 +23,7 @@ else enum useARBBufferStorage = has44;
 
 static if(useARBBufferStorage) {
     private bool _hasARBBufferStorage;
-    bool hasARBBufferStorage() { return _hasARBBufferStorage; }
+    @nogc nothrow bool hasARBBufferStorage() { return _hasARBBufferStorage; }
 
     enum : uint {
         GL_MAP_PERSISTENT_BIT             = 0x0040,
@@ -72,7 +72,7 @@ else enum useARBClearTexture = has44;
 
 static if(useARBClearTexture) {
     private bool _hasARBClearTexture;
-    bool hasARBClearTexture() { return _hasARBClearTexture; }
+    @nogc nothrow bool hasARBClearTexture() { return _hasARBClearTexture; }
 
     enum uint GL_CLEAR_TEXTURE = 0x9365;
 
@@ -103,7 +103,7 @@ else enum useARBEnhancedLayouts = has44;
 
 static if(useARBEnhancedLayouts) {
     private bool _hasARBEnhancedLayouts;
-    bool hasARBEnhancedLayouts() { return _hasARBEnhancedLayouts; }
+    @nogc nothrow bool hasARBEnhancedLayouts() { return _hasARBEnhancedLayouts; }
 
     enum : uint  {
         GL_LOCATION_COMPONENT             = 0x934A,
@@ -120,7 +120,7 @@ else enum useARBMultBind = has44;
 
 static if(useARBMultBind) {
     private bool _hasARBMultBind;
-    bool hasARBMultBind() { return _hasARBMultBind; }
+    @nogc nothrow bool hasARBMultBind() { return _hasARBMultBind; }
 
     extern(System) @nogc nothrow {
         alias pglBindBuffersBase = void function(GLenum,GLuint,GLsizei,const(GLuint)*);
@@ -161,7 +161,7 @@ else enum useARBQueryBufferObject = has44;
 
 static if(useARBQueryBufferObject) {
     private bool _hasARBQueryBufferObject;
-    bool hasARBQueryBufferObject() { return _hasARBQueryBufferObject; }
+    @nogc nothrow bool hasARBQueryBufferObject() { return _hasARBQueryBufferObject; }
 
     enum : uint  {
         GL_QUERY_BUFFER                   = 0x9192,
@@ -179,7 +179,7 @@ else enum useARBTextureMirrorClampToEdge = has44;
 
 static if(useARBTextureMirrorClampToEdge) {
     private bool _hasARBTextureMirrorClampToEdge;
-    bool hasARBTextureMirrorClampToEdge() { return _hasARBTextureMirrorClampToEdge; }
+    @nogc nothrow bool hasARBTextureMirrorClampToEdge() { return _hasARBTextureMirrorClampToEdge; }
 
     enum uint GL_MIRROR_CLAMP_TO_EDGE = 0x8743;
 }
