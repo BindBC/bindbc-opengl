@@ -10,6 +10,7 @@ import bindbc.opengl.config;
 import bindbc.opengl.context;
 import bindbc.opengl.gl : libGL;
 
+@nogc nothrow:
 bool loadBaseGLSymbol(void** ptr, const(char)* symName)
 {
     assert(ptr);
