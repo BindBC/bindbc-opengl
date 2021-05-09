@@ -487,14 +487,18 @@ static if(useARBInstancedArrays) {
     private bool _hasARBInstancedArrays;
     @nogc nothrow bool hasARBInstancedArrays() { return _hasARBInstancedArrays; }
 
+    enum : uint {
+        GL_VERTEX_ATTRIB_ARRAY_DIVISOR_ARB = 0x88FE,
+    }
+
     extern(System) @nogc nothrow {
         alias pglVertexAttribDivisorARB = void function(GLuint,GLuint);
-        alias pglVertexAttribDivisorEXT = void function(GLuint,GLuint,GLuint);
+        alias pglVertexArrayVertexAttribDivisorEXT = void function(GLuint,GLuint,GLuint);
     }
 
     __gshared {
         pglVertexAttribDivisorARB glVertexAttribDivisorARB;
-        pglVertexAttribDivisorEXT glVertexAttribDivisorEXT;
+        pglVertexArrayVertexAttribDivisorEXT glVertexArrayVertexAttribDivisorEXT;
     }
 
     private @nogc nothrow
@@ -502,11 +506,11 @@ static if(useARBInstancedArrays) {
     {
         lib.bindGLSymbol(cast(void**)&glVertexAttribDivisorARB,"glVertexAttribDivisorARB");
 
-        // glVertexAttribDivisorEXT is only available when EXT_direct_state_access is supported.
+        // glVertexArrayVertexAttribDivisorEXT is only available when EXT_direct_state_access is supported.
         // Save the error count to return and ignore the error if the EXT function isn't available.
         bool ret = resetErrorCountGL();
         if(hasExtension(contextVersion, "GL_EXT_direct_state_access ")) {
-            lib.bindGLSymbol(cast(void**)&glVertexAttribDivisorEXT, "glVertexAttribDivisorEXT");
+            lib.bindGLSymbol(cast(void**)&glVertexArrayVertexAttribDivisorEXT, "glVertexArrayVertexAttribDivisorEXT");
             resetErrorCountGL();
         }
         return ret;
