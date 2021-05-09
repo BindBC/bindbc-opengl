@@ -478,6 +478,42 @@ static if(useARBIndirectParameters) {
 }
 else enum hasARBIndirectParameters = false;
 
+// ARB_instanced_arrays
+version(GL_ARB) enum useARBInstancedArrays = true;
+else version(GL_ARB_instanced_arrays) enum useARBInstancedArrays = true;
+else enum useARBInstancedArrays = false;
+
+static if(useARBInstancedArrays) {
+    private bool _hasARBInstancedArrays;
+    @nogc nothrow bool hasARBInstancedArrays() { return _hasARBInstancedArrays; }
+
+    extern(System) @nogc nothrow {
+        alias pglVertexAttribDivisorARB = void function(GLuint,GLuint);
+        alias pglVertexAttribDivisorEXT = void function(GLuint,GLuint,GLuint);
+    }
+
+    __gshared {
+        pglVertexAttribDivisorARB glVertexAttribDivisorARB;
+        pglVertexAttribDivisorEXT glVertexAttribDivisorEXT;
+    }
+
+    private @nogc nothrow
+    bool loadARBInstancedArrays(SharedLib lib, GLSupport contextVersion)
+    {
+        lib.bindGLSymbol(cast(void**)&glVertexAttribDivisorARB,"glVertexAttribDivisorARB");
+
+        // glVertexAttribDivisorEXT is only available when EXT_direct_state_access is supported.
+        // Save the error count to return and ignore the error if the EXT function isn't available.
+        bool ret = resetErrorCountGL();
+        if(hasExtension(contextVersion, "GL_EXT_direct_state_access ")) {
+            lib.bindGLSymbol(cast(void**)&glVertexAttribDivisorEXT, "glVertexAttribDivisorEXT");
+            resetErrorCountGL();
+        }
+        return ret;
+    }
+}
+else enum hasARBInstancedArrays = false;
+
 // ARB_pipeline_statistics_query
 version(GL_ARB) enum useARBPipelineStatisticsQuery = true;
 else version(GL_ARB_pipeline_statistics_query) enum useARBPipelineStatisticsQuery = true;
@@ -538,6 +574,37 @@ static if(useARBSampleShading) {
     }
 }
 else enum hasARBSampleShading = false;
+
+// ARB_texture_buffer_object
+version(GL_ARB) enum useARBTextureBufferObject = true;
+else version(GL_ARB_texture_buffer_object) enum useARBTextureBufferObject = true;
+else enum useARBTextureBufferObject = false;
+
+static if(useARBTextureBufferObject) {
+    private bool _hasARBTextureBufferObject;
+    @nogc nothrow bool hasARBTextureBufferObject() { return _hasARBTextureBufferObject; }
+
+    enum : uint {
+        GL_TEXTURE_BUFFER_ARB =             0x8C2A,
+        GL_MAX_TEXTURE_BUFFER_SIZE_ARB =    0x8C2B,
+        GL_TEXTURE_BINDING_BUFFER_ARB =     0x8C2C,
+        GL_TEXTURE_BUFFER_DATA_STORE_BINDING_ARB = 0x8C2D,
+        GL_TEXTURE_BUFFER_FORMAT_ARB =      0x8C2E,
+    }
+
+    extern(System) @nogc nothrow
+    alias pglTexBufferARB = void function(GLenum,GLenum,GLuint);
+
+    __gshared pglTexBufferARB glTexBufferARB;
+
+    private @nogc nothrow
+    bool loadARBTextureBufferObject(SharedLib lib, GLSupport contextVersion)
+    {
+        lib.bindGLSymbol(cast(void**)&glTexBufferARB,"glTexBufferARB");
+        return resetErrorCountGL();
+    }
+}
+else enum hasARBTextureBufferObject = false;
 
 // ARB_texture_compression_bptc
 version(GL_ARB) enum useARBTextureCompressionBPTC = true;
@@ -725,6 +792,10 @@ void loadARB_01(SharedLib lib, GLSupport contextVersion)
             hasExtension(contextVersion, "GL_ARB_indirect_parameters") &&
             lib.loadARBIndirectParameters(contextVersion);
 
+    static if(useARBInstancedArrays) _hasARBInstancedArrays =
+            hasExtension(contextVersion, "GL_ARB_instanced_arrays") &&
+            lib.loadARBInstancedArrays(contextVersion);
+
     static if(useARBPipelineStatisticsQuery) _hasARBPipelineStatisticsQuery =
             hasExtension(contextVersion, "GL_ARB_pipeline_statistics_query");
 
@@ -734,6 +805,10 @@ void loadARB_01(SharedLib lib, GLSupport contextVersion)
     static if(useARBSampleShading ) _hasARBSampleShading  =
             hasExtension(contextVersion, "GL_ARB_sample_shading") &&
             lib.loadARBSampleShading (contextVersion);
+
+    static if(useARBTextureBufferObject) _hasARBTextureBufferObject =
+            hasExtension(contextVersion, "GL_ARB_texture_buffer_object") &&
+            lib.loadARBTextureBufferObject(contextVersion);
 
     static if(useARBTextureCompressionBPTC) _hasARBTextureCompressionBPTC =
             hasExtension(contextVersion, "GL_ARB_texture_compression_bptc");
