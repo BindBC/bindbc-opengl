@@ -1,4 +1,4 @@
-//          Copyright Michael D. Parker 2018.
+//          Copyright 2018 - 2021 Michael D. Parker
 // Distributed under the Boost Software License, Version 1.0.
 //    (See accompanying file LICENSE_1_0.txt or copy at
 //          http://www.boost.org/LICENSE_1_0.txt)
@@ -37,7 +37,7 @@ static if (useNVShaderBufferLoad) {
         alias pglUniformui64vNV = void function(GLint,GLsizei,const GLuint64*);
         alias pglGetUniformui64vNV = void function(GLuint, GLint, GLuint64*);
         alias pglProgramUniformui64NV = void function(GLuint, GLint, GLuint64);
-        alias pglProgramUniformui64vNV = void function(GLuint, GLint, GLsizei, const GLuint64*); 
+        alias pglProgramUniformui64vNV = void function(GLuint, GLint, GLsizei, const GLuint64*);
     }
 
     __gshared {
@@ -54,7 +54,7 @@ static if (useNVShaderBufferLoad) {
         pglUniformui64vNV glUniformui64vNV;
         pglGetUniformui64vNV glGetUniformui64vNV;
         pglProgramUniformui64NV glProgramUniformui64NV;
-        pglProgramUniformui64vNV glProgramUniformui64vNV; 
+        pglProgramUniformui64vNV glProgramUniformui64vNV;
     }
 
     private @nogc nothrow
