@@ -3,6 +3,8 @@ This project provides dynamic bindings to [the OpenGL library](https://www.openg
 
 __NOTE__: bindbc-opengl does not support static binding due to the nature of the OpenGL API.
 
+__NOTE__: This documentation describes how to use bindbc-opengl. As the maintainer of this library, I do not provide instructions on using the OpenGL library. However, since this is a direct binding to the OpenGL API, existing OpenGL documentation and tutorials can be adapted to D with few modifications (those being minor differences in the language, such as array declaration syntax). [The tutorial at learnopengl.com](https://learnopengl.com/) is a particularly good introduction to OpenGL for those who have little or no experience with the API. For documentation, I prefer [the layout of docs.gl](https://docs.gl/) over [that of the Khronos site](https://www.khronos.org/registry/OpenGL-Refpages/gl4/).
+
 ## Add bindbc-opengl to your project
 By default, bindbc-opengl is configured to compile with `-betterC` compatibility disabled and with support only for up to OpenGL 2.1 core. To use bindbc-opengl in this default mode, simply add the package as a dependency in your `dub.json` or `dub.sdl` recipe:
 
