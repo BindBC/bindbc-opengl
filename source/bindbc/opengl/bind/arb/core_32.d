@@ -44,6 +44,21 @@ static if(useARBProvokingVertex) {
         GL_LAST_VERTEX_CONVENTION         = 0x8E4E,
         GL_PROVOKING_VERTEX               = 0x8E4F,
     }
+
+    extern(System) @nogc nothrow {
+        alias pglProvokingVertex = void function(GLenum);
+    }
+
+    __gshared {
+        pglProvokingVertex glProvokingVertex;
+    }
+
+    private @nogc nothrow
+    bool loadARBProvokingVertex(SharedLib lib, GLSupport contextVersion)
+    {
+        lib.bindGLSymbol(cast(void**)&glProvokingVertex, "glProvokingVertex");
+        return resetErrorCountGL();
+    }
 }
 else enum hasARBProvokingVertex = false;
 
@@ -241,7 +256,8 @@ bool loadARB32(SharedLib lib, GLSupport contextVersion)
             hasExtension(contextVersion, "GL_ARB_depth_clamp");
 
     static if(useARBProvokingVertex) _hasARBProvokingVertex =
-            hasExtension(contextVersion, "GL_ARB_provoking_vertex");
+            hasExtension(contextVersion, "GL_ARB_provoking_vertex") &&
+            lib.loadARBProvokingVertex(contextVersion);
 
     static if(useARBSeamlessCubeMap) _hasARBSeamlessCubeMap =
             hasExtension(contextVersion, "GL_ARB_seamless_cube_map");
