@@ -241,10 +241,10 @@ bool loadARB32(SharedLib lib, GLSupport contextVersion)
     static if(has32) {
         if(contextVersion >= GLSupport.gl32) {
             _hasARBDepthClamp = true;
-            _hasARBProvokingVertex = true;
             _hasARBSeamlessCubeMap = true;
 
             bool ret = true;
+            ret = _hasARBProvokingVertex = lib.loadARBProvokingVertex(contextVersion);
             ret = _hasARBDrawElementsBaseVertex = lib.loadARBDrawElementsBaseVertex(contextVersion);
             ret = _hasARBSync = lib.loadARBSync(contextVersion);
             ret = _hasARBTextureMultiSample = lib.loadTextureMultiSample(contextVersion);
