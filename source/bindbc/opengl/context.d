@@ -85,7 +85,8 @@ package GLSupport getContextVersion(SharedLib lib)
 
     switch(major) {
         case '4':
-            if(minor == '5') support = GLSupport.gl45;
+            if(minor == '6') support = GLSupport.gl46;
+            else if(minor == '5') support = GLSupport.gl45;
             else if(minor == '4') support = GLSupport.gl44;
             else if(minor == '3') support = GLSupport.gl43;
             else if(minor == '2') support = GLSupport.gl42;
