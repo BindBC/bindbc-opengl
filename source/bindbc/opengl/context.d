@@ -62,7 +62,7 @@ private {
 package:
 version(Posix) void unloadContext()
 {
-    if(libEGL != invalidLibrary) libEGL.unload();
+    if(libEGL != invalidHandle) libEGL.unload();
 }
 
 GLSupport getContextVersion(SharedLib lib)
@@ -78,11 +78,11 @@ GLSupport getContextVersion(SharedLib lib)
             version(OSX) { /* Nothing to do */ }
             else {
                 import core.stdc.string : strcmp;
-                import std.stdio : getenv;
+                import core.stdc.stdlib : getenv;
                 if(strcmp(getenv(sessionTypeEnv), "wayland")) {
                     if(libEGL == invalidHandle) {
                         foreach(libName; eglNames) {
-                            libEGL = load(libName);
+                            libEGL = load(libName.ptr);
                             if(libEGL != invalidHandle) break;
                         }
                         if(libEGL != invalidHandle) {
