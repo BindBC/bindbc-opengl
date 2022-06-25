@@ -43,24 +43,72 @@ private {
     else version(Posix) {
         enum getCurrentContextName = "glXGetCurrentContext";
         enum getProcAddressName = "glXGetProcAddress";
+        enum getCurrentContextNameEGL = "eglGetCurrentContext";
+        enum getProcAddressNameEGL = "eglGetProcAddress";
+        enum sessionTypeEnv = "XDG_SESSION_TYPE";
+
+        const(char)[][2] eglNames = [
+            "libEGL.so.1",
+            "libEGL.so"
+        ];
+
+        SharedLib libEGL;
     }
     else static assert(0, "Platform Problem!!!");
 }
 
 @nogc nothrow:
 
-package GLSupport getContextVersion(SharedLib lib)
+package:
+version(Posix) void unloadContext()
+{
+    if(libEGL != invalidLibrary) libEGL.unload();
+}
+
+GLSupport getContextVersion(SharedLib lib)
 {
     // Lazy load the appropriate symbols for fetching the current context
     // and getting OpenGL symbols from it.
     if(getCurrentContext == null) {
-        lib.bindSymbol(cast(void**)&getCurrentContext, getCurrentContextName);
-        if(getCurrentContext == null) return GLSupport.badLibrary;
+        bool loaded = false;
 
-        version(OSX) { /* Nothing to do */ }
-        else {
-            lib.bindSymbol(cast(void**)&getProcAddress, getProcAddressName);
-            if(getProcAddress == null) return GLSupport.badLibrary;
+        // On Posix systems other than OSX, check if we're running under Wayland,
+        // and load the appropriate symbols from libEGL if so.
+        version(Posix) {
+            version(OSX) { /* Nothing to do */ }
+            else {
+                import core.stdc.string : strcmp;
+                import std.stdio : getenv;
+                if(strcmp(getenv(sessionTypeEnv), "wayland")) {
+                    if(libEGL == invalidHandle) {
+                        foreach(libName; eglNames) {
+                            libEGL = load(libName);
+                            if(libEGL != invalidHandle) break;
+                        }
+                        if(libEGL != invalidHandle) {
+                            libEGL.bindSymbol(cast(void**)&getCurrentContext, getCurrentContextNameEGL);
+                            libEGL.bindSymbol(cast(void**)&getProcAddress, getProcAddressNameEGL);
+                            if(getCurrentContext == null || getProcAddress == null) {
+                                return GLSupport.badLibrary;
+                            }
+                        }
+                        else return GLSupport.noLibrary;
+                    }
+                    loaded = true;
+                }
+            }
+        }
+
+        // At this point, the above either fai
+        if(!loaded) {
+            lib.bindSymbol(cast(void**)&getCurrentContext, getCurrentContextName);
+            if(getCurrentContext == null) return GLSupport.badLibrary;
+
+            version(OSX) { /* Nothing to do */ }
+            else {
+                lib.bindSymbol(cast(void**)&getProcAddress, getProcAddressName);
+                if(getProcAddress == null) return GLSupport.badLibrary;
+            }
         }
     }
 

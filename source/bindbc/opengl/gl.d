@@ -27,6 +27,7 @@ void unloadOpenGL()
 {
     if(lib != invalidHandle) {
         lib.unload();
+        version(Posix) unloadContext();
         contextVersion = loadedVersion = GLSupport.noContext;
     }
 }
