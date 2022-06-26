@@ -79,27 +79,47 @@ GLSupport getContextVersion(SharedLib lib)
             else {
                 import core.stdc.string : strcmp;
                 import core.stdc.stdlib : getenv;
-                if(strcmp(getenv(sessionTypeEnv), "wayland")) {
+                if(strcmp(getenv(sessionTypeEnv), "wayland") == 0) {
                     if(libEGL == invalidHandle) {
                         foreach(libName; eglNames) {
                             libEGL = load(libName.ptr);
                             if(libEGL != invalidHandle) break;
                         }
+
                         if(libEGL != invalidHandle) {
                             libEGL.bindSymbol(cast(void**)&getCurrentContext, getCurrentContextNameEGL);
                             libEGL.bindSymbol(cast(void**)&getProcAddress, getProcAddressNameEGL);
-                            if(getCurrentContext == null || getProcAddress == null) {
-                                return GLSupport.badLibrary;
+
+                            /*
+                              If the symbols were loaded successfully, that's not enough. For example, on Ubuntu 22.04
+                              using GLFW configured for X11, eglGetCurrentContext returns null, but glXGetCurrentContext
+                              returns a valid pointer, even though we're in a Wayland session. So here, if getCurrentContext
+                              returns null, then that means one of things: either no context has been created, or it was 
+                              created through X. So only set loaded to true if getCurrentContext returns non-null. Then
+                              then a second attempt can be made via the glX stuff.
+                            */
+                            if(getCurrentContext != null && getProcAddress != null && getCurrentContext() != null) {
+                                loaded = true;
+                            }
+                            else {
+                                unloadContext();
+                                getCurrentContext = null;
+                                getProcAddress = null;
                             }
                         }
                         else return GLSupport.noLibrary;
                     }
-                    loaded = true;
                 }
             }
         }
 
-        // At this point, the above either fai
+        /*
+          If loaded is false at this point, then one of four things is true:
+            1. We aren't on Posix 
+            2. We're on Posix in an X11 session 
+            3. We're on Posix in a Wayland session, but the context was created through X 
+            4. We're on Posix in a Wayland session, but no context has been created 
+        */
         if(!loaded) {
             lib.bindSymbol(cast(void**)&getCurrentContext, getCurrentContextName);
             if(getCurrentContext == null) return GLSupport.badLibrary;
