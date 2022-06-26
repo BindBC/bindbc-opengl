@@ -64,7 +64,10 @@ version(Posix) void unloadContext()
 {
     version (OSX) { /* Nothing to do */ }
     else {
-        if(libEGL != invalidHandle) libEGL.unload();
+        if(libEGL != invalidHandle) {
+            libEGL.unload();
+            libEGL = invalidHandle;
+        }
     }
 }
 
