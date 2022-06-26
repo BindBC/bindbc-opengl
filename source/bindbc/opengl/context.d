@@ -62,7 +62,10 @@ private {
 package:
 version(Posix) void unloadContext()
 {
-    if(libEGL != invalidHandle) libEGL.unload();
+    version (OSX) { /* Nothing to do */ }
+    else {
+        if(libEGL != invalidHandle) libEGL.unload();
+    }
 }
 
 GLSupport getContextVersion(SharedLib lib)
