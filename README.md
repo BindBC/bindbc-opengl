@@ -94,7 +94,7 @@ __dub.json__
     "bindbc-opengl": "~>1.0.0"
 }
 "versions": [
-    "GL_41", "GL_AllowDeprecated
+    "GL_41", "GL_AllowDeprecated"
 ],
 ```
 
