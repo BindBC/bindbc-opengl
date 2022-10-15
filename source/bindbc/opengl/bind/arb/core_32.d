@@ -147,7 +147,7 @@ static if(useARBSync) {
         alias pglDeleteSync = void function(GLsync);
         alias pglClientWaitSync = GLenum function(GLsync, GLbitfield, GLuint64);
         alias pglWaitSync = void function(GLsync, GLbitfield, GLuint64);
-        alias pglGetInteger64v = void function(GLsync, GLint64*);
+        alias pglGetInteger64v = void function(GLenum, GLint64*);
         alias pglGetSynciv = void function(GLsync, GLenum, GLsizei, GLsizei*, GLint*);
     }
 
