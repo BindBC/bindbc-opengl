@@ -6,8 +6,6 @@
 
 module bindbc.opengl.config;
 
-debug public import core.stdc.stdio;
-
 enum GLSupport {
     noLibrary,
     badLibrary,
