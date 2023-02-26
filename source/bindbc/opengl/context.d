@@ -85,7 +85,8 @@ GLSupport getContextVersion(SharedLib lib)
             else {
                 import core.stdc.string : strcmp;
                 import core.stdc.stdlib : getenv;
-                if(strcmp(getenv(sessionTypeEnv), "wayland") == 0) {
+                char* sessionType = getenv(sessionTypeEnv);
+                if(sessionType != null && strcmp(sessionType, "wayland") == 0) {
                     if(libEGL == invalidHandle) {
                         foreach(libName; eglNames) {
                             libEGL = load(libName.ptr);
