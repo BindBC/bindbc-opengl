@@ -1,7 +1,7 @@
-name "bindbc-opengl"
+name "i2d-opengl"
 description "Dynamic bindings to OpenGL, compatible with -betterC, @nogc, and nothrow."
 homepage ""
-authors "Mike Parker"
+authors "Mike Parker" "Inochi2D Project"
 license "Boost"
 
 targetType "staticLibrary"
@@ -11,6 +11,7 @@ targetName "BindBC_OpenGL"
 dependency "bindbc-loader" version="~>1.0.0"
 
 configuration "dynamic" {
+    targetType "staticLibrary"
 }
 
 configuration "dynamicBC" {

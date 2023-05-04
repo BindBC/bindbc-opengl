@@ -116,6 +116,7 @@ GLSupport loadOpenGL(const(char)* libName)
     // Load all other supported extensions
     loadARB(lib, contextVersion);
     loadNV(lib, contextVersion);
+    loadKHR(lib, contextVersion);
 
     return loadedVersion;
 }
