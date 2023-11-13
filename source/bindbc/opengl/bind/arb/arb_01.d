@@ -176,8 +176,8 @@ static if(useARBDebugOutput) {
     }
 
     extern(System) nothrow {
-        alias GLDEBUGPROCARB = void function(GLenum,GLenum,GLuint,GLenum,GLsizei,in GLchar*,GLvoid*);
-        alias GLDEBUGPROCAMD = void function(GLuint,GLenum,GLenum,GLsizei,in GLchar*,GLvoid*);
+        alias GLDEBUGPROCARB = void function(GLenum,GLenum,GLuint,GLenum,GLsizei,const scope GLchar*,GLvoid*);
+        alias GLDEBUGPROCAMD = void function(GLuint,GLenum,GLenum,GLsizei,const scope GLchar*,GLvoid*);
     }
 
     extern(System) @nogc nothrow  {
