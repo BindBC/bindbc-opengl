@@ -13,6 +13,6 @@ configuration "dynamic" {
 }
 
 configuration "dynamicBC" {
-    subConfiguration "bindbc-loader" "yesBC"
-    buildOptions "betterC"
+	subConfiguration "bindbc-loader" "yesBC"
+	buildOptions "betterC"
 }
