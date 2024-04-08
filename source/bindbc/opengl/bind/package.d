@@ -47,4 +47,5 @@ static if(glSupport >= GLSupport.gl30) {
 
 public
 import bindbc.opengl.bind.arb,
-       bindbc.opengl.bind.nv;
+       bindbc.opengl.bind.nv,
+       bindbc.opengl.bind.khr;
