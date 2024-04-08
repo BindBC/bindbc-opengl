@@ -521,7 +521,7 @@ static if(useARBInstancedArrays){
 		// glVertexArrayVertexAttribDivisorEXT is only available when EXT_direct_state_access is supported.
 		// Save the error count to return and ignore the error if the EXT function isn't available.
 		bool ret = resetErrorCountGL();
-		if(hasExtension(contextVersion, "GL_EXT_direct_state_access ")){
+		if(hasExtension(contextVersion, "GL_EXT_direct_state_access")){
 			lib.bindGLSymbol(cast(void**)&glVertexArrayVertexAttribDivisorEXT, "glVertexArrayVertexAttribDivisorEXT");
 			resetErrorCountGL();
 		}
