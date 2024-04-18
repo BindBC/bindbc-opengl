@@ -12,7 +12,7 @@ import bindbc.opengl.config, bindbc.opengl.context, bindbc.opengl.bind.types;
 
 enum has45 = glSupport >= GLSupport.gl45;
 
-// ARB_clip_control
+//ARB_clip_control
 enum useARBClipControl = (){
 	version(GL_ARB)                   return true;
 	else version(GL_ARB_clip_control) return true;

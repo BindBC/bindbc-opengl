@@ -121,8 +121,10 @@ GLSupport loadOpenGL(const(char)* libName){
 			static if(ver <= glSupport){
 				//lib.loadGL30(contextVersion)
 				if(mixin("lib.loadGL" ~ (cast(int)ver).stringof ~ "(contextVersion)")){
-					loadedStatus[ver.loadedStatusIndex] |= GLLoadStatus.loaded;
+					loadedStatus[ver.loadedStatusIndex] = GLLoadStatus.loaded;
 					loadedVersion = ver;
+				}else{
+					loadedStatus[ver.loadedStatusIndex] = GLLoadStatus.notLoaded;
 				}
 			}
 		}

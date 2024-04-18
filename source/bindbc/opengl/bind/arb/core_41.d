@@ -12,7 +12,7 @@ import bindbc.opengl.config, bindbc.opengl.context, bindbc.opengl.bind.types;
 
 enum has41 = glSupport >= GLSupport.gl41;
 
-// ARB_ES2_compatibility
+//ARB_ES2_compatibility
 enum useARBES2Compatibility = (){
 	version(GL_ARB)                        return true;
 	else version(GL_ARB_ES2_compatibility) return true;

@@ -64,7 +64,7 @@ static if(useARBTextureSwizzle){
 	}
 }
 
-// ARB_blend_func_extended
+//ARB_blend_func_extended
 enum useARBBlendFuncExtended = (){
 	version(GL_ARB)                          return true;
 	else version(GL_ARB_blend_func_extended) return true;
@@ -101,7 +101,7 @@ static if(useARBBlendFuncExtended){
 	}
 }
 
-// ARB_sampler_objects
+//ARB_sampler_objects
 enum useARBSamplerObjects = (){
 	version(GL_ARB)                      return true;
 	else version(GL_ARB_sampler_objects) return true;
