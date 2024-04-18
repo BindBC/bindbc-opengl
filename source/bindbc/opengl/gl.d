@@ -10,14 +10,41 @@ module bindbc.opengl.gl;
 import bindbc.loader;
 import bindbc.opengl.config, bindbc.opengl.context;
 
+nothrow @nogc:
+
 private{
 	SharedLib lib;
 	GLSupport contextVersion = GLSupport.noContext;
 	GLSupport loadedVersion = GLSupport.noContext;
-	GLLoaded[50] loadedStatus;
+	GLLoadStatus[18] loadedStatus;
+	@property size_t loadedStatusIndex(GLSupport ver) @safe{
+		with(GLSupport) switch(ver){
+			case gl11: return  0;
+			case gl12: return  1;
+			case gl13: return  2;
+			case gl14: return  3;
+			case gl15: return  4;
+			case gl20: return  5;
+			case gl21: return  6;
+			case gl30: return  7;
+			case gl31: return  8;
+			case gl32: return  9;
+			case gl33: return 10;
+			case gl40: return 11;
+			case gl41: return 12;
+			case gl42: return 13;
+			case gl43: return 14;
+			case gl44: return 15;
+			case gl45: return 16;
+			case gl46: return 17;
+			default: assert(0);
+		}
+	}
 }
 
-nothrow @nogc:
+GLLoadStatus versionLoadedStatus(GLSupport ver) @safe{
+	return loadedStatus[ver.loadedStatusIndex];
+}
 
 GLSupport openGLContextVersion() @safe{ return contextVersion; }
 GLSupport loadedOpenGLVersion() @safe{ return loadedVersion; }
@@ -29,10 +56,6 @@ void unloadOpenGL(){
 		version(Posix) unloadContext();
 		contextVersion = loadedVersion = GLSupport.noContext;
 	}
-}
-
-GLLoaded versionLoadedStatus(GLSupport ver) {
-	return loadedStatus[cast(int)ver];
 }
 
 GLSupport loadOpenGL(){
@@ -65,9 +88,9 @@ GLSupport loadOpenGL(const(char)* libName){
 	import bindbc.opengl.bind;
 	
 	// If the library isn't yet loaded, load it now.
-	if(lib == invalidHandle) {
+	if(lib == invalidHandle){
 		lib = load(libName);
-		if(lib == invalidHandle) {
+		if(lib == invalidHandle){
 			return GLSupport.noLibrary;
 		}
 	}
@@ -84,12 +107,11 @@ GLSupport loadOpenGL(const(char)* libName){
 	if(!lib.loadGL11()) return GLSupport.badLibrary;
 	else loadedVersion = GLSupport.gl11;
 	
-
-	loadedStatus[GLSupport.gl11] = GLLoaded.loaded;
-
-	// Now load the context-dependent stuff. `glSupport` is set to OpenGL 2.1
-	// by default and can't be lower. Load higher only if configured to do so.
 	with(GLSupport){
+		loadedStatus[gl11.loadedStatusIndex] |= GLLoadStatus.loaded;
+		
+		// Now load the context-dependent stuff. `glSupport` is set to OpenGL 2.1
+		// by default and can't be lower. Load higher only if configured to do so.
 		static foreach(ver; [
 			gl12, gl13, gl14, gl15,
 			gl20, gl21,
@@ -99,18 +121,14 @@ GLSupport loadOpenGL(const(char)* libName){
 			static if(ver <= glSupport){
 				//lib.loadGL30(contextVersion)
 				if(mixin("lib.loadGL" ~ (cast(int)ver).stringof ~ "(contextVersion)")){
-					loadedStatus[ver] = GLLoaded.loaded;
+					loadedStatus[ver.loadedStatusIndex] |= GLLoadStatus.loaded;
 					loadedVersion = ver;
-				} else {
-					loadedStatus[ver] = GLLoaded.notLoaded;
 				}
 			}
 		}
-	}
-	
-	// From any GL versions higher than the one loaded, load the core ARB
-	// extensions.
-	with(GLSupport){
+		
+		// From any GL versions higher than the one loaded, load the core ARB
+		// extensions.
 		static foreach(ver; [
 			gl30, gl31, gl32, gl33,
 			gl40, gl41, gl42, gl43, gl44, gl45, gl46,

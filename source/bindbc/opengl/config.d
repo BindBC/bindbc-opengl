@@ -7,7 +7,7 @@
 +/
 module bindbc.opengl.config;
 
-enum GLSupport {
+enum GLSupport{
 	noLibrary,
 	badLibrary,
 	noContext,
@@ -31,18 +31,11 @@ enum GLSupport {
 	gl46 = 46,
 }
 
-enum GLLoaded : ubyte {
-	// Version didn't load properly
-	notLoaded = 0,
-
-	// Version loaded properly
-	loaded = 1,
-
-	// For denoting deprecated functionality support, unused for now
-	loadedDeprecated = 2,
-
-	// For denoting ARB support, unused for now
-	loadedARB = 4,
+enum GLLoadStatus : ubyte{
+	notLoaded           = 0x00, ///Version didn't load properly at all.
+	loaded              = 0x01, ///Version loaded properly.
+	loadedDeprecated    = 0x02, ///For denoting deprecated functionality support, unused for now.
+	loadedARB           = 0x04, ///For denoting ARB support, unused for now.
 }
 
 enum glAllowDeprecated = (){
