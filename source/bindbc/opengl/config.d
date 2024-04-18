@@ -31,6 +31,20 @@ enum GLSupport {
 	gl46 = 46,
 }
 
+enum GLLoaded : ubyte {
+	// Version didn't load properly
+	notLoaded = 0,
+
+	// Version loaded properly
+	loaded = 1,
+
+	// For denoting deprecated functionality support, unused for now
+	loadedDeprecated = 2,
+
+	// For denoting ARB support, unused for now
+	loadedARB = 4,
+}
+
 enum glAllowDeprecated = (){
 	version(GL_AllowDeprecated) return true;
 	else return false;

@@ -14,6 +14,7 @@ private{
 	SharedLib lib;
 	GLSupport contextVersion = GLSupport.noContext;
 	GLSupport loadedVersion = GLSupport.noContext;
+	GLLoaded[50] loadedStatus;
 }
 
 nothrow @nogc:
@@ -28,6 +29,10 @@ void unloadOpenGL(){
 		version(Posix) unloadContext();
 		contextVersion = loadedVersion = GLSupport.noContext;
 	}
+}
+
+GLLoaded versionLoadedStatus(GLSupport ver) {
+	return loadedStatus[cast(int)ver];
 }
 
 GLSupport loadOpenGL(){
@@ -79,6 +84,9 @@ GLSupport loadOpenGL(const(char)* libName){
 	if(!lib.loadGL11()) return GLSupport.badLibrary;
 	else loadedVersion = GLSupport.gl11;
 	
+
+	loadedStatus[GLSupport.gl11] = GLLoaded.loaded;
+
 	// Now load the context-dependent stuff. `glSupport` is set to OpenGL 2.1
 	// by default and can't be lower. Load higher only if configured to do so.
 	with(GLSupport){
@@ -91,15 +99,14 @@ GLSupport loadOpenGL(const(char)* libName){
 			static if(ver <= glSupport){
 				//lib.loadGL30(contextVersion)
 				if(mixin("lib.loadGL" ~ (cast(int)ver).stringof ~ "(contextVersion)")){
+					loadedStatus[ver] = GLLoaded.loaded;
 					loadedVersion = ver;
-				}else{
-					goto loadARB;
+				} else {
+					loadedStatus[ver] = GLLoaded.notLoaded;
 				}
 			}
 		}
 	}
-	
-	loadARB:
 	
 	// From any GL versions higher than the one loaded, load the core ARB
 	// extensions.
