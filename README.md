@@ -232,6 +232,10 @@ Specific extensions can be enabled using the extension's OpenGL name string as a
 | 4.5 | KHR_robustness | `GL_KHR_robustness` |
 | 4.6 | ARB_polygon_offset_clamp | `GL_ARB_polygon_offset_clamp` |
 | 4.6 | ARB_texture_filter_anisotropic | `GL_ARB_texture_filter_anisotropic` |
+| N/A | KHR_blend_equation_advanced | `GL_KHR_blend_equation_advanced` |
+| N/A | NV_shader_buffer_load | `GL_NV_shader_buffer_load` |
+| N/A | NV_vertex_buffer_unified_memory | `GL_NV_vertex_buffer_unified_memory` |
+| N/A | NV_command_list | `GL_NV_command_list` |
 
 For example, the following configurations enable support for OpenGL 4.1 and the extensions `ARB_base_instance` and `ARB_compressed_texture_pixel_storage`, both of which were promoted to core in OpenGL 4.2:
 
