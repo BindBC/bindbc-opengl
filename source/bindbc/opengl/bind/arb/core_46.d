@@ -7,7 +7,7 @@
 +/
 module bindbc.opengl.bind.arb.core_46;
 
-import bindbc.loader;
+import bindbc.opengl.loader;
 import bindbc.opengl.config, bindbc.opengl.context, bindbc.opengl.bind.types;
 
 enum has46 = glSupport >= GLSupport.gl46;
@@ -19,8 +19,8 @@ enum useARBPolygonOffsetClamp = (){
 	else return has46;
 }();
 
-bool _hasARBPolygonOffsetClamp = false;
-bool hasARBPolygonOffsetClamp() nothrow @nogc @safe{ return _hasARBPolygonOffsetClamp; }
+__gshared bool _hasARBPolygonOffsetClamp = false;
+bool hasARBPolygonOffsetClamp() nothrow @nogc @trusted{ return _hasARBPolygonOffsetClamp; }
 
 static if(useARBPolygonOffsetClamp){
 	enum: uint{
@@ -48,8 +48,8 @@ enum useARBTextureFilterAnisotropic = (){
 	else return has46;
 }();
 
-bool _hasARBTextureFilterAnisotropic = false;
-bool hasARBTextureFilterAnisotropic() nothrow @nogc @safe{ return _hasARBTextureFilterAnisotropic; }
+__gshared bool _hasARBTextureFilterAnisotropic = false;
+bool hasARBTextureFilterAnisotropic() nothrow @nogc @trusted{ return _hasARBTextureFilterAnisotropic; }
 
 static if(useARBTextureFilterAnisotropic){
 	enum: uint{

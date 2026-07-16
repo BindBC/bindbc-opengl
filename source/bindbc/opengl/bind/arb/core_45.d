@@ -7,7 +7,7 @@
 +/
 module bindbc.opengl.bind.arb.core_45;
 
-import bindbc.loader;
+import bindbc.opengl.loader;
 import bindbc.opengl.config, bindbc.opengl.context, bindbc.opengl.bind.types;
 
 enum has45 = glSupport >= GLSupport.gl45;
@@ -19,8 +19,8 @@ enum useARBClipControl = (){
 	else return has45;
 }();
 
-bool _hasARBClipControl = false;
-bool hasARBClipControl() nothrow @nogc @safe{ return _hasARBClipControl; }
+__gshared bool _hasARBClipControl = false;
+bool hasARBClipControl() nothrow @nogc @trusted{ return _hasARBClipControl; }
 
 static if(useARBClipControl){
 	enum: uint{
@@ -51,8 +51,8 @@ enum useARBConditionalRenderInverted = (){
 	else return has45;
 }();
 
-bool _hasARBConditionalRenderInverted = false;
-bool hasARBConditionalRenderInverted() nothrow @nogc @safe{ return _hasARBConditionalRenderInverted; }
+__gshared bool _hasARBConditionalRenderInverted = false;
+bool hasARBConditionalRenderInverted() nothrow @nogc @trusted{ return _hasARBConditionalRenderInverted; }
 
 static if(useARBConditionalRenderInverted){
 	enum: uint{
@@ -70,8 +70,8 @@ enum useARBCullDistance = (){
 	else return has45;
 }();
 
-bool _hasARBCullDistance = false;
-bool hasARBCullDistance() nothrow @nogc @safe{ return _hasARBCullDistance; }
+__gshared bool _hasARBCullDistance = false;
+bool hasARBCullDistance() nothrow @nogc @trusted{ return _hasARBCullDistance; }
 
 static if(useARBCullDistance){
 	enum: uint{
@@ -87,8 +87,8 @@ enum useARBDirectStateAccess = (){
 	else return has45;
 }();
 
-bool _hasARBDirectStateAccess = false;
-bool hasARBDirectStateAccess() nothrow @nogc @safe{ return _hasARBDirectStateAccess; }
+__gshared bool _hasARBDirectStateAccess = false;
+bool hasARBDirectStateAccess() nothrow @nogc @trusted{ return _hasARBDirectStateAccess; }
 
 static if(useARBDirectStateAccess){
 	enum: uint{
@@ -405,8 +405,8 @@ enum useARBES31Compatibility = (){
 	else return has45;
 }();
 
-bool _hasARBES31Compatibility = false;
-bool hasARBES31Compatibility() nothrow @nogc @safe{ return _hasARBES31Compatibility; }
+__gshared bool _hasARBES31Compatibility = false;
+bool hasARBES31Compatibility() nothrow @nogc @trusted{ return _hasARBES31Compatibility; }
 
 static if(useARBES31Compatibility){
 	extern(System) nothrow @nogc{
@@ -430,8 +430,8 @@ enum useARBGetTextureSubImage = (){
 	else return has45;
 }();
 
-bool _hasARBGetTextureSubImage = false;
-bool hasARBGetTextureSubImage() nothrow @nogc @safe{ return _hasARBGetTextureSubImage; }
+__gshared bool _hasARBGetTextureSubImage = false;
+bool hasARBGetTextureSubImage() nothrow @nogc @trusted{ return _hasARBGetTextureSubImage; }
 
 static if(useARBGetTextureSubImage){
 	extern(System) nothrow @nogc{
@@ -458,8 +458,8 @@ enum useARBTextureBarrier = (){
 	else return has45;
 }();
 
-bool _hasARBTextureBarrier = false;
-bool hasARBTextureBarrier() nothrow @nogc @safe{ return _hasARBTextureBarrier; }
+__gshared bool _hasARBTextureBarrier = false;
+bool hasARBTextureBarrier() nothrow @nogc @trusted{ return _hasARBTextureBarrier; }
 
 static if(useARBTextureBarrier){
 	extern(System) nothrow @nogc{
@@ -483,8 +483,8 @@ enum useKHRContextFlushControl = (){
 	else return has45;
 }();
 
-bool _hasKHRContextFlushControl = false;
-bool hasKHRContextFlushControl() nothrow @nogc @safe{ return _hasKHRContextFlushControl; }
+__gshared bool _hasKHRContextFlushControl = false;
+bool hasKHRContextFlushControl() nothrow @nogc @trusted{ return _hasKHRContextFlushControl; }
 
 static if(useKHRContextFlushControl){
 	enum: uint{
@@ -500,8 +500,8 @@ enum useKHRRobustness = (){
 	else return has45;
 }();
 
-bool _hasKHRRobustness = false;
-bool hasKHRRobustness() nothrow @nogc @safe{ return _hasKHRRobustness; }
+__gshared bool _hasKHRRobustness = false;
+bool hasKHRRobustness() nothrow @nogc @trusted{ return _hasKHRRobustness; }
 
 static if(useKHRRobustness){
 	enum: uint{

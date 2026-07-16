@@ -7,7 +7,7 @@
 +/
 module bindbc.opengl.bind.gl20;
 
-import bindbc.loader: SharedLib;
+import bindbc.opengl.loader: SharedLib;
 import bindbc.opengl.config, bindbc.opengl.context, bindbc.opengl.bind.types;
 
 public import bindbc.opengl.bind.gl15;

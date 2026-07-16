@@ -7,8 +7,14 @@
 +/
 module bindbc.opengl.context;
 
-import bindbc.loader;
+import bindbc.opengl.loader;
 import bindbc.opengl.config;
+
+version(Posix)
+{
+	version(OSX){}
+	else version = LoadLibEGL;
+}
 
 private{
 	enum: uint{
@@ -44,6 +50,14 @@ private{
 		enum getProcAddressName = "wglGetProcAddress";
 	}else version(OSX){
 		enum getCurrentContextName = "CGLGetCurrentContext";
+	}else version(EGL){
+		enum getCurrentContextName = "eglGetCurrentContext";
+		enum getProcAddressName = "eglGetProcAddress";
+		extern(System) nothrow @nogc 
+		{ 
+			void* eglGetCurrentContext();
+			void* eglGetProcAddress(const(char)* name);
+		}
 	}else version(Posix){
 		enum getCurrentContextName = "glXGetCurrentContext";
 		enum getProcAddressName = "glXGetProcAddress";
@@ -63,8 +77,8 @@ private{
 package nothrow @nogc:
 
 version(Posix) void unloadContext(){
-	version(OSX){
-	}else{
+	version(LoadLibEGL)
+	{
 		if(libEGL != invalidHandle){
 			libEGL.unload();
 			libEGL = invalidHandle;
@@ -77,43 +91,49 @@ GLSupport getContextVersion(SharedLib lib){
 	// and getting OpenGL symbols from it.
 	if(getCurrentContext is null){
 		bool loaded = false;
+		version(EGL)
+		{
+			loaded = true;
+			getCurrentContext = &eglGetCurrentContext;
+			getProcAddress = &eglGetProcAddress;
+			loaded = getCurrentContext !is null && getProcAddress !is null;
+		}
 		
 		// On Posix systems other than OSX, check if we're running under Wayland,
 		// and load the appropriate symbols from libEGL if so.
-		version(Posix){
-			version(OSX){
-			}else{
-				import core.stdc.string: strcmp;
-				import core.stdc.stdlib: getenv;
-				char* sessionType = getenv(sessionTypeEnv);
-				if(sessionType !is null && strcmp(sessionType, "wayland") == 0){
-					if(libEGL == invalidHandle){
-						foreach(libName; eglNames){
-							libEGL = load(libName.ptr);
-							if(libEGL != invalidHandle) break;
-						}
-						
-						if(libEGL != invalidHandle){
-							libEGL.bindSymbol(cast(void**)&getCurrentContext, getCurrentContextNameEGL);
-							libEGL.bindSymbol(cast(void**)&getProcAddress, getProcAddressNameEGL);
-							
-							/*
-							If the symbols were loaded successfully, that's not enough. For example, on Ubuntu 22.04
-							using GLFW configured for X11, eglGetCurrentContext returns null, but glXGetCurrentContext
-							returns a valid pointer, even though we're in a Wayland session. So here, if getCurrentContext
-							returns null, then that means one of things: either no context has been created, or it was
-							created through X. So only set loaded to true if getCurrentContext returns non-null. Then
-							then a second attempt can be made via the glX stuff.
-							*/
-							if(getCurrentContext !is null && getProcAddress !is null && getCurrentContext() !is null){
-								loaded = true;
-							}else{
-								unloadContext();
-								getCurrentContext = null;
-								getProcAddress = null;
-							}
-						}else return GLSupport.noLibrary;
+		version(LoadLibEGL)
+		{
+			import core.stdc.string: strcmp;
+			import core.stdc.stdlib: getenv;
+			char* sessionType = getenv(sessionTypeEnv);
+			if(sessionType !is null && strcmp(sessionType, "wayland") == 0)
+			{
+				if(libEGL == invalidHandle){
+					foreach(libName; eglNames){
+						libEGL = load(libName.ptr);
+						if(libEGL != invalidHandle) break;
 					}
+					
+					if(libEGL != invalidHandle){
+						libEGL.bindSymbol(cast(void**)&getCurrentContext, getCurrentContextNameEGL);
+						libEGL.bindSymbol(cast(void**)&getProcAddress, getProcAddressNameEGL);
+						
+						/*
+						If the symbols were loaded successfully, that's not enough. For example, on Ubuntu 22.04
+						using GLFW configured for X11, eglGetCurrentContext returns null, but glXGetCurrentContext
+						returns a valid pointer, even though we're in a Wayland session. So here, if getCurrentContext
+						returns null, then that means one of things: either no context has been created, or it was
+						created through X. So only set loaded to true if getCurrentContext returns non-null. Then
+						then a second attempt can be made via the glX stuff.
+						*/
+						if(getCurrentContext !is null && getProcAddress !is null && getCurrentContext() !is null){
+							loaded = true;
+						}else{
+							unloadContext();
+							getCurrentContext = null;
+							getProcAddress = null;
+						}
+					}else return GLSupport.noLibrary;
 				}
 			}
 		}
@@ -223,13 +243,13 @@ GLSupport getContextVersion(SharedLib lib){
 	return support;
 }
 
-private uint numErrors;
+private __gshared uint numErrors;
 
 package(bindbc.opengl):
 
-uint errorCountGL() @safe{ return numErrors; }
+uint errorCountGL() @trusted{ return numErrors; }
 
-bool resetErrorCountGL() @safe{
+bool resetErrorCountGL() @trusted{
 	if(numErrors != 0){
 		numErrors = 0;
 		return false;

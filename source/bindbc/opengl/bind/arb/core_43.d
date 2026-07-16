@@ -7,7 +7,7 @@
 +/
 module bindbc.opengl.bind.arb.core_43;
 
-import bindbc.loader;
+import bindbc.opengl.loader;
 import bindbc.opengl.config, bindbc.opengl.context, bindbc.opengl.bind.types;
 
 enum has43 = glSupport >= GLSupport.gl43;
@@ -19,8 +19,8 @@ enum useARBClearBufferObject = (){
 	else return has43;
 }();
 
-bool _hasARBClearBufferObject = false;
-bool hasARBClearBufferObject() nothrow @nogc @safe{ return _hasARBClearBufferObject; }
+__gshared bool _hasARBClearBufferObject = false;
+bool hasARBClearBufferObject() nothrow @nogc @trusted{ return _hasARBClearBufferObject; }
 
 static if(useARBClearBufferObject){
 	extern(System) nothrow @nogc{
@@ -63,8 +63,8 @@ enum useARBComputeShader = (){
 	else return has43;
 }();
 
-bool _hasARBComputeShader = false;
-bool hasARBComputeShader() nothrow @nogc @safe{ return _hasARBComputeShader; }
+__gshared bool _hasARBComputeShader = false;
+bool hasARBComputeShader() nothrow @nogc @trusted{ return _hasARBComputeShader; }
 
 static if(useARBComputeShader){
 	enum: uint{
@@ -112,8 +112,8 @@ enum useARBCopyImage = (){
 	else return has43;
 }();
 
-bool _hasARBCopyImage = false;
-bool hasARBCopyImage() nothrow @nogc @safe{ return _hasARBCopyImage; }
+__gshared bool _hasARBCopyImage = false;
+bool hasARBCopyImage() nothrow @nogc @trusted{ return _hasARBCopyImage; }
 
 static if(useARBCopyImage){
 	extern(System) nothrow @nogc{
@@ -137,8 +137,8 @@ enum useARBES3Compatibility = (){
 	else return has43;
 }();
 
-bool _hasARBES3Compatibility = false;
-bool hasARBES3Compatibility() nothrow @nogc @safe{ return _hasARBES3Compatibility; }
+__gshared bool _hasARBES3Compatibility = false;
+bool hasARBES3Compatibility() nothrow @nogc @trusted{ return _hasARBES3Compatibility; }
 
 static if(useARBES3Compatibility){
 	enum: uint{
@@ -165,8 +165,8 @@ enum useARBExplicitUniformLocation = (){
 	else return has43;
 }();
 
-bool _hasARBExplicitUniformLocation = false;
-bool hasARBExplicitUniformLocation() nothrow @nogc @safe{ return _hasARBExplicitUniformLocation; }
+__gshared bool _hasARBExplicitUniformLocation = false;
+bool hasARBExplicitUniformLocation() nothrow @nogc @trusted{ return _hasARBExplicitUniformLocation; }
 
 static if(useARBExplicitUniformLocation){
 	enum: uint{
@@ -181,8 +181,8 @@ enum useARBFramebufferNoAttachments = (){
 	else return has43;
 }();
 
-bool _hasARBFramebufferNoAttachments = false;
-bool hasARBFramebufferNoAttachments() nothrow @nogc @safe{ return _hasARBFramebufferNoAttachments; }
+__gshared bool _hasARBFramebufferNoAttachments = false;
+bool hasARBFramebufferNoAttachments() nothrow @nogc @trusted{ return _hasARBFramebufferNoAttachments; }
 
 static if(useARBFramebufferNoAttachments){
 	enum: uint{
@@ -237,8 +237,8 @@ enum useARBInternalFormatQuery2 = (){
 	else return has43;
 }();
 
-bool _hasARBInternalFormatQuery2 = false;
-bool hasARBInternalFormatQuery2() nothrow @nogc @safe{ return _hasARBInternalFormatQuery2; }
+__gshared bool _hasARBInternalFormatQuery2 = false;
+bool hasARBInternalFormatQuery2() nothrow @nogc @trusted{ return _hasARBInternalFormatQuery2; }
 
 static if(useARBInternalFormatQuery2){
 	enum: uint{
@@ -359,8 +359,8 @@ enum useARBInvalidateSubdata = (){
 	else return has43;
 }();
 
-bool _hasARBInvalidateSubdata = false;
-bool hasARBInvalidateSubdata() nothrow @nogc @safe{ return _hasARBInvalidateSubdata; }
+__gshared bool _hasARBInvalidateSubdata = false;
+bool hasARBInvalidateSubdata() nothrow @nogc @trusted{ return _hasARBInvalidateSubdata; }
 
 static if(useARBInvalidateSubdata){
 	extern(System) nothrow @nogc{
@@ -399,8 +399,8 @@ enum useARBMultiDrawIndirect = (){
 	else return has43;
 }();
 
-bool _hasARBMultiDrawIndirect = false;
-bool hasARBMultiDrawIndirect() nothrow @nogc @safe{ return _hasARBMultiDrawIndirect; }
+__gshared bool _hasARBMultiDrawIndirect = false;
+bool hasARBMultiDrawIndirect() nothrow @nogc @trusted{ return _hasARBMultiDrawIndirect; }
 
 static if(useARBMultiDrawIndirect){
 	extern(System) nothrow @nogc{
@@ -427,8 +427,8 @@ enum useARBProgramInterfaceQuery = (){
 	else return has43;
 }();
 
-bool _hasARBProgramInterfaceQuery = false;
-bool hasARBProgramInterfaceQuery() nothrow @nogc @safe{ return _hasARBProgramInterfaceQuery; }
+__gshared bool _hasARBProgramInterfaceQuery = false;
+bool hasARBProgramInterfaceQuery() nothrow @nogc @trusted{ return _hasARBProgramInterfaceQuery; }
 
 static if(useARBProgramInterfaceQuery){
 	enum: uint{
@@ -517,8 +517,8 @@ enum useARBShaderStorageBufferObject = (){
 	else return has43;
 }();
 
-bool _hasARBShaderStorageBufferObject = false;
-bool hasARBShaderStorageBufferObject() nothrow @nogc @safe{ return _hasARBShaderStorageBufferObject; }
+__gshared bool _hasARBShaderStorageBufferObject = false;
+bool hasARBShaderStorageBufferObject() nothrow @nogc @trusted{ return _hasARBShaderStorageBufferObject; }
 
 static if(useARBShaderStorageBufferObject){
 	enum: uint{
@@ -561,8 +561,8 @@ enum useARBStencilTexturing = (){
 	else return has43;
 }();
 
-bool _hasARBStencilTexturing = false;
-bool hasARBStencilTexturing() nothrow @nogc @safe{ return _hasARBStencilTexturing; }
+__gshared bool _hasARBStencilTexturing = false;
+bool hasARBStencilTexturing() nothrow @nogc @trusted{ return _hasARBStencilTexturing; }
 
 static if(useARBStencilTexturing){
 	enum: uint{
@@ -577,8 +577,8 @@ enum useARBTextureBufferRange = (){
 	else return has43;
 }();
 
-bool _hasARBTextureBufferRange = false;
-bool hasARBTextureBufferRange() nothrow @nogc @safe{ return _hasARBTextureBufferRange; }
+__gshared bool _hasARBTextureBufferRange = false;
+bool hasARBTextureBufferRange() nothrow @nogc @trusted{ return _hasARBTextureBufferRange; }
 
 static if(useARBTextureBufferRange){
 	enum: uint{
@@ -621,8 +621,8 @@ enum useARBTextureStorageMultisample = (){
 	else return has43;
 }();
 
-bool _hasARBTextureStorageMultisample = false;
-bool hasARBTextureStorageMultisample() nothrow @nogc @safe{ return _hasARBTextureStorageMultisample; }
+__gshared bool _hasARBTextureStorageMultisample = false;
+bool hasARBTextureStorageMultisample() nothrow @nogc @trusted{ return _hasARBTextureStorageMultisample; }
 
 static if(useARBTextureStorageMultisample){
 	extern(System) nothrow @nogc{
@@ -665,8 +665,8 @@ enum useARBTextureView = (){
 	else return has43;
 }();
 
-bool _hasARBTextureView = false;
-bool hasARBTextureView() nothrow @nogc @safe{ return _hasARBTextureView; }
+__gshared bool _hasARBTextureView = false;
+bool hasARBTextureView() nothrow @nogc @trusted{ return _hasARBTextureView; }
 
 static if(useARBTextureView){
 	enum: uint{
@@ -698,8 +698,8 @@ enum useARBVertexAttribBinding = (){
 	else return has43;
 }();
 
-bool _hasARBVertexAttribBinding = false;
-bool hasARBVertexAttribBinding() nothrow @nogc @safe{ return _hasARBVertexAttribBinding; }
+__gshared bool _hasARBVertexAttribBinding = false;
+bool hasARBVertexAttribBinding() nothrow @nogc @trusted{ return _hasARBVertexAttribBinding; }
 
 static if(useARBVertexAttribBinding){
 	enum: uint{
@@ -776,8 +776,8 @@ enum useKHRDebug = (){
 	else return has43;
 }();
 
-bool _hasKHRDebug = false;
-bool hasKHRDebug() nothrow @nogc @safe{ return _hasKHRDebug; }
+__gshared bool _hasKHRDebug = false;
+bool hasKHRDebug() nothrow @nogc @trusted{ return _hasKHRDebug; }
 
 static if(useKHRDebug){
 	enum: uint{

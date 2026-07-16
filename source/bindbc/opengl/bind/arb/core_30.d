@@ -7,7 +7,7 @@
 +/
 module bindbc.opengl.bind.arb.core_30;
 
-import bindbc.loader;
+import bindbc.opengl.loader;
 import bindbc.opengl.config, bindbc.opengl.context, bindbc.opengl.bind.types;
 
 enum has30 = glSupport >= GLSupport.gl30;
@@ -19,8 +19,8 @@ enum useARBDepthBufferFloat = (){
 	else return has30;
 }();
 
-bool _hasARBDepthBufferFloat = false;
-bool hasARBDepthBufferFloat() nothrow @nogc @safe{ return _hasARBDepthBufferFloat; }
+__gshared bool _hasARBDepthBufferFloat = false;
+bool hasARBDepthBufferFloat() nothrow @nogc @trusted{ return _hasARBDepthBufferFloat; }
 
 static if(useARBDepthBufferFloat){
 	enum: uint{
@@ -37,8 +37,8 @@ enum useARBHalfFloatVertex = (){
 	else return has30;
 }();
 
-bool _hasARBHalfFloatVertex = false;
-bool hasARBHalfFloatVertex() nothrow @nogc @safe{ return _hasARBHalfFloatVertex; }
+__gshared bool _hasARBHalfFloatVertex = false;
+bool hasARBHalfFloatVertex() nothrow @nogc @trusted{ return _hasARBHalfFloatVertex; }
 
 static if(useARBHalfFloatVertex){
 	enum uint GL_HALF_FLOAT = 0x140B;
@@ -51,8 +51,8 @@ enum useARBTextureCompressionRGTC = (){
 	else return has30;
 }();
 
-bool _hasARBTextureCompressionRGTC = false;
-bool hasARBTextureCompressionRGTC() nothrow @nogc @safe{ return _hasARBTextureCompressionRGTC; }
+__gshared bool _hasARBTextureCompressionRGTC = false;
+bool hasARBTextureCompressionRGTC() nothrow @nogc @trusted{ return _hasARBTextureCompressionRGTC; }
 
 static if(useARBTextureCompressionRGTC){
 	enum: uint{
@@ -70,8 +70,8 @@ enum useARBTextureRG = (){
 	else return has30;
 }();
 
-bool _hasARBTextureRG = false;
-bool hasARBTextureRG() nothrow @nogc @safe{ return _hasARBTextureRG; }
+__gshared bool _hasARBTextureRG = false;
+bool hasARBTextureRG() nothrow @nogc @trusted{ return _hasARBTextureRG; }
 
 static if(useARBTextureRG){
 	enum: uint{
@@ -107,8 +107,8 @@ enum useARBFramebufferObject = (){
 	else return has30;
 }();
 
-bool _hasARBFramebufferObject = false;
-bool hasARBFramebufferObject() nothrow @nogc @safe{ return _hasARBFramebufferObject; }
+__gshared bool _hasARBFramebufferObject = false;
+bool hasARBFramebufferObject() nothrow @nogc @trusted{ return _hasARBFramebufferObject; }
 
 static if(useARBFramebufferObject){
 	enum: uint{
@@ -269,8 +269,8 @@ enum useARBMapBufferRange = (){
 	else return has30;
 }();
 
-bool _hasARBMapBufferRange = false;
-bool hasARBMapBufferRange() nothrow @nogc @safe{ return _hasARBMapBufferRange; }
+__gshared bool _hasARBMapBufferRange = false;
+bool hasARBMapBufferRange() nothrow @nogc @trusted{ return _hasARBMapBufferRange; }
 
 static if(useARBMapBufferRange){
 	enum: uint{
@@ -306,8 +306,8 @@ enum useARBVertexArrayObject = (){
 	else return has30;
 }();
 
-bool _hasARBVertexArrayObject = false;
-bool hasARBVertexArrayObject() nothrow @nogc @safe{ return _hasARBVertexArrayObject; }
+__gshared bool _hasARBVertexArrayObject = false;
+bool hasARBVertexArrayObject() nothrow @nogc @trusted{ return _hasARBVertexArrayObject; }
 
 static if(useARBVertexArrayObject){
 	enum: uint{

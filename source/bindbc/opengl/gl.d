@@ -7,16 +7,16 @@
 +/
 module bindbc.opengl.gl;
 
-import bindbc.loader;
+import bindbc.opengl.loader;
 import bindbc.opengl.config, bindbc.opengl.context;
 
 nothrow @nogc:
 
 private{
-	SharedLib lib;
-	GLSupport contextVersion = GLSupport.noContext;
-	GLSupport loadedVersion = GLSupport.noContext;
-	GLLoadStatus[18] loadedStatus;
+	__gshared SharedLib lib;
+	__gshared GLSupport contextVersion = GLSupport.noContext;
+	__gshared GLSupport loadedVersion = GLSupport.noContext;
+	__gshared GLLoadStatus[18] loadedStatus;
 	@property size_t loadedStatusIndex(GLSupport ver) @safe{
 		with(GLSupport) switch(ver){
 			case gl11: return  0;
@@ -42,13 +42,13 @@ private{
 	}
 }
 
-GLLoadStatus versionLoadedStatus(GLSupport ver) @safe{
+GLLoadStatus versionLoadedStatus(GLSupport ver) @trusted{
 	return loadedStatus[ver.loadedStatusIndex];
 }
 
-GLSupport openGLContextVersion() @safe{ return contextVersion; }
-GLSupport loadedOpenGLVersion() @safe{ return loadedVersion; }
-bool isOpenGLLoaded() @safe{ return lib != invalidHandle; }
+GLSupport openGLContextVersion() @trusted{ return contextVersion; }
+GLSupport loadedOpenGLVersion() @trusted{ return loadedVersion; }
+bool isOpenGLLoaded() @trusted{ return lib != invalidHandle; }
 
 void unloadOpenGL(){
 	if(lib != invalidHandle){
@@ -74,6 +74,8 @@ GLSupport loadOpenGL(){
 			"libGL.so.1",
 			"libGL.so",
 		];
+	}else version(EGL){
+		const(char)[][1] libNames = [""];
 	}else static assert(0, "BindBC-OpenGL does not have library paths set up for this platform");
 	
 	GLSupport ret;
@@ -106,7 +108,7 @@ GLSupport loadOpenGL(const(char)* libName){
 	// Load the base library
 	if(!lib.loadGL11()) return GLSupport.badLibrary;
 	else loadedVersion = GLSupport.gl11;
-	
+
 	with(GLSupport){
 		loadedStatus[gl11.loadedStatusIndex] |= GLLoadStatus.loaded;
 		
@@ -150,4 +152,4 @@ GLSupport loadOpenGL(const(char)* libName){
 	return loadedVersion;
 }
 
-package SharedLib libGL() @safe{ return lib; }
+package SharedLib libGL() @trusted { return lib; }

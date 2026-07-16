@@ -7,7 +7,7 @@
 +/
 module bindbc.opengl.bind.arb.core_33;
 
-import bindbc.loader;
+import bindbc.opengl.loader;
 import bindbc.opengl.config, bindbc.opengl.context, bindbc.opengl.bind.types;
 
 enum has33 = glSupport >= GLSupport.gl33;
@@ -19,8 +19,8 @@ enum useARBOcclusionQuery2 = (){
 	else return has33;
 }();
 
-bool _hasARBOcclusionQuery2 = false;
-bool hasARBOcclusionQuery2() nothrow @nogc @safe{ return _hasARBOcclusionQuery2; }
+__gshared bool _hasARBOcclusionQuery2 = false;
+bool hasARBOcclusionQuery2() nothrow @nogc @trusted{ return _hasARBOcclusionQuery2; }
 
 static if(useARBOcclusionQuery2){
 	enum: uint{
@@ -35,8 +35,8 @@ enum useARBTextureRGB10A2UI = (){
 	else return has33;
 }();
 
-private bool _hasARBTextureRGB10A2UI = false;
-bool hasARBTextureRGB10A2UI() nothrow @nogc @safe{ return _hasARBTextureRGB10A2UI; }
+private __gshared bool _hasARBTextureRGB10A2UI = false;
+bool hasARBTextureRGB10A2UI() nothrow @nogc @trusted{ return _hasARBTextureRGB10A2UI; }
 
 static if(useARBTextureRGB10A2UI){
 	enum: uint{
@@ -51,8 +51,8 @@ enum useARBTextureSwizzle = (){
 	else return has33;
 }();
 
-bool _hasARBTextureSwizzle = false;
-bool hasARBTextureSwizzle() nothrow @nogc @safe{ return _hasARBTextureSwizzle; }
+__gshared bool _hasARBTextureSwizzle = false;
+bool hasARBTextureSwizzle() nothrow @nogc @trusted{ return _hasARBTextureSwizzle; }
 
 static if(useARBTextureSwizzle){
 	enum: uint{
@@ -71,8 +71,8 @@ enum useARBBlendFuncExtended = (){
 	else return has33;
 }();
 
-bool _hasARBBlendFuncExtended = false;
-bool hasARBBlendFuncExtended() nothrow @nogc @safe{ return _hasARBBlendFuncExtended; }
+__gshared bool _hasARBBlendFuncExtended = false;
+bool hasARBBlendFuncExtended() nothrow @nogc @trusted{ return _hasARBBlendFuncExtended; }
 
 static if(useARBBlendFuncExtended){
 	enum: uint{
@@ -108,8 +108,8 @@ enum useARBSamplerObjects = (){
 	else return has33;
 }();
 
-bool _hasARBSamplerObjects = false;
-bool hasARBSamplerObjects() nothrow @nogc @safe{ return _hasARBSamplerObjects; }
+__gshared bool _hasARBSamplerObjects = false;
+bool hasARBSamplerObjects() nothrow @nogc @trusted{ return _hasARBSamplerObjects; }
 
 static if(useARBSamplerObjects){
 	enum: uint{
@@ -176,8 +176,8 @@ enum useARBTimerQuery = (){
 	else return has33;
 }();
 
-bool _hasARBTimerQuery = false;
-bool hasARBTimerQuery() nothrow @nogc @safe{ return _hasARBTimerQuery; }
+__gshared bool _hasARBTimerQuery = false;
+bool hasARBTimerQuery() nothrow @nogc @trusted{ return _hasARBTimerQuery; }
 
 static if(useARBTimerQuery){
 	enum: uint{
@@ -212,8 +212,8 @@ enum useARBVertexType2101010Rev = (){
 	else return has33;
 }();
 
-bool _hasARBVertexType2101010Rev = false;
-bool hasARBVertexType2101010Rev() nothrow @nogc @safe{ return _hasARBVertexType2101010Rev; }
+__gshared bool _hasARBVertexType2101010Rev = false;
+bool hasARBVertexType2101010Rev() nothrow @nogc @trusted{ return _hasARBVertexType2101010Rev; }
 
 static if(useARBVertexType2101010Rev){
 	enum: uint{
