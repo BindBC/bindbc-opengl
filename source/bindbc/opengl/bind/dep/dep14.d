@@ -7,7 +7,7 @@
 +/
 module bindbc.opengl.bind.dep.dep14;
 
-import bindbc.loader;
+import bindbc.opengl.loader;
 import bindbc.opengl.context;
 import bindbc.opengl.bind.types;
 

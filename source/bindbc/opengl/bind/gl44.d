@@ -10,7 +10,7 @@ module bindbc.opengl.bind.gl44;
 import bindbc.opengl.config;
 
 static if(glSupport >= GLSupport.gl44):
-import bindbc.loader: SharedLib;
+import bindbc.opengl.loader: SharedLib;
 import bindbc.opengl.context;
 
 enum: uint{

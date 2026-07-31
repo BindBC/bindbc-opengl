@@ -7,7 +7,7 @@
 +/
 module bindbc.opengl.bind.gl11;
 
-import bindbc.loader;
+import bindbc.opengl.loader;
 import bindbc.opengl.bind.types;
 
 version(GL_AllowDeprecated)

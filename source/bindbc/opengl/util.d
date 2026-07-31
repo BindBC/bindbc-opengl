@@ -7,7 +7,7 @@
 +/
 module bindbc.opengl.util;
 
-import bindbc.loader;
+import bindbc.opengl.loader;
 import bindbc.opengl.config, bindbc.opengl.context;
 import bindbc.opengl.gl: libGL;
 

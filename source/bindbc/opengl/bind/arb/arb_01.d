@@ -7,7 +7,7 @@
 +/
 module bindbc.opengl.bind.arb.arb_01;
 
-import bindbc.loader;
+import bindbc.opengl.loader;
 import bindbc.opengl.config, bindbc.opengl.context;
 import bindbc.opengl.bind.types;
 
@@ -18,8 +18,8 @@ enum useARBBindlessTexture = (){
 	else return false;
 }();
 
-private bool _hasARBBindlessTexture = false;
-bool hasARBBindlessTexture() nothrow @nogc @safe{ return _hasARBBindlessTexture; }
+private __gshared bool _hasARBBindlessTexture = false;
+bool hasARBBindlessTexture() nothrow @nogc @trusted{ return _hasARBBindlessTexture; }
 
 static if(useARBBindlessTexture){
 	enum: uint{
@@ -92,8 +92,8 @@ enum useARBCLEvent = (){
 	else return false;
 }();
 
-private bool _hasARBCLEvent = false;
-bool hasARBCLEvent() nothrow @nogc @safe{ return _hasARBCLEvent; }
+private __gshared bool _hasARBCLEvent = false;
+bool hasARBCLEvent() nothrow @nogc @trusted{ return _hasARBCLEvent; }
 
 static if(useARBCLEvent){
 	struct _cl_context;
@@ -126,8 +126,8 @@ enum useARBComputeVariableGroupSize = (){
 	else return false;
 }();
 
-private bool _hasARBComputeVariableGroupSize = false;
-bool hasARBComputeVariableGroupSize() nothrow @nogc @safe{ return _hasARBComputeVariableGroupSize; }
+private __gshared bool _hasARBComputeVariableGroupSize = false;
+bool hasARBComputeVariableGroupSize() nothrow @nogc @trusted{ return _hasARBComputeVariableGroupSize; }
 
 static if(useARBComputeVariableGroupSize){
 	enum: uint{
@@ -158,8 +158,8 @@ enum useARBDebugOutput = (){
 	else return false;
 }();
 
-private bool _hasARBDebugOutput = false;
-bool hasARBDebugOutput() nothrow @nogc @safe{ return _hasARBDebugOutput; }
+private __gshared bool _hasARBDebugOutput = false;
+bool hasARBDebugOutput() nothrow @nogc @trusted{ return _hasARBDebugOutput; }
 
 static if(useARBDebugOutput){
 	enum: uint{
@@ -222,8 +222,8 @@ enum useARBFramebufferSRGB = (){
 	else return false;
 }();
 
-private bool _hasARBFramebufferSRGB = false;
-bool hasARBFramebufferSRGB() nothrow @nogc @safe{ return _hasARBFramebufferSRGB; }
+private __gshared bool _hasARBFramebufferSRGB = false;
+bool hasARBFramebufferSRGB() nothrow @nogc @trusted{ return _hasARBFramebufferSRGB; }
 
 static if(useARBFramebufferSRGB){
 	enum: uint{
@@ -238,8 +238,8 @@ enum useARBGeometryShader4 = (){
 	else return false;
 }();
 
-private bool _hasARBGeometryShader4 = false;
-bool hasARBGeometryShader4() nothrow @nogc @safe{ return _hasARBGeometryShader4; }
+private __gshared bool _hasARBGeometryShader4 = false;
+bool hasARBGeometryShader4() nothrow @nogc @trusted{ return _hasARBGeometryShader4; }
 
 static if(useARBGeometryShader4){
 	enum: uint{
@@ -293,8 +293,8 @@ enum useARBGLSPIRV = (){
 	else return false;
 }();
 
-private bool _hasARBGLSPIRV = false;
-bool hasARBGLSPIRV() nothrow @nogc @safe{ return _hasARBGLSPIRV; }
+private __gshared bool _hasARBGLSPIRV = false;
+bool hasARBGLSPIRV() nothrow @nogc @trusted{ return _hasARBGLSPIRV; }
 
 static if(useARBGLSPIRV){
 	enum: uint{
@@ -324,8 +324,8 @@ enum useARBGPUShaderInt64 = (){
 	else return false;
 }();
 
-private bool _hasARBGPUShaderInt64 = false;
-bool hasARBGPUShaderInt64() nothrow @nogc @safe{ return _hasARBGPUShaderInt64; }
+private __gshared bool _hasARBGPUShaderInt64 = false;
+bool hasARBGPUShaderInt64() nothrow @nogc @trusted{ return _hasARBGPUShaderInt64; }
 
 static if(useARBGPUShaderInt64){
 	enum: uint{
@@ -464,8 +464,8 @@ enum useARBIndirectParameters = (){
 	else return false;
 }();
 
-private bool _hasARBIndirectParameters = false;
-bool hasARBIndirectParameters() nothrow @nogc @safe{ return _hasARBIndirectParameters; }
+private __gshared bool _hasARBIndirectParameters = false;
+bool hasARBIndirectParameters() nothrow @nogc @trusted{ return _hasARBIndirectParameters; }
 
 static if(useARBIndirectParameters){
 	enum: uint{
@@ -497,8 +497,8 @@ enum useARBInstancedArrays = (){
 	else return false;
 }();
 
-private bool _hasARBInstancedArrays = false;
-bool hasARBInstancedArrays() nothrow @nogc @safe{ return _hasARBInstancedArrays; }
+private __gshared bool _hasARBInstancedArrays = false;
+bool hasARBInstancedArrays() nothrow @nogc @trusted{ return _hasARBInstancedArrays; }
 
 static if(useARBInstancedArrays){
 	enum: uint{
@@ -536,8 +536,8 @@ enum useARBPipelineStatisticsQuery = (){
 	else return false;
 }();
 
-private bool _hasARBPipelineStatisticsQuery = false;
-bool hasARBPipelineStatisticsQuery() nothrow @nogc @safe{ return _hasARBPipelineStatisticsQuery; }
+private __gshared bool _hasARBPipelineStatisticsQuery = false;
+bool hasARBPipelineStatisticsQuery() nothrow @nogc @trusted{ return _hasARBPipelineStatisticsQuery; }
 
 static if(useARBPipelineStatisticsQuery){
 	enum: uint{
@@ -561,8 +561,8 @@ enum useARBRobustnessIsolation = (){
 	else return false;
 }();
 
-private bool _hasARBRobustnessIsolation = false;
-bool hasARBRobustnessIsolation() nothrow @nogc @safe{ return _hasARBRobustnessIsolation; }
+private __gshared bool _hasARBRobustnessIsolation = false;
+bool hasARBRobustnessIsolation() nothrow @nogc @trusted{ return _hasARBRobustnessIsolation; }
 
 static if(useARBRobustnessIsolation){
 }
@@ -574,8 +574,8 @@ enum useARBSampleShading = (){
 	else return false;
 }();
 
-private bool _hasARBSampleShading = false;
-bool hasARBSampleShading() nothrow @nogc @safe{ return _hasARBSampleShading; }
+private __gshared bool _hasARBSampleShading = false;
+bool hasARBSampleShading() nothrow @nogc @trusted{ return _hasARBSampleShading; }
 
 static if(useARBSampleShading){
 	enum: uint{
@@ -604,8 +604,8 @@ enum useARBTextureBufferObject = (){
 	else return false;
 }();
 
-private bool _hasARBTextureBufferObject = false;
-bool hasARBTextureBufferObject() nothrow @nogc @safe{ return _hasARBTextureBufferObject; }
+private __gshared bool _hasARBTextureBufferObject = false;
+bool hasARBTextureBufferObject() nothrow @nogc @trusted{ return _hasARBTextureBufferObject; }
 
 static if(useARBTextureBufferObject){
 	enum: uint{
@@ -637,8 +637,8 @@ enum useARBTextureCompressionBPTC = (){
 	else return false;
 }();
 
-private bool _hasARBTextureCompressionBPTC = false;
-bool hasARBTextureCompressionBPTC() nothrow @nogc @safe{ return _hasARBTextureCompressionBPTC; }
+private __gshared bool _hasARBTextureCompressionBPTC = false;
+bool hasARBTextureCompressionBPTC() nothrow @nogc @trusted{ return _hasARBTextureCompressionBPTC; }
 
 static if(useARBTextureCompressionBPTC){
 	enum: uint{
@@ -656,8 +656,8 @@ enum useARBTextureCubeMapArray = (){
 	else return false;
 }();
 
-private bool _hasARBTextureCubeMapArray = false;
-bool hasARBTextureCubeMapArray() nothrow @nogc @safe{ return _hasARBTextureCubeMapArray; }
+private __gshared bool _hasARBTextureCubeMapArray = false;
+bool hasARBTextureCubeMapArray() nothrow @nogc @trusted{ return _hasARBTextureCubeMapArray; }
 
 static if(useARBTextureCubeMapArray){
 	enum: uint{
@@ -678,8 +678,8 @@ enum useARBTextureGather = (){
 	else return false;
 }();
 
-private bool _hasARBTextureGather = false;
-bool hasARBTextureGather() nothrow @nogc @safe{ return _hasARBTextureGather; }
+private __gshared bool _hasARBTextureGather = false;
+bool hasARBTextureGather() nothrow @nogc @trusted{ return _hasARBTextureGather; }
 
 static if(useARBTextureGather){
 	enum: uint{
@@ -695,8 +695,8 @@ enum useARBTransformFeedbackOverflowQuery = (){
 	else return false;
 }();
 
-private bool _hasARBTransformFeedbackOverflowQuery = false;
-bool hasARBTransformFeedbackOverflowQuery() nothrow @nogc @safe{ return _hasARBTransformFeedbackOverflowQuery; }
+private __gshared bool _hasARBTransformFeedbackOverflowQuery = false;
+bool hasARBTransformFeedbackOverflowQuery() nothrow @nogc @trusted{ return _hasARBTransformFeedbackOverflowQuery; }
 
 static if(useARBTransformFeedbackOverflowQuery){
 	enum: uint{
@@ -712,8 +712,8 @@ enum useARBSparseTexture = (){
 	else return false;
 }();
 
-private bool _hasARBSparseTexture;
-bool hasARBSparseTexture() nothrow @nogc @safe{ return _hasARBSparseTexture; }
+private __gshared bool _hasARBSparseTexture;
+bool hasARBSparseTexture() nothrow @nogc @trusted{ return _hasARBSparseTexture; }
 
 static if(useARBSparseTexture){
 	import bindbc.opengl.bind.arb.core_45: useARBDirectStateAccess, hasARBDirectStateAccess;
@@ -767,8 +767,8 @@ enum useARBSparseTexture2 = (){
 	else return false;
 }();
 
-private bool _hasARBSparseTexture2;
-bool hasARBSparseTexture2() nothrow @nogc @safe{ return _hasARBSparseTexture2; }
+private __gshared bool _hasARBSparseTexture2;
+bool hasARBSparseTexture2() nothrow @nogc @trusted{ return _hasARBSparseTexture2; }
 
 static if(useARBSparseTexture2){
 }
@@ -780,8 +780,8 @@ enum useARBSparseTextureClamp = (){
 	else return false;
 }();
 
-private bool _hasARBSparseTextureClamp;
-bool hasARBSparseTextureClamp() nothrow @nogc @safe{ return _hasARBSparseTextureClamp; }
+private __gshared bool _hasARBSparseTextureClamp;
+bool hasARBSparseTextureClamp() nothrow @nogc @trusted{ return _hasARBSparseTextureClamp; }
 
 static if(useARBSparseTextureClamp){
 }

@@ -12,7 +12,7 @@ public import
 	bindbc.opengl.bind.nv.nv_32,
 	bindbc.opengl.bind.nv.nv_44;
 
-import bindbc.loader.sharedlib;
+import bindbc.opengl.loader;
 import bindbc.opengl.config;
 
 package(bindbc.opengl) void loadNV(SharedLib lib, GLSupport contextVersion) nothrow @nogc{

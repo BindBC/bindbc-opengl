@@ -7,7 +7,7 @@
 +/
 module bindbc.opengl.bind.arb.core_40;
 
-import bindbc.loader;
+import bindbc.opengl.loader;
 import bindbc.opengl.config, bindbc.opengl.context, bindbc.opengl.bind.types;
 
 enum has40 = glSupport >= GLSupport.gl40;
@@ -20,8 +20,8 @@ enum useARBOcclusionQuery2 = (){
 	else return has33;
 }();
 
-private bool _hasARBOcclusionQuery2 = false;
-bool hasARBOcclusionQuery2() nothrow @nogc @safe{ return _hasARBOcclusionQuery2; }
+private __gshared bool _hasARBOcclusionQuery2 = false;
+bool hasARBOcclusionQuery2() nothrow @nogc @trusted{ return _hasARBOcclusionQuery2; }
 
 static if(useARBOcclusionQuery2){
 }
@@ -34,8 +34,8 @@ enum useARBGPUShader5 = (){
 	else return has40;
 }();
 
-bool _hasARBGPUShader5 = false;
-bool hasARBGPUShader5() nothrow @nogc @safe{ return _hasARBGPUShader5; }
+__gshared bool _hasARBGPUShader5 = false;
+bool hasARBGPUShader5() nothrow @nogc @trusted{ return _hasARBGPUShader5; }
 
 static if(useARBGPUShader5){
 	enum: uint{
@@ -54,8 +54,8 @@ enum useARBDrawIndirect = (){
 	else return has40;
 }();
 
-bool _hasARBDrawIndirect = false;
-bool hasARBDrawIndirect() nothrow @nogc @safe{ return _hasARBDrawIndirect; }
+__gshared bool _hasARBDrawIndirect = false;
+bool hasARBDrawIndirect() nothrow @nogc @trusted{ return _hasARBDrawIndirect; }
 
 static if(useARBDrawIndirect){
 	enum: uint{
@@ -87,8 +87,8 @@ enum useARBGPUShaderFP64 = (){
 	else return has40;
 }();
 
-bool _hasARBGPUShaderFP64 = false;
-bool hasARBGPUShaderFP64() nothrow @nogc @safe{ return _hasARBGPUShaderFP64; }
+__gshared bool _hasARBGPUShaderFP64 = false;
+bool hasARBGPUShaderFP64() nothrow @nogc @trusted{ return _hasARBGPUShaderFP64; }
 
 static if(useARBGPUShaderFP64){
 	enum: uint{
@@ -178,8 +178,8 @@ enum useARBShaderSubroutine = (){
 	else return has40;
 }();
 
-bool _hasARBShaderSubroutine = false;
-bool hasARBShaderSubroutine() nothrow @nogc @safe{ return _hasARBShaderSubroutine; }
+__gshared bool _hasARBShaderSubroutine = false;
+bool hasARBShaderSubroutine() nothrow @nogc @trusted{ return _hasARBShaderSubroutine; }
 
 static if(useARBShaderSubroutine){
 	enum: uint{
@@ -236,8 +236,8 @@ enum useARBTesselationShader = (){
 	else return has40;
 }();
 
-bool _hasARBTesselationShader = false;
-bool hasARBTesselationShader() nothrow @nogc @safe{ return _hasARBTesselationShader; }
+__gshared bool _hasARBTesselationShader = false;
+bool hasARBTesselationShader() nothrow @nogc @trusted{ return _hasARBTesselationShader; }
 
 static if(useARBTesselationShader){
 	enum: uint{
@@ -299,8 +299,8 @@ enum useARBTransformFeedback2 = (){
 	else return has40;
 }();
 
-bool _hasARBTransformFeedback2 = false;
-bool hasARBTransformFeedback2() nothrow @nogc @safe{ return _hasARBTransformFeedback2; }
+__gshared bool _hasARBTransformFeedback2 = false;
+bool hasARBTransformFeedback2() nothrow @nogc @trusted{ return _hasARBTransformFeedback2; }
 
 static if(useARBTransformFeedback2){
 	enum: uint{
@@ -349,8 +349,8 @@ enum useARBTransformFeedback3 = (){
 	else return has40;
 }();
 
-bool _hasARBTransformFeedback3 = false;
-bool hasARBTransformFeedback3() nothrow @nogc @safe{ return _hasARBTransformFeedback3; }
+__gshared bool _hasARBTransformFeedback3 = false;
+bool hasARBTransformFeedback3() nothrow @nogc @trusted{ return _hasARBTransformFeedback3; }
 
 static if(useARBTransformFeedback3){
 	enum: uint{

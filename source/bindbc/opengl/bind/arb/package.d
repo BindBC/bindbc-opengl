@@ -21,7 +21,7 @@ public import
 	bindbc.opengl.bind.arb.core_46,
 	bindbc.opengl.bind.arb.arb_01;
 
-import bindbc.loader.sharedlib;
+import bindbc.opengl.loader;
 import bindbc.opengl.config;
 
 package(bindbc.opengl) void loadARB(SharedLib lib, GLSupport contextVersion) nothrow @nogc{

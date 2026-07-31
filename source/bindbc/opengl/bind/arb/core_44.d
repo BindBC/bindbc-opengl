@@ -7,7 +7,7 @@
 +/
 module bindbc.opengl.bind.arb.core_44;
 
-import bindbc.loader;
+import bindbc.opengl.loader;
 import bindbc.opengl.config, bindbc.opengl.context, bindbc.opengl.bind.types;
 
 enum has44 = glSupport >= GLSupport.gl44;
@@ -19,8 +19,8 @@ enum useARBBufferStorage = (){
 	else return has44;
 }();
 
-bool _hasARBBufferStorage = false;
-bool hasARBBufferStorage() nothrow @nogc @safe{ return _hasARBBufferStorage; }
+__gshared bool _hasARBBufferStorage = false;
+bool hasARBBufferStorage() nothrow @nogc @trusted{ return _hasARBBufferStorage; }
 
 static if(useARBBufferStorage){
 	enum: uint{
@@ -67,8 +67,8 @@ enum useARBClearTexture = (){
 	else return has44;
 }();
 
-bool _hasARBClearTexture = false;
-bool hasARBClearTexture() nothrow @nogc @safe{ return _hasARBClearTexture; }
+__gshared bool _hasARBClearTexture = false;
+bool hasARBClearTexture() nothrow @nogc @trusted{ return _hasARBClearTexture; }
 
 static if(useARBClearTexture){
 	enum: uint{
@@ -99,8 +99,8 @@ enum useARBEnhancedLayouts = (){
 	else return has44;
 }();
 
-bool _hasARBEnhancedLayouts = false;
-bool hasARBEnhancedLayouts() nothrow @nogc @safe{ return _hasARBEnhancedLayouts; }
+__gshared bool _hasARBEnhancedLayouts = false;
+bool hasARBEnhancedLayouts() nothrow @nogc @trusted{ return _hasARBEnhancedLayouts; }
 
 static if(useARBEnhancedLayouts){
 	enum: uint{
@@ -117,8 +117,8 @@ enum useARBMultBind = (){
 	else return has44;
 }();
 
-bool _hasARBMultBind = false;
-bool hasARBMultBind() nothrow @nogc @safe{ return _hasARBMultBind; }
+__gshared bool _hasARBMultBind = false;
+bool hasARBMultBind() nothrow @nogc @trusted{ return _hasARBMultBind; }
 
 static if(useARBMultBind){
 	extern(System) nothrow @nogc{
@@ -157,8 +157,8 @@ enum useARBQueryBufferObject = (){
 	else return has44;
 }();
 
-bool _hasARBQueryBufferObject = false;
-bool hasARBQueryBufferObject() nothrow @nogc @safe{ return _hasARBQueryBufferObject; }
+__gshared bool _hasARBQueryBufferObject = false;
+bool hasARBQueryBufferObject() nothrow @nogc @trusted{ return _hasARBQueryBufferObject; }
 
 static if(useARBQueryBufferObject){
 	enum: uint{
@@ -176,8 +176,8 @@ enum useARBTextureMirrorClampToEdge = (){
 	else return has44;
 }();
 
-bool _hasARBTextureMirrorClampToEdge = false;
-bool hasARBTextureMirrorClampToEdge() nothrow @nogc @safe{ return _hasARBTextureMirrorClampToEdge; }
+__gshared bool _hasARBTextureMirrorClampToEdge = false;
+bool hasARBTextureMirrorClampToEdge() nothrow @nogc @trusted{ return _hasARBTextureMirrorClampToEdge; }
 
 static if(useARBTextureMirrorClampToEdge){
 	enum: uint{

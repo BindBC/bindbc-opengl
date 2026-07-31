@@ -1,6 +1,6 @@
 module bindbc.opengl.bind.khr.khr_01;
 
-import bindbc.loader;
+import bindbc.opengl.loader;
 import bindbc.opengl.config, bindbc.opengl.context;
 import bindbc.opengl.bind.types;
 

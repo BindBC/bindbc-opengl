@@ -10,7 +10,7 @@ module bindbc.opengl.bind.gl41;
 import bindbc.opengl.config;
 
 static if(glSupport >= GLSupport.gl41):
-import bindbc.loader: SharedLib;
+import bindbc.opengl.loader: SharedLib;
 import bindbc.opengl.context;
 
 package(bindbc.opengl) bool loadGL41(SharedLib lib, GLSupport contextVersion) nothrow @nogc{

@@ -7,7 +7,7 @@
 +/
 module bindbc.opengl.bind.arb.core_32;
 
-import bindbc.loader;
+import bindbc.opengl.loader;
 import bindbc.opengl.config, bindbc.opengl.context, bindbc.opengl.bind.types;
 
 enum has32 = glSupport >= GLSupport.gl32;
@@ -19,8 +19,8 @@ enum useARBDepthClamp = (){
 	else return has32;
 }();
 
-bool _hasARBDepthClamp = false;
-bool hasARBDepthClamp() nothrow @nogc @safe{ return _hasARBDepthClamp; }
+__gshared bool _hasARBDepthClamp = false;
+bool hasARBDepthClamp() nothrow @nogc @trusted{ return _hasARBDepthClamp; }
 
 static if(useARBDepthClamp){
 	enum: uint{
@@ -35,8 +35,8 @@ enum useARBProvokingVertex = (){
 	else return has32;
 }();
 
-bool _hasARBProvokingVertex = false;
-bool hasARBProvokingVertex() nothrow @nogc @safe{ return _hasARBProvokingVertex; }
+__gshared bool _hasARBProvokingVertex = false;
+bool hasARBProvokingVertex() nothrow @nogc @trusted{ return _hasARBProvokingVertex; }
 
 static if(useARBProvokingVertex){
 	enum: uint{
@@ -67,8 +67,8 @@ enum useARBSeamlessCubeMap = (){
 	else return has32;
 }();
 
-bool _hasARBSeamlessCubeMap = false;
-bool hasARBSeamlessCubeMap() nothrow @nogc @safe{ return _hasARBSeamlessCubeMap; }
+__gshared bool _hasARBSeamlessCubeMap = false;
+bool hasARBSeamlessCubeMap() nothrow @nogc @trusted{ return _hasARBSeamlessCubeMap; }
 
 static if(useARBSeamlessCubeMap){
 	enum: uint{
@@ -83,8 +83,8 @@ enum useARBDrawElementsBaseVertex = (){
 	else return has32;
 }();
 
-bool _hasARBDrawElementsBaseVertex = false;
-bool hasARBDrawElementsBaseVertex() nothrow @nogc @safe{ return _hasARBDrawElementsBaseVertex; }
+__gshared bool _hasARBDrawElementsBaseVertex = false;
+bool hasARBDrawElementsBaseVertex() nothrow @nogc @trusted{ return _hasARBDrawElementsBaseVertex; }
 
 static if(useARBDrawElementsBaseVertex){
 	extern(System) nothrow @nogc{
@@ -122,8 +122,8 @@ alias GLuint64 = ulong;
 struct _GLsync;
 alias GLsync = _GLsync*;
 
-bool _hasARBSync = false;
-bool hasARBSync() nothrow @nogc @safe{ return _hasARBSync; }
+__gshared bool _hasARBSync = false;
+bool hasARBSync() nothrow @nogc @trusted{ return _hasARBSync; }
 
 static if(useARBSync){
 	enum: uint{
@@ -182,8 +182,8 @@ enum useARBTextureMultiSample = (){
 	else return has32;
 }();
 
-bool _hasARBTextureMultiSample = false;
-bool hasARBTextureMultiSample() nothrow @nogc @safe{ return _hasARBTextureMultiSample; }
+__gshared bool _hasARBTextureMultiSample = false;
+bool hasARBTextureMultiSample() nothrow @nogc @trusted{ return _hasARBTextureMultiSample; }
 
 static if(useARBTextureMultiSample){
 	enum: uint{

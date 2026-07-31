@@ -7,7 +7,7 @@
 +/
 module bindbc.opengl.bind.arb.core_41;
 
-import bindbc.loader;
+import bindbc.opengl.loader;
 import bindbc.opengl.config, bindbc.opengl.context, bindbc.opengl.bind.types;
 
 enum has41 = glSupport >= GLSupport.gl41;
@@ -19,8 +19,8 @@ enum useARBES2Compatibility = (){
 	else return has41;
 }();
 
-bool _hasARBES2Compatibility = false;
-bool hasARBES2Compatibility() nothrow @nogc @safe{ return _hasARBES2Compatibility; }
+__gshared bool _hasARBES2Compatibility = false;
+bool hasARBES2Compatibility() nothrow @nogc @trusted{ return _hasARBES2Compatibility; }
 
 static if(useARBES2Compatibility){
 	enum: uint{
@@ -75,8 +75,8 @@ enum useARBGetProgramBinary = (){
 	else return has41;
 }();
 
-bool _hasARBGetProgramBinary = false;
-bool hasARBGetProgramBinary() nothrow @nogc @safe{ return _hasARBGetProgramBinary; }
+__gshared bool _hasARBGetProgramBinary = false;
+bool hasARBGetProgramBinary() nothrow @nogc @trusted{ return _hasARBGetProgramBinary; }
 
 static if(useARBGetProgramBinary){
 	enum: uint{
@@ -113,8 +113,8 @@ enum useARBSeparateShaderObjects = (){
 	else return has41;
 }();
 
-bool _hasARBSeparateShaderObjects = false;
-bool hasARBSeparateShaderObjects() nothrow @nogc @safe{ return _hasARBSeparateShaderObjects; }
+__gshared bool _hasARBSeparateShaderObjects = false;
+bool hasARBSeparateShaderObjects() nothrow @nogc @trusted{ return _hasARBSeparateShaderObjects; }
 
 static if(useARBSeparateShaderObjects){
 	enum: uint{
@@ -327,8 +327,8 @@ enum useARBVertexAttrib64Bit = (){
 	else return has41;
 }();
 
-bool _hasARBVertexAttrib64Bit = false;
-bool hasARBVertexAttrib64Bit() nothrow @nogc @safe{ return _hasARBVertexAttrib64Bit; }
+__gshared bool _hasARBVertexAttrib64Bit = false;
+bool hasARBVertexAttrib64Bit() nothrow @nogc @trusted{ return _hasARBVertexAttrib64Bit; }
 
 static if(useARBVertexAttrib64Bit){
 	extern(System) nothrow @nogc{
@@ -379,8 +379,8 @@ enum useARBViewportArray = (){
 	else return has41;
 }();
 
-bool _hasARBViewportArray = false;
-bool hasARBViewportArray() nothrow @nogc @safe{ return _hasARBViewportArray; }
+__gshared bool _hasARBViewportArray = false;
+bool hasARBViewportArray() nothrow @nogc @trusted{ return _hasARBViewportArray; }
 
 static if(useARBViewportArray){
 	enum: uint{

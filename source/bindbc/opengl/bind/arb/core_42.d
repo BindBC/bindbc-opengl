@@ -7,7 +7,7 @@
 +/
 module bindbc.opengl.bind.arb.core_42;
 
-import bindbc.loader;
+import bindbc.opengl.loader;
 import bindbc.opengl.config, bindbc.opengl.context, bindbc.opengl.bind.types;
 
 enum has42 = glSupport >= GLSupport.gl42;
@@ -19,8 +19,8 @@ enum useARBBaseInstance = (){
 	else return has42;
 }();
 
-bool _hasARBBaseInstance = false;
-bool hasARBBaseInstance() nothrow @nogc @safe{ return _hasARBBaseInstance; }
+__gshared bool _hasARBBaseInstance = false;
+bool hasARBBaseInstance() nothrow @nogc @trusted{ return _hasARBBaseInstance; }
 
 static if(useARBBaseInstance){
 	extern(System) nothrow @nogc{
@@ -50,8 +50,8 @@ enum useARBCompressedTexturePixelStorage = (){
 	else return has42;
 }();
 
-bool _hasARBCompressedTexturePixelStorage = false;
-bool hasARBCompressedTexturePixelStorage() nothrow @nogc @safe{ return _hasARBCompressedTexturePixelStorage; }
+__gshared bool _hasARBCompressedTexturePixelStorage = false;
+bool hasARBCompressedTexturePixelStorage() nothrow @nogc @trusted{ return _hasARBCompressedTexturePixelStorage; }
 
 static if(useARBCompressedTexturePixelStorage){
 	enum: uint{
@@ -73,8 +73,8 @@ enum useARBInternalFormatQuery = (){
 	else return has42;
 }();
 
-bool _hasARBInternalFormatQuery = false;
-bool hasARBInternalFormatQuery() nothrow @nogc @safe{ return _hasARBInternalFormatQuery; }
+__gshared bool _hasARBInternalFormatQuery = false;
+bool hasARBInternalFormatQuery() nothrow @nogc @trusted{ return _hasARBInternalFormatQuery; }
 
 static if(useARBInternalFormatQuery){
 	enum: uint{
@@ -102,8 +102,8 @@ enum useARBMapBufferAlignment = (){
 	else return has42;
 }();
 
-bool _hasARBMapBufferAlignment = false;
-bool hasARBMapBufferAlignment() nothrow @nogc @safe{ return _hasARBMapBufferAlignment; }
+__gshared bool _hasARBMapBufferAlignment = false;
+bool hasARBMapBufferAlignment() nothrow @nogc @trusted{ return _hasARBMapBufferAlignment; }
 
 static if(useARBMapBufferAlignment){
 	enum: uint{
@@ -118,8 +118,8 @@ enum useARBShaderAtomicCounters = (){
 	else return has42;
 }();
 
-bool _hasARBShaderAtomicCounters = false;
-bool hasARBShaderAtomicCounters() nothrow @nogc @safe{ return _hasARBShaderAtomicCounters; }
+__gshared bool _hasARBShaderAtomicCounters = false;
+bool hasARBShaderAtomicCounters() nothrow @nogc @trusted{ return _hasARBShaderAtomicCounters; }
 
 static if(useARBShaderAtomicCounters){
 	enum: uint{
@@ -175,8 +175,8 @@ enum useARBShaderImageLoadStore = (){
 	else return has42;
 }();
 
-bool _hasARBShaderImageLoadStore = false;
-bool hasARBShaderImageLoadStore() nothrow @nogc @safe{ return _hasARBShaderImageLoadStore; }
+__gshared bool _hasARBShaderImageLoadStore = false;
+bool hasARBShaderImageLoadStore() nothrow @nogc @trusted{ return _hasARBShaderImageLoadStore; }
 
 static if(useARBShaderImageLoadStore){
 	enum: uint{
@@ -270,8 +270,8 @@ enum useARBTextureStorage = (){
 	else return has42;
 }();
 
-bool _hasARBTextureStorage = false;
-bool hasARBTextureStorage() nothrow @nogc @safe{ return _hasARBTextureStorage; }
+__gshared bool _hasARBTextureStorage = false;
+bool hasARBTextureStorage() nothrow @nogc @trusted{ return _hasARBTextureStorage; }
 
 static if(useARBTextureStorage){
 	enum: uint{
@@ -324,8 +324,8 @@ enum useARBTransformFeedbackInstanced = (){
 	else return has42;
 }();
 
-bool _hasARBTransformFeedbackInstanced = false;
-bool hasARBTransformFeedbackInstanced() nothrow @nogc @safe{ return _hasARBTransformFeedbackInstanced; }
+__gshared bool _hasARBTransformFeedbackInstanced = false;
+bool hasARBTransformFeedbackInstanced() nothrow @nogc @trusted{ return _hasARBTransformFeedbackInstanced; }
 
 static if(useARBTransformFeedbackInstanced){
 	extern(System) nothrow @nogc{

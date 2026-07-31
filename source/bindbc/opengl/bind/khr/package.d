@@ -4,7 +4,7 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 module bindbc.opengl.bind.khr;
 
-import bindbc.loader.sharedlib;
+import bindbc.opengl.loader;
 import bindbc.opengl.config;
 
 public import bindbc.opengl.bind.khr.khr_01;

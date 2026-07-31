@@ -7,7 +7,7 @@
 +/
 module bindbc.opengl.bind.arb.core_31;
 
-import bindbc.loader;
+import bindbc.opengl.loader;
 import bindbc.opengl.config, bindbc.opengl.context, bindbc.opengl.bind.types;
 
 enum has31 = glSupport >= GLSupport.gl31;
@@ -19,8 +19,8 @@ enum useARBCopyBuffer = (){
 	else return has31;
 }();
 
-bool _hasARBCopyBuffer = false;
-bool hasARBCopyBuffer() nothrow @nogc @safe{ return _hasARBCopyBuffer; }
+__gshared bool _hasARBCopyBuffer = false;
+bool hasARBCopyBuffer() nothrow @nogc @trusted{ return _hasARBCopyBuffer; }
 
 static if(useARBCopyBuffer){
 	enum: uint{
@@ -49,8 +49,8 @@ enum useARBUniformBufferObject = (){
 	else return has31;
 }();
 
-bool _hasARBUniformBufferObject = false;
-bool hasARBUniformBufferObject() nothrow @nogc @safe{ return _hasARBUniformBufferObject; }
+__gshared bool _hasARBUniformBufferObject = false;
+bool hasARBUniformBufferObject() nothrow @nogc @trusted{ return _hasARBUniformBufferObject; }
 
 static if(useARBUniformBufferObject){
 	enum: uint{

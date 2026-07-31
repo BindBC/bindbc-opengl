@@ -9,7 +9,7 @@ module bindbc.opengl.bind.gl43;
 
 import bindbc.opengl.config;
 static if(glSupport >= GLSupport.gl43):
-import bindbc.loader : SharedLib;
+import bindbc.opengl.loader : SharedLib;
 import bindbc.opengl.context;
 import bindbc.opengl.bind.types;
 /+

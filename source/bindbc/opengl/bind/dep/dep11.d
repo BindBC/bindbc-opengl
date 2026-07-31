@@ -7,7 +7,7 @@
 +/
 module bindbc.opengl.bind.dep.dep11;
 
-import bindbc.loader, bindbc.opengl.bind.types;
+import bindbc.opengl.loader, bindbc.opengl.bind.types;
 
 version(GL_AllowDeprecated){
 	enum: uint{
